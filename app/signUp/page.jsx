@@ -1,4 +1,3 @@
-'use client'
 import Image from 'next/image'
 import React from 'react'
 import logo from '@/assets/images/mainLogo.png'
@@ -6,19 +5,11 @@ import CustomInput from '@/components/shared/CustomInput'
 import Link from 'next/link'
 import Button from '@/components/shared/Button'
 import MaxContainer from '@/components/layout/MaxContainer'
-import { useRouter } from 'next/navigation'
 
 
 const Page = () => {
-
-    const router = useRouter();
-
-    const handleSubmit = () => {
-        router.push('/dashboard')
-    }
-
     return (
-        <MaxContainer> 
+        <MaxContainer>
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
 
                 {/* logo */}
@@ -27,29 +18,27 @@ const Page = () => {
                 </div>
 
 
-                {/* login continer */}
+                {/* main continer */}
                 <div className='bg-white sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full sm:space-y-12 space-y-6 sm:p-8 p-4 sm:py-10 ' >
-                    <h1 className='text-center sm:text-4xl text-2xl font-semibold '>Log in</h1>
+                    <div>
+                        <h1 className='text-center sm:text-4xl text-2xl font-semibold '>Welcome</h1>
+                        <p className='text-center sm:text-4xl text-2xl'>to Unsigned</p>
+                    </div>
                     <div className='space-y-6'>
                         <CustomInput
                             type='text'
                             label='Email'
                             isRequired={true}
                         />
-                        <CustomInput
-                            type='password'
-                            label='Password'
-                            isRequired={true}
-                        />
-                        <div className='flex items-center justify-between sm:pl-8'>
-                            <Link href={'/forgot-password'} className='text-lightBlueText sm:text-xl text-lg'>Forgot password?</Link>
-                            <div className='w-fit'>
-                                <Button label={'Log in'} onClick={handleSubmit} />
-                            </div>
+
+                        <div className=' w-full '>
+                            <Link href={'/signUp/create-password'} className='w-full'>
+                                <Button label={'Continue'} />
+                            </Link>
                         </div>
                     </div>
                     <div className='flex items-center text-center flex-wrap gap-4 justify-center text-xl'>
-                        <h1 className='text-labelColor'>Don&apos;t have an account?</h1><Link href={'/signUp'} className='text-lightBlueText'>Sign Up</Link>
+                        <h1 className='text-labelColor'>Already have an account?</h1><Link href={'/login'} className='text-lightBlueText'>Log in</Link>
                     </div>
                 </div>
 
