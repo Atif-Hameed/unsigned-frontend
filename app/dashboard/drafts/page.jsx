@@ -1,10 +1,10 @@
-import Cards from '@/components/cards/Cards'
+import DraftCards from '@/components/dashboard/startingCards/DraftCards'
 import React from 'react'
 
 const page = () => {
     return (
         <div>
-            <Cards />
+            <DraftCards />
         </div>
     )
 }

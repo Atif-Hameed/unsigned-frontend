@@ -1,14 +1,17 @@
 'use client'
 
 import { useRouter } from 'next/navigation';
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export const page = () => {
+
+const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/drafts')
+    router.push('/dashboard/drafts')
   }, [])
 
   return <div></div>
 }
+
+export default Page
