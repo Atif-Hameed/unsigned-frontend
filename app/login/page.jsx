@@ -41,7 +41,7 @@ const Page = () => {
                             label='Password'
                             isRequired={true}
                         />
-                        <div className='flex items-center justify-between sm:pl-8'>
+                        <div className='flex items-center justify-between pl-3'>
                             <Link href={'/forgot-password'} className='text-lightBlueText sm:text-xl text-lg'>Forgot password?</Link>
                             <div className='w-fit'>
                                 <Button label={'Log in'} onClick={handleSubmit} />

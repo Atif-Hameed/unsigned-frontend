@@ -30,14 +30,13 @@ const Navbar = () => {
                             </div>
                             <p className='text-labelColor text-2xl'>Englisch</p>
                         </div>
-                        <div onClick={handlePopup} className='cursor-pointer flex items-center gap-2'>
+                        <div onClick={handlePopup} className='cursor-pointer relative flex items-center gap-2'>
                             <div className='p-2  hover:scale-105 rounded-full bg-white' >
                                 <BsPersonFill className='text-4xl text-black' />
                             </div>
-                            <p className=''>Atif Hameed</p>
                             {
                                 openPopup &&
-                                <div className='absolute top-4 left-0 flex flex-col px-4 py-2 rounded-lg bg-white' >
+                                <div className='absolute  right-0 top-0 flex flex-col px-4 py-2 rounded-lg bg-white' >
                                     <p className='py-2 w-full cursor-pointer rounded-md hover:bg-[#d6ece3]'>Profile</p>
                                     <p className='py-2 w-full cursor-pointer rounded-md hover:bg-[#d6ece3]'>Logout</p>
                                 </div>

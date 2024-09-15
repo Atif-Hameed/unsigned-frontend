@@ -24,7 +24,9 @@ module.exports = {
         dark: '#464754',
         labelColor: '#464754b2',
         lightBlue: '#4a6dac',
-        lightBlueText: '#4a6d8c'
+        lightBlueText: '#4a6d8c',
+        cardColor: '#EEEEEE',
+        bgColor: '#6b7280'
       },
     },
   },
