@@ -39,7 +39,7 @@ const Page = () => {
                 </div>
 
                 {/* login container */}
-                <div className='bg-white sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full sm:space-y-12 space-y-6 sm:p-8 p-4 sm:py-10'>
+                <div className='bg-white sm:mt-6 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full flex flex-col sm:gap-12 gap-6 sm:p-8 p-4 sm:py-10'>
 
                     {/* back button */}
                     <Link href={'/'} className='absolute -top-[10%] left-4 text-lightBlueText flex items-center gap-2' > <IoArrowBack className='text-xl' />Back</Link>
