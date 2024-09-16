@@ -5,9 +5,12 @@ import React, { useState } from 'react';
 import logo from '@/assets/images/mainLogo.png';
 import CustomInput from '@/components/shared/CustomInput';
 import Button from '@/components/shared/Button';
+import TrnaslateButton from '@/components/shared/TrnaslateButton';
+import { useTranslation } from 'next-i18next';
 
 const Page = () => {
     const [activeTab, setActiveTab] = useState('1');
+    const { t } = useTranslation();
 
     // Unified state for all form sections
     const [formData, setFormData] = useState({
@@ -269,6 +272,10 @@ const Page = () => {
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 
+                <div className='absolute right-10 top-3' >
+                    <TrnaslateButton />
+                </div>
+
                 {/* main container */}
                 <div className='flex flex-col items-center lg:mt-12 mt-0 p-12 lg:w-1/2 sm:w-[75%] w-full  px-6'>
                     <div className='flex sm:gap-0 gap-2 sm:flex-nowrap flex-wrap'>
@@ -287,7 +294,7 @@ const Page = () => {
                         {renderActiveTab()}
                     </div>
 
-                  
+
                 </div>
             </div>
         </MaxContainer>

@@ -5,9 +5,13 @@ import CustomInput from '@/components/shared/CustomInput'
 import Link from 'next/link'
 import Button from '@/components/shared/Button'
 import MaxContainer from '@/components/layout/MaxContainer'
+import TrnaslateButton from '@/components/shared/TrnaslateButton'
+import { useTranslation } from 'next-i18next'
 
 
 const Page = () => {
+
+    const {t}  = useTranslation();
 
     // const handleSignup = (e) => {
     //     e.preventDefault();
@@ -63,6 +67,10 @@ const Page = () => {
                 {/* logo */}
                 <div className='lg:absolute flex justify-center -top-[2%] left-[7%]'>
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
+                </div>
+
+                <div className='absolute right-10 top-3' >
+                    <TrnaslateButton />
                 </div>
 
 
