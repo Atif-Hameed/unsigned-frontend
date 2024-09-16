@@ -7,11 +7,21 @@ import german from '@/assets/icons/germany.png';
 import american from '@/assets/icons/america.png';
 import { BsPersonFill } from "react-icons/bs";
 import { usePathname } from 'next/navigation';
+import { useTranslation } from 'next-i18next';
+import i18n from '@/utils/i18n';
+import TrnaslateButton from '../shared/TrnaslateButton';
 
 const Navbar = () => {
     const [openPopup, setOpenPopup] = useState(false);
     const popupRef = useRef(null);
     const pathname = usePathname();
+    // const [isGerman, setIsGerman] = useState(false);
+    const { t } = useTranslation();
+
+    // const changeLanguage = (lang) => {
+    //     i18n.changeLanguage(lang);
+    //     setIsGerman(lang === 'gr'); // Update state based on selected language
+    // };
 
     const handlePopup = () => {
         setOpenPopup((prev) => !prev);
@@ -44,12 +54,9 @@ const Navbar = () => {
                         <Image alt='' src={logo} className='w-40' unoptimized priority />
                     </div>
                     <div className='flex items-center gap-10'>
-                        <div className='flex items-center gap-1'>
-                            <div>
-                                <Image alt='' src={german} className='w-14' unoptimized priority />
-                            </div>
-                            <p className='text-labelColor text-xl'>Englisch</p>
-                        </div>
+                        
+                        <TrnaslateButton />
+
                         <div onClick={handlePopup} className='cursor-pointer relative flex items-center gap-2' ref={popupRef}>
                             <div className='p-2 hover:scale-105 rounded-full bg-white'>
                                 <BsPersonFill className='text-4xl text-black' />
