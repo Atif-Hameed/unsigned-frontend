@@ -19,7 +19,7 @@ const Page = () => {
     const [isLowerCase, setIsLowerCase] = useState(false);
     const [isNumber, setIsNumber] = useState(false);
     const [isMinLength, setIsMinLength] = useState(false);
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     // Handle password change and validation
     const handlePasswordChange = (e) => {
