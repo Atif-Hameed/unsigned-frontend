@@ -17,8 +17,60 @@ const Page = () => {
         router.push('/dashboard')
     }
 
+    // const handleLogin = async () => {
+    //     try {
+    //         if (email === "" || !email) {
+    //             setEmailError(true);
+    //             setPasswordError(false);
+    //         } else if (password === "" || !password) {
+    //             setEmailError(false);
+    //             setPasswordError(true);
+    //         } else {
+    //             setLoading(true);
+    //             const userCredential = await signInWithEmailAndPassword(
+    //                 auth,
+    //                 email,
+    //                 password
+    //             );
+    //             const user = userCredential.user;
+
+    //             const collections = ["users"];
+    //             let userData;
+
+    //             for (const collectionName of collections) {
+    //                 const docRef = doc(db, collectionName, user.uid);
+    //                 const docSnapshot = await getDoc(docRef);
+
+    //                 if (docSnapshot.exists()) {
+    //                     userData = {
+    //                         id: docSnapshot.id,
+    //                         ...docSnapshot.data(),
+    //                     };
+    //                     break; // Exit the loop once user data is found
+    //                 }
+    //             }
+
+    //             if (userData) {
+    //                 setErrorMessage("");
+    //                 localStorage.setItem("token", user.accessToken);
+    //                 localStorage.setItem("user", JSON.stringify(userData));
+    //                 setLoading(false);
+    //                 router.push("/home");
+    //                 toast.success("Successfully logged in");
+    //             } else {
+    //                 setLoading(false);
+    //                 setErrorMessage("User not verified or doesn't exist");
+    //             }
+    //         }
+    //     } catch (error) {
+    //         setLoading(false);
+    //         setErrorMessage(error.message);
+    //         toast.error(error.message);
+    //     }
+    // };
+
     return (
-        <MaxContainer> 
+        <MaxContainer>
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
 
                 {/* logo */}

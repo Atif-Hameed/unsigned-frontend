@@ -8,6 +8,54 @@ import MaxContainer from '@/components/layout/MaxContainer'
 
 
 const Page = () => {
+
+    // const handleSignup = (e) => {
+    //     e.preventDefault();
+
+    //     if (formData.username === "" || !formData.username) {
+    //         setFormErrorHelper("username");
+    //     } else if (formData.email === "" || !formData.email) {
+    //         setFormErrorHelper("email");
+    //     } else if (formData.password === "" || !formData.password) {
+    //         setFormErrorHelper("password");
+    //     } else {
+    //         setFormError((prevFormError) => ({
+    //             username: false,
+    //             email: false,
+    //             password: false,
+    //         }));
+    //         setLoading(true);
+    //         createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    //             .then((userCredential) => {
+    //                 const user = userCredential.user;
+    //                 const userData = {
+    //                     username: formData.username,
+    //                     email: formData.email,
+    //                     role: "user",
+    //                 };
+    //                 const usersCollectionRef = collection(db, "users");
+    //                 const userDocRef = doc(usersCollectionRef, user.uid);
+
+    //                 setDoc(userDocRef, userData)
+    //                     .then(() => {
+    //                         Router.push("/home");
+    //                         toast.success("Signup successful");
+    //                         setErrorMessage("");
+    //                         setLoading(false);
+    //                     })
+    //                     .catch((error) => {
+    //                         setLoading(false);
+    //                         setErrorMessage(error.message);
+    //                         toast.error(error.message);
+    //                     });
+    //             })
+    //             .catch((error) => {
+    //                 setLoading(false);
+    //                 setErrorMessage(error.message);
+    //                 toast.error(error.message);
+    //             });
+    //     }
+    // };
     return (
         <MaxContainer>
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
