@@ -53,9 +53,9 @@ const Page = () => {
     };
 
     const tabs = [
-        { name: 'Personal data', id: '1' },
-        { name: 'Company data', id: '2' },
-        { name: 'Shipping and billing address', id: '3' },
+        { name: t('personalData'), id: '1' },
+        { name: t('companyData'), id: '2' },
+        { name: t('shippingBillingAddress'), id: '3' }
     ];
 
     const renderActiveTab = () => {
@@ -64,39 +64,39 @@ const Page = () => {
                 return (
                     <div className='w-full'>
                         <div className='flex flex-col items-center w-full'>
-                            <h1 className='text-center sm:text-4xl text-2xl font-semibold text-labelColor'>How should we greet you?</h1>
+                            <h1 className='text-center sm:text-4xl text-2xl font-semibold text-labelColor'>{t('howGreet')}</h1>
                             <div className='xl:w-[50%] md:w-[65%] w-[90%] flex flex-col items-center gap-2 mt-2'>
                                 <CustomInput
                                     type={'text'}
-                                    label={'First Name'}
+                                    label={t('firstName')}
                                     name={'firstName'}
                                     value={formData.firstName}
                                     onChange={handleChange}
                                 />
                                 <CustomInput
                                     type={'text'}
-                                    label={'Last Name'}
+                                    label={t('lastName')}
                                     name={'lastName'}
                                     value={formData.lastName}
                                     onChange={handleChange}
                                 />
                                 <CustomInput
                                     type={'text'}
-                                    label={'Phone Number'}
+                                    label={t('phoneNumber')}
                                     name={'phone'}
                                     value={formData.phone}
                                     onChange={handleChange}
                                 />
                                 <CustomInput
                                     type={'email'}
-                                    label={'Email (should auto fill)'}
+                                    label={t('email')}
                                     name={'email'}
                                     value={formData.email}
                                     onChange={handleChange}
                                 />
-                                <p className='text-xs w-full text-labelColor text-start'>*required field</p>
+                                <p className='text-xs w-full text-labelColor text-start'>{t('requiredField')}</p>
                                 <div className='w-full mt-6'>
-                                    <Button label={'Continue'} onClick={handleNextStep} />
+                                    <Button label={t('continue')} onClick={handleNextStep} />
                                 </div>
                             </div>
                         </div>
@@ -106,39 +106,39 @@ const Page = () => {
                 return (
                     <div className='w-full'>
                         <div className='flex flex-col items-center w-full'>
-                            <h1 className='text-center sm:text-4xl text-2xl font-semibold text-labelColor'>Tell us more about your brand</h1>
+                            <h1 className='text-center sm:text-4xl text-2xl font-semibold text-labelColor'>{t('brandInfo')}</h1>
                             <div className='xl:w-[50%] md:w-[65%] w-[90%] flex flex-col items-center gap-2 mt-2'>
                                 <CustomInput
                                     type={'text'}
-                                    label={'Brand Name'}
+                                    label={t('brandName')}
                                     name={'brandName'}
                                     value={formData.brandName}
                                     onChange={handleChange}
                                 />
                                 <CustomInput
                                     type={'text'}
-                                    label={'VAT'}
+                                    label={t('vat')}
                                     name={'vat'}
                                     value={formData.vat}
                                     onChange={handleChange}
                                 />
                                 <CustomInput
                                     type={'text'}
-                                    label={'Company Website'}
+                                    label={t('companyWebsite')}
                                     name={'companyWebsite'}
                                     value={formData.companyWebsite}
                                     onChange={handleChange}
                                 />
                                 <CustomInput
                                     type={'text'}
-                                    label={'Instagram Link'}
+                                    label={t('instaLink')}
                                     name={'instaLink'}
                                     value={formData.instaLink}
                                     onChange={handleChange}
                                 />
-                                <p className='text-xs w-full text-labelColor text-start'>*required field</p>
+                                <p className='text-xs w-full text-labelColor text-start'>{t('requiredField')}</p>
                                 <div className='w-full mt-6'>
-                                    <Button label={'Continue'} onClick={handleNextStep} />
+                                    <Button label={t('continue')} onClick={handleNextStep} />
                                 </div>
                             </div>
                         </div>
@@ -148,20 +148,20 @@ const Page = () => {
                 return (
                     <div className='w-full'>
                         <div className='flex flex-col items-center w-full'>
-                            <h1 className='text-center sm:text-4xl text-2xl font-semibold text-labelColor'>What is your billing & delivery address?</h1>
+                            <h1 className='text-center sm:text-4xl text-2xl font-semibold text-labelColor'>{t('billingDeliveryAddress')}</h1>
                             <div className='xl:w-[50%] md:w-[65%] w-[90%] flex flex-col items-center gap-2 mt-2'>
                                 <div className='w-full mt-3'>
-                                    <h1 className='text-labelColor sm:text-2xl text-lg text-start w-full'>Billing address</h1>
+                                    <h1 className='text-labelColor sm:text-2xl text-lg text-start w-full'>{t('billingAddress')}</h1>
                                     <CustomInput
                                         type={'text'}
-                                        label={'Address Line 1'}
+                                        label={t('addressLine1')}
                                         name={'billingAddress1'}
                                         value={formData.billingAddress1}
                                         onChange={handleChange}
                                     />
                                     <CustomInput
                                         type={'text'}
-                                        label={'Address Line 2'}
+                                        label={t('addressLine2')}
                                         name={'billingAddress2'}
                                         value={formData.billingAddress2}
                                         onChange={handleChange}
@@ -170,7 +170,7 @@ const Page = () => {
                                         <div className='w-[40%]'>
                                             <CustomInput
                                                 type={'text'}
-                                                label={'Zip Code'}
+                                                label={t('zipCode')}
                                                 name={'billingZipCode'}
                                                 value={formData.billingZipCode}
                                                 onChange={handleChange}
@@ -179,7 +179,7 @@ const Page = () => {
                                         <div className='w-[60%]'>
                                             <CustomInput
                                                 type={'text'}
-                                                label={'City'}
+                                                label={t('city')}
                                                 name={'billingCity'}
                                                 value={formData.billingCity}
                                                 onChange={handleChange}
@@ -188,28 +188,28 @@ const Page = () => {
                                     </div>
                                     <CustomInput
                                         type={'text'}
-                                        label={'Country'}
+                                        label={t('country')}
                                         name={'billingCountry'}
                                         value={formData.billingCountry}
                                         onChange={handleChange}
                                     />
                                 </div>
                                 <div className='w-full mt-3'>
-                                    <h1 className='text-labelColor sm:text-2xl text-lg text-start w-full'>Delivery address</h1>
+                                    <h1 className='text-labelColor sm:text-2xl text-lg text-start w-full'>{t('deliveryAddress')}</h1>
                                     <div className='flex items-center gap-2 w-full justify-start mt-2'>
                                         <input type="checkbox" className='h-5 w-5' name="" id="" />
-                                        <p className='text-sm text-labelColor'>Delivery Address Same As Billing</p>
+                                        <p className='text-sm text-labelColor'>{t('samedelivery')}</p>
                                     </div>
                                     <CustomInput
                                         type={'text'}
-                                        label={'Address Line 1'}
+                                        label={t('addressLine1')}
                                         name={'deliveryAddress1'}
                                         value={formData.deliveryAddress1}
                                         onChange={handleChange}
                                     />
                                     <CustomInput
                                         type={'text'}
-                                        label={'Address Line 2'}
+                                        label={t('addressLine2')}
                                         name={'deliveryAddress2'}
                                         value={formData.deliveryAddress2}
                                         onChange={handleChange}
@@ -218,7 +218,7 @@ const Page = () => {
                                         <div className='w-[40%]'>
                                             <CustomInput
                                                 type={'text'}
-                                                label={'Zip Code'}
+                                                label={t('zipCode')}
                                                 name={'deliveryZipCode'}
                                                 value={formData.deliveryZipCode}
                                                 onChange={handleChange}
@@ -227,7 +227,7 @@ const Page = () => {
                                         <div className='w-[60%]'>
                                             <CustomInput
                                                 type={'text'}
-                                                label={'City'}
+                                                label={t('city')}
                                                 name={'deliveryCity'}
                                                 value={formData.deliveryCity}
                                                 onChange={handleChange}
@@ -236,26 +236,25 @@ const Page = () => {
                                     </div>
                                     <CustomInput
                                         type={'text'}
-                                        label={'Country'}
+                                        label={t('country')}
                                         name={'deliveryCountry'}
                                         value={formData.deliveryCountry}
                                         onChange={handleChange}
                                     />
                                 </div>
+
                                 <div className='w-full mt-6 flex justify-between items-center'>
                                     <button className='rounded-full text-lightBlueText hover:bg-blue-100 py-3 px-5'>
-                                        Skip
+                                        {t('skip')}
                                     </button>
                                     <div className='w-fit'>
-                                        <Button label={'Continue'} onClick={handleSubmit} />
+                                        <Button label={t('continue')} onClick={handleSubmit} />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 );
-            default:
-                return null;
         }
     };
 

@@ -2,10 +2,13 @@
 
 import React, { useEffect, useState } from 'react'
 import DesignPage from './DesignPage';
+import { useTranslation } from 'next-i18next';
 
 const EmptyCards = () => {
 
     const [showDesignPage, setShowDesignPage] = useState(false); // State to control visibility of DesignPage
+    const {t} = useTranslation();
+
 
     const handleStartNewDesign = () => {
         setShowDesignPage(true); // Show the DesignPage component
@@ -28,7 +31,7 @@ const EmptyCards = () => {
     return (
         <>
             <div className="border border-lightBlue h-60 w-full flex justify-center items-center" style={{ borderRadius: '30px' }}>
-                <button onClick={handleStartNewDesign} className="bg-lightBlue hover:scale-105 text-white px-6 py-3 rounded-full">Start design</button>
+                <button onClick={handleStartNewDesign} className="bg-lightBlue hover:scale-105 text-white px-6 py-3 rounded-full">{t('startDesign')}</button>
             </div>
             {/* Conditionally render the DesignPage component */}
             {showDesignPage && (

@@ -8,11 +8,14 @@ import { MdOutlineColorLens } from "react-icons/md";
 import { Orders } from '@/data';
 import Button from '../../shared/Button';
 import EmptyCards from './EmptyCards';
+import { useTranslation } from 'next-i18next';
 
 const DraftCards = () => {
     const [visibleCount, setVisibleCount] = useState(10); // Track number of visible cards
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
+
+    const { t } = useTranslation();
 
     const handleLoadMore = () => {
         setVisibleCount((prevCount) => prevCount + 10); // Load 10 more cards
@@ -42,7 +45,7 @@ const DraftCards = () => {
 
             {/* Check if Orders array is empty */}
             {Orders.length === 0 ? (
-                 <EmptyCards/>
+                <EmptyCards />
             ) : (
                 <>
                     <div className="grid md:grid-cols-3 grid-cols-1 py-6 gap-6 w-full">
@@ -73,7 +76,7 @@ const DraftCards = () => {
                                 <div className="flex justify-between items-center">
                                     <p className="text-labelColor">{order.date}</p>
                                     <button className="bg-white hover:bg-black hover:text-white text-black px-6 py-3 rounded-full">
-                                        Continue
+                                        {t('continue')}
                                     </button>
                                 </div>
                             </div>
@@ -87,7 +90,7 @@ const DraftCards = () => {
                                 onClick={handleLoadMore}
                                 className="bg-lightBlue text-white px-6 py-3 rounded-full"
                             >
-                                Load more drafts
+                                {t('loadMoreDrafts')}
                             </button>
                         </div>
                     )}
@@ -108,20 +111,20 @@ const DraftCards = () => {
                         </div>
                         <div className="bg-cardColor p-6 rounded-2xl shadow-lg max-w-sm w-full relative">
                             <h2 className="text-2xl font-medium text-labelColor text-center mb-4">
-                                Are you sure you want to delete this draft?
+                                {t('deleteConfirmation')}
                             </h2>
                             <div className="flex justify-center gap-4 mt-4">
                                 <button
                                     onClick={handleCancelDelete}
                                     className="bg-bgColor text-white py-2 px-6 rounded-full"
                                 >
-                                    Cancel
+                                    {t('cancel')}
                                 </button>
                                 <button
                                     onClick={handleConfirmDelete}
                                     className="bg-lightBlueText text-white py-2 px-6 rounded-full"
                                 >
-                                    Sure
+                                    {t('confirmDelete')}
                                 </button>
                             </div>
                         </div>

@@ -11,7 +11,7 @@ const Page = () => {
     router.push('/dashboard/drafts')
   }, [])
 
-  return <div></div>
+  return <div className="text-center text-lightBlue flex items-center min-h-screen justify-center">Loading...</div>
 }
 
 export default Page

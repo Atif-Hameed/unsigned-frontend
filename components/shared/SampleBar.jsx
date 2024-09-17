@@ -5,10 +5,12 @@ import { usePathname } from 'next/navigation'; // Import the usePathname hook
 import React, { useState, useEffect } from 'react';
 import { GoPlus } from 'react-icons/go';
 import DesignPage from '../dashboard/startingCards/DesignPage';
+import { useTranslation } from 'next-i18next'; // Import useTranslation
 
 const SampleBar = () => {
     const pathname = usePathname(); // Get the current path
     const [showDesignPage, setShowDesignPage] = useState(false); // State to control visibility of DesignPage
+    const { t } = useTranslation(); // Destructure t function for translations
 
     const handleStartNewDesign = () => {
         setShowDesignPage(true); // Show the DesignPage component
@@ -30,7 +32,7 @@ const SampleBar = () => {
     return (
         <div className="flex flex-col w-full items-center">
             <div className="flex justify-between w-full">
-                <h1 className="sm:text-4xl text-2xl font-bold">My Orders</h1>
+                <h1 className="sm:text-4xl text-2xl font-bold">{t('myOrders')}</h1>
             </div>
 
             <div className="md:flex justify-between w-full md:space-y-0 space-y-4 py-4">
@@ -39,21 +41,21 @@ const SampleBar = () => {
                         <button
                             className={`px-4 py-3 rounded-full ${pathname === '/dashboard/drafts' ? 'bg-labelColor text-white' : ''}`}
                         >
-                            Drafts
+                            {t('drafts')}
                         </button>
                     </Link>
                     <Link href="/dashboard/samples">
                         <button
                             className={`px-4 py-3 rounded-full ${pathname === '/dashboard/samples' ? 'bg-labelColor text-white' : ''}`}
                         >
-                            Samples
+                            {t('samples')}
                         </button>
                     </Link>
                     <Link href="/dashboard/bulks">
                         <button
                             className={`px-4 py-3 rounded-full ${pathname === '/dashboard/bulks' ? 'bg-labelColor text-white' : ''}`}
                         >
-                            Bulks
+                            {t('bulks')}
                         </button>
                     </Link>
                 </div>
@@ -62,7 +64,7 @@ const SampleBar = () => {
                         onClick={handleStartNewDesign} // Open DesignPage on click
                         className="bg-lightBlue hover:scale-105 text-white px-4 py-3 flex items-center gap-2 rounded-full"
                     >
-                        <GoPlus className="text-2xl" /> Start new design
+                        <GoPlus className="text-2xl" /> {t('startNewDesign')}
                     </button>
                 </div>
             </div>

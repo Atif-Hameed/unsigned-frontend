@@ -7,15 +7,15 @@ const DesignPage = ({ onClose }) => {
     const router = useRouter();
 
     const items = [
-        { name: 'T-Shirt', icon: '/path-to-tshirt-icon.svg' },
-        { name: 'Hoodie', icon: '/path-to-hoodie-icon.svg' },
-        { name: 'Crewneck', icon: '/path-to-crewneck-icon.svg' },
-        { name: 'Zip-Hoodie', icon: '/path-to-zip-hoodie-icon.svg' },
-        { name: 'Long Sleeve', icon: '/path-to-long-sleeve-icon.svg' },
-        { name: 'Tank Top', icon: '/path-to-tank-top-icon.svg' },
-        { name: 'Tank Top', icon: '/path-to-tank-top-icon.svg' },
-        { name: 'Tank Top', icon: '/path-to-tank-top-icon.svg' },
-        { name: 'Tank Top', icon: '/path-to-tank-top-icon.svg' },
+        { name: 'T-Shirt', icon: '' },
+        { name: 'Hoodie', icon: '' },
+        { name: 'Crewneck', icon: '' },
+        { name: 'Zip-Hoodie', icon: '' },
+        { name: 'Long Sleeve', icon: '' },
+        { name: 'Tank Top', icon: '' },
+        { name: 'Sweatpants I', icon: '' },
+        { name: 'Sweatpants II', icon: '' },
+        { name: 'Shorts', icon: '' },
     ];
 
     return (
@@ -37,7 +37,7 @@ const DesignPage = ({ onClose }) => {
                         {items.map((item, index) => (
                             <div
                                 key={index}
-                                style={{borderRadius:'30px'}}
+                                style={{ borderRadius: '30px' }}
                                 className="p-6 bg-cardColor rounded-2xl shadow hover:shadow-md transition cursor-pointer flex flex-col items-center"
                                 onClick={() => router.push(`/design/${item.name.toLowerCase()}`)}
                             >

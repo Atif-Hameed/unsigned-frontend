@@ -10,5 +10,5 @@ export default function Home() {
     router.push('/login')
   }, [])
 
-  return <div></div>
+  return <div className="text-center text-lightBlue flex items-center min-h-screen justify-center">Loading...</div>
 }

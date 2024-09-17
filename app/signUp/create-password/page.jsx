@@ -46,12 +46,12 @@ const Page = () => {
                 </div>
 
                 {/* login container */}
-                <div className='bg-white sm:mt-6 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full flex flex-col sm:gap-12 gap-6 sm:p-8 p-4 sm:py-10'>
+                <div className='bg-white relative sm:mt-6 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full flex flex-col sm:gap-8 gap-6 sm:p-8 p-4 sm:py-10'>
 
                     {/* back button */}
-                    <Link href={'/'} className='absolute -top-[10%] left-4 text-lightBlueText flex items-center gap-2' > <IoArrowBack className='text-xl' />Back</Link>
+                    <Link href={'/'} className='absolute -top-[9%] left-4 text-lightBlueText flex items-center gap-2' > <IoArrowBack className='text-xl' />{t('back')}</Link>
 
-                    <h1 className='text-center sm:text-4xl text-2xl font-semibold'>Create a password</h1>
+                    <h1 className='text-center sm:text-4xl text-2xl font-semibold'>{t('createPass')}</h1>
 
                     <div className='space-y-6'>
                         <CustomInput
@@ -63,7 +63,7 @@ const Page = () => {
                         />
                         <CustomInput
                             type='password'
-                            label='Repeat Password'
+                            label={t('repeat') + " " + 'Password'}
                             value={password}
                             onChange={handlePasswordChange}
                         />
@@ -71,22 +71,22 @@ const Page = () => {
                         {/* Password requirements */}
                         <ul className="space-y-1 text-sm">
                             <li className={`flex items-center ${isMinLength ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} Min 8 characters</span>
+                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('minChar')} </span>
                             </li>
                             <li className={`flex items-center ${isUpperCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} At least 1 uppercase letter</span>
+                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('uppercase')} </span>
                             </li>
                             <li className={`flex items-center ${isLowerCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} At least 1 lowercase letter</span>
+                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('lowercase')} </span>
                             </li>
                             <li className={`flex items-center ${isNumber ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} At least 1 number</span>
+                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('number')} </span>
                             </li>
                         </ul>
 
                         <div className='w-full'>
                             <Link href={'/signUp/details'}>
-                                <Button label={'Create account'} />
+                                <Button label={t('createAccount')} />
                             </Link>
                         </div>
                     </div>

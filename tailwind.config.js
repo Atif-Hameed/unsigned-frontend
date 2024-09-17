@@ -21,6 +21,7 @@ module.exports = {
       },
       colors: {
         background: '#E6E6E6',
+        lightBackground: "#eeeeee",
         dark: '#464754',
         labelColor: '#464754b2',
         lightBlue: '#4a6dac',

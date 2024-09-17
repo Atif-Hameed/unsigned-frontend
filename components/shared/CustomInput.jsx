@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from 'next-i18next'
 import React, { useState, useRef, useEffect } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
@@ -8,6 +9,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, isRequired = fals
     const [inputType, setInputType] = useState(type);
     const [error, setError] = useState(""); // State to handle error messages
     const inputRef = useRef(null);
+    const { t } = useTranslation()
 
     // If the input has a predefined value, ensure the label starts in the "focused" position
     useEffect(() => {
@@ -27,7 +29,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, isRequired = fals
 
         // Required validation
         if (isRequired && !value) {
-            setError(`${label} is required`);
+            setError(`${label} ${t('isRequire')}`);
             return;
         }
 

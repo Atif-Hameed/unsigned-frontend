@@ -101,14 +101,14 @@ const Page = () => {
                             isRequired={true}
                         />
                         <div className='flex items-center justify-between pl-3'>
-                            <Link href={'/forgot-password'} className='text-lightBlueText sm:text-xl text-lg'>Forgot password?</Link>
+                            <Link href={'/forgot-password'} className='text-lightBlueText sm:text-xl text-lg'> {t('forgotPass')}?</Link>
                             <div className='w-fit'>
-                                <Button label={'Log in'} onClick={handleSubmit} />
+                                <Button label={t('login')} onClick={handleSubmit} />
                             </div>
                         </div>
                     </div>
                     <div className='flex items-center text-center flex-wrap gap-4 justify-center text-xl'>
-                        <h1 className='text-labelColor'>Don&apos;t have an account?</h1><Link href={'/signUp'} className='text-lightBlueText'>Sign Up</Link>
+                        <h1 className='text-labelColor'>{t('noAccount')}</h1><Link href={'/signUp'} className='text-lightBlueText'>{t('signup')}</Link>
                     </div>
                 </div>
 

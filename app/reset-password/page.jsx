@@ -18,7 +18,7 @@ const Page = () => {
     const [isLowerCase, setIsLowerCase] = useState(false);
     const [isNumber, setIsNumber] = useState(false);
     const [isMinLength, setIsMinLength] = useState(false);
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     // Handle password change and validation
     const handlePasswordChange = (e) => {
@@ -46,7 +46,7 @@ const Page = () => {
 
                 {/* login container */}
                 <div className='bg-white sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full sm:space-y-12 space-y-6 sm:p-8 p-4 sm:py-10'>
-                    <h1 className='text-center sm:text-4xl text-2xl font-semibold'>Create new password</h1>
+                    <h1 className='text-center sm:text-4xl text-2xl font-semibold'>{t('createnewpass')}</h1>
 
                     <div className='space-y-6'>
                         <CustomInput
@@ -58,7 +58,7 @@ const Page = () => {
                         />
                         <CustomInput
                             type='password'
-                            label='Repeat Password'
+                            label={t('repeat') + " " + "Password"}
                             value={password}
                             onChange={handlePasswordChange}
                             isRequired={true}
@@ -67,21 +67,21 @@ const Page = () => {
                         {/* Password requirements */}
                         <ul className="space-y-1 text-sm">
                             <li className={`flex items-center ${isMinLength ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} Min 8 characters</span>
+                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('minChar')} </span>
                             </li>
                             <li className={`flex items-center ${isUpperCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} At least 1 uppercase letter</span>
+                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('uppercase')} </span>
                             </li>
                             <li className={`flex items-center ${isLowerCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} At least 1 lowercase letter</span>
+                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('lowercase')} </span>
                             </li>
                             <li className={`flex items-center ${isNumber ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />} At least 1 number</span>
+                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('number')} </span>
                             </li>
                         </ul>
 
                         <div className='w-full'>
-                            <Button label={'Create Password'} />
+                            <Button label={t('update') + " " + 'Password'} />
                         </div>
                     </div>
                 </div>
