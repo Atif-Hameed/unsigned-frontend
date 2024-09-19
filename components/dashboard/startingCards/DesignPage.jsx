@@ -39,7 +39,7 @@ const DesignPage = ({ onClose }) => {
                                 key={index}
                                 style={{ borderRadius: '30px' }}
                                 className="p-6 bg-cardColor rounded-2xl shadow hover:shadow-md transition cursor-pointer flex flex-col items-center"
-                                onClick={() => router.push(`/design/${item.name.toLowerCase()}`)}
+                                onClick={() => router.push(`/dashboard/designs/${item.name.toLowerCase()}`)}
                             >
                                 <Image src={item.icon} alt={item.name} width={100} height={100} />
                                 <h3 className="text-lg font-medium text-gray-800">{item.name}</h3>

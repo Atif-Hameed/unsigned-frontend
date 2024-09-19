@@ -58,7 +58,7 @@ const Stepper = ({
                 </div>
 
                 {/* Render the corresponding form based on the active tab */}
-                <div className='mt-12 py-12 w-full h-full '>
+                <div className='py-8 w-full h-full '>
                     {tabs.find((tab) => tab.id === activeTab)?.component}
                 </div>
             </div>
