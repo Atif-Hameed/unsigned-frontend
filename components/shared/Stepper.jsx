@@ -36,24 +36,25 @@ const Stepper = ({
             {/* steps */}
             <div className='flex flex-col items-center w-full '>
 
-                <div className='flex items-center justify-start gap-4 w-full'>
+                <div className='flex items-center sm:flex-row flex-col  justify-start gap-4 w-full'>
                     {/* back button */}
-                    <div className='text-lightBlue whitespace-nowrap cursor-pointer flex items-center rounded-full gap-2 px-4 py-3 bg-transparent hover:bg-[#d5dbe6]'>
+                    <div className='text-lightBlue whitespace-nowrap cursor-pointer justify-start sm:w-auto w-full flex items-center rounded-full gap-2 px-4 py-3 bg-transparent hover:bg-[#d5dbe6]'>
                         <LuArrowLeft className='text-2xl' />
                         <p>My Orders</p>
                     </div>
-
-                    <div className='flex sm:gap-0 gap-2 '>
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`w-full px-5 rounded-full text-base whitespace-nowrap py-3 ${activeTab === tab.id ? 'bg-labelColor text-white' : 'bg-white border  text-dark'
-                                    }`}
-                            >
-                                {tab.name}
-                            </button>
-                        ))}
+                    <div className='w-full flex-1  overflow-x-auto flex justify-center'>
+                        <div className='flex w-full'>
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={` px-5 rounded-full text-base whitespace-nowrap py-3 ${activeTab === tab.id ? 'bg-labelColor text-white' : 'bg-white border  text-dark'
+                                        }`}
+                                >
+                                    {tab.name}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
 

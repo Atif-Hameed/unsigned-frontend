@@ -49,17 +49,17 @@ const Navbar = () => {
     return (
         <div className='w-full flex justify-center'>
             <MaxContainer>
-                <div className='flex justify-between w-full items-center'>
+                <div className='flex justify-between w-full py-2 items-center'>
                     <div>
-                        <Image alt='' src={logo} className='w-40' unoptimized priority />
+                        <Image alt='' src={logo} className='sm:w-40 w-28' unoptimized priority />
                     </div>
-                    <div className='flex items-center gap-10'>
+                    <div className='flex items-center sm:gap-10 gap-4'>
                         
                         <TrnaslateButton />
 
                         <div onClick={handlePopup} className='cursor-pointer relative flex items-center gap-2' ref={popupRef}>
                             <div className='p-2 hover:scale-105 rounded-full bg-white'>
-                                <BsPersonFill className='text-4xl text-black' />
+                                <BsPersonFill className='lg:text-4xl sm:text-3xl text-3xl text-black' />
                             </div>
                             {openPopup && (
                                 <div className='absolute left-1/2 -translate-x-1/2 top-14 flex flex-col p-2 rounded-lg bg-white'>

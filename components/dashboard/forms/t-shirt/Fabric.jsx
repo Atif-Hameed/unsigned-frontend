@@ -1,43 +1,41 @@
-import CustomCheckBox from '@/components/shared/CustomCheckbox'
-import CustomDataUpload from '@/components/shared/CustomDataUpload'
+'use client'
+import FabricForm from '@/components/shared/Forms/FabricForm'
 import Heading from '@/components/shared/Heading'
-import React from 'react'
-import { HiQuestionMarkCircle } from 'react-icons/hi'
+import React, { useState } from 'react'
 
 const Fabric = () => {
 
-    const data = [
-        { label: 'Custom Fabric Request' },
-        { label: 'Jersey, 185GSM, 100% organic cotton' },
-        { label: 'Jersey, 235GSM, 100% cotton' },
-        { label: 'Jersey, 235GSM, 100% organic cotton' },
-        { label: 'Jersey, 295GSM, 100% cotton' },
+    const [selectedFabric, setSelectedFabric] = useState(''); // To track selected checkbox
+    const [file, setFile] = useState(null); // To handle file in CustomDataUpload
+    const [textareaValue, setTextareaValue] = useState(''); // To handle textarea in CustomDataUpload
+
+    const handleFileChange = (file) => {
+        setFile(file);
+    };
+
+    const handleTextareaChange = (value) => {
+        setTextareaValue(value);
+    };
+
+
+    const fabricData = [
+        { label: 'Custom Fabric Request', name: 'Custom-Fabric-Request' },
+        { label: 'Jersey, 185GSM, 100% organic cotton', name: 'Jersey-185GSM-100%-organic-cotton' },
+        { label: 'Jersey, 235GSM, 100% cotton', name: 'Jersey-235GSM-100%-cotton' },
+        { label: 'Jersey, 235GSM, 100% organic cotton', name: 'Jersey-235GSM-100%-organic-cotton' },
+        { label: 'Jersey, 295GSM, 100% cotton', name: 'Jersey-295GSM-100%-cotton' },
     ]
 
     return (
-        <div className='py-12'>
-            <Heading >Choose your fabric</Heading>
-            <div className='w-full grid grid-cols-3 gap-3' >
-                {
-                    data.map((e, i) => (
-                        <div key={i} className='bg-[#eeeeee] rounded-3xl  h-[132px] p-5 flex items-start '>
-                            <div className='flex items-center gap-3 justify-between w-full'>
-                                <div className='flex items-center gap-2 '>
-                                    <div className='w-5 h-5'>
-                                        <input type="checkbox" className='w-full h-full' name="" id="" />
-                                    </div>
-                                    <p className='text-xl font-semibold text-dark ' >{e.label}</p>
-                                </div>
-                                <HiQuestionMarkCircle className='text-lightBlue text-2xl w-8' />
-                            </div>
-                        </div>
-                    ))
-                }
-                <div>
-                    <CustomDataUpload />
-                </div>
-            </div>
-        </div>
+            <FabricForm
+                data={fabricData}
+                selectedFabric={selectedFabric}
+                setSelectedFabric={setSelectedFabric}
+                file={file}
+                setFile={handleFileChange}
+                textareaValue={textareaValue}
+                setTextareaValue={handleTextareaChange}
+            />
     )
 }
 

@@ -16,11 +16,12 @@ const TrnaslateButton = () => {
     };
 
     return (
-        <div onClick={() => changeLanguage(isGerman ? 'en' : 'gr')} className='flex  cursor-pointer items-center gap-1'>
+        <div onClick={() => changeLanguage(isGerman ? 'en' : 'gr')} className='flex  cursor-pointer items-center sm:gap-1'>
             <div>
                 <Image alt='' src={isGerman ? american : german} className='w-14' unoptimized priority />
             </div>
-            <p className='text-labelColor cursor-pointer text-xl'>{isGerman ? 'Englisch' : 'German'} </p>
+            <p className='text-labelColor sm:block hidden cursor-pointer text-xl'>{isGerman ? 'Englisch' : 'German'} </p>
+            <p className='text-labelColor sm:hidden block cursor-pointer text-xl'>{isGerman ? 'Eng' : 'Ger'} </p>
         </div>
     )
 }

@@ -36,3 +36,31 @@ export const SizeChartData = [
     {name:'Neck Opening',xxs:'18',xs:'18',s:'18',m:'18',l:'18',xl:'18',xxl:'18'},
     {name:'Shoulder-to-Shoulder',xxs:'57',xs:'8',s:'59',m:'60',l:'61',xl:'62',xxl:'63'},
 ]
+
+
+export const Colors = [
+    { label: 'Lemon Chrome', title: 'PANTONE 13-0859 TCX', colorCode: '#fdc109' },
+    { label: 'Exotic Orange', title: 'PANTONE 16-1453 TCX', colorCode: '#ec6638' },
+    { label: 'Red Alert', title: 'PANTONE 18-1559 TCX', colorCode: '#d0332b' },
+    { label: 'Phlox', title: 'PANTONE 19-2820 TCX', colorCode: '#6a2d5d' },
+    { label: 'Green Jacket', title: 'PANTONE 19-6027 TCX', colorCode: '#005e44' },
+    { label: 'Willow Bough', title: 'PANTONE 18-0119 TCX', colorCode: '#59764d' },
+    { label: 'Oil Green', title: 'PANTONE 17-0115 TCX', colorCode: '#7f856d' },
+    { label: 'Balsam Green', title: 'PANTONE 18-5606 TCX', colorCode: '#586764' },
+    { label: 'Super Sonic', title: 'PANTONE 18-4143 TCX', colorCode: '#2f74b8' },
+    { label: 'Royal Blue', title: 'PANTONE 19-3955 TCX', colorCode: '#3d438b' },
+    { label: 'Poseidon', title: 'PANTONE 19-4033 TCX', colorCode: '#123954' },
+    { label: 'Gray Blue', title: 'PANTONE 18-3917 TCX', colorCode: '#4e5a7b' },
+    { label: 'Folkstone Gray', title: 'PANTONE 18-3910 TCX', colorCode: '#63687a' },
+    { label: 'Gray Flannel', title: 'PANTONE 17-4016 TCX', colorCode: '#858282' },
+    { label: 'Volcanic Glass', title: 'PANTONE 18-3908 TCX', colorCode: '#615c62' },
+    { label: 'Blue Blush', title: 'PANTONE 12-4705 TCX', colorCode: '#d7dbd9' },
+    { label: "Lamb's Wool", title: 'PANTONE 12-0910 TCX', colorCode: '#e5d0b1' },
+    { label: 'Mojave Desert', title: 'PANTONE 15-1217 TCX', colorCode: '#c8b596' },
+    { label: 'Argan Oil', title: 'PANTONE 17-1142 TCX', colorCode: '#8c5b40' },
+    { label: 'Downtown Brown', title: 'PANTONE 19-1223 TCX', colorCode: '#5e3f32' },
+    { label: 'Pink Yarrow', title: 'PANTONE 17-2034 TCX', colorCode: '#ffa9d6' }, 
+    { label: 'Sky Blue', title: 'PANTONE 14-4318 TCX', colorCode: '#b6e1f6' }, 
+    { label: 'White', title: 'White', colorCode: '#ffffff' },
+    { label: 'Black', title: 'Black', colorCode: '#000000' },
+];
