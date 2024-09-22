@@ -2,20 +2,30 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { IoCloseOutline } from 'react-icons/io5';
 import Image from 'next/image';
+import shirt from '@/assets/images/shirt.png'
+import hoodie from '@/assets/images/hoodie.png'
+import crewneck from '@/assets/images/crewneck.png'
+import ziphoodie from '@/assets/images/ziphoodie.png'
+import longsleeve from '@/assets/images/longsleeve.png'
+import tanktop from '@/assets/images/tanktop.png'
+import openleg from '@/assets/images/openleg.png'
+import cuffed from '@/assets/images/cuffed.png'
+import shorts from '@/assets/images/shorts.png'
+
 
 const DesignPage = ({ onClose }) => {
     const router = useRouter();
 
     const items = [
-        { name: 'T-Shirt', icon: '' },
-        { name: 'Hoodie', icon: '' },
-        { name: 'Crewneck', icon: '' },
-        { name: 'Zip-Hoodie', icon: '' },
-        { name: 'Long Sleeve', icon: '' },
-        { name: 'Tank Top', icon: '' },
-        { name: 'Sweatpants I', icon: '' },
-        { name: 'Sweatpants II', icon: '' },
-        { name: 'Shorts', icon: '' },
+        { name: 'T-Shirt', icon: shirt },
+        { name: 'Hoodie', icon: hoodie },
+        { name: 'Crewneck', icon: crewneck },
+        { name: 'Zip-Hoodie', icon: ziphoodie },
+        { name: 'Long Sleeve', icon: longsleeve },
+        { name: 'Tank Top', icon: tanktop },
+        { name: 'Jogger Open Leg', icon: openleg },
+        { name: 'Jogger Cuffed', icon: cuffed },
+        { name: 'Shorts', icon: shorts },
     ];
 
     return (
@@ -38,11 +48,11 @@ const DesignPage = ({ onClose }) => {
                             <div
                                 key={index}
                                 style={{ borderRadius: '30px' }}
-                                className="p-6 bg-cardColor rounded-2xl shadow hover:shadow-md transition cursor-pointer flex flex-col items-center"
+                                className="p-4 bg-cardColor rounded-2xl shadow hover:shadow-md transition cursor-pointer flex flex-col items-center"
                                 onClick={() => router.push(`/dashboard/designs/${item.name.toLowerCase()}`)}
                             >
-                                <Image src={item.icon} alt={item.name} width={100} height={100} />
-                                <h3 className="text-lg font-medium text-gray-800">{item.name}</h3>
+                                <Image src={item.icon} alt={item.name} className='w-56 ' />
+                                <h3 className="text-xl font-medium text-gray-800">{item.name}</h3>
                             </div>
                         ))}
                     </div>

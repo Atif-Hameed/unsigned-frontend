@@ -4,7 +4,7 @@ import { HiQuestionMarkCircle } from "react-icons/hi";
 import { GrAttachment } from "react-icons/gr";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import CustomRadioButton from '@/components/shared/CustomRadioButton';
-import img from '@/assets/images/shirtFit.png'
+import img from '@/assets/images/shirtDesign.png'
 import Image from 'next/image';
 import NumberInput from '@/components/shared/NumberInput';
 import { SizeChartData } from '@/data';
