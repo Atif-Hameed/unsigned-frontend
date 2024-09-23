@@ -20,22 +20,22 @@ const Fabric = () => {
 
     const fabricData = [
         { label: 'Custom Fabric Request', name: 'Custom-Fabric-Request' },
-        { label: 'Jersey, 185GSM, 100% organic cotton', name: 'Jersey-185GSM-100%-organic-cotton' },
-        { label: 'Jersey, 235GSM, 100% cotton', name: 'Jersey-235GSM-100%-cotton' },
-        { label: 'Jersey, 235GSM, 100% organic cotton', name: 'Jersey-235GSM-100%-organic-cotton' },
-        { label: 'Jersey, 295GSM, 100% cotton', name: 'Jersey-295GSM-100%-cotton' },
+        { label: '180GSM 100% Baumwolle Jersey', name: '180GSM-100%-Baumwolle-Jersey' },
+        { label: '200GSM 100% Baumwolle Jersey', name: '200GSM-100%-Baumwolle-Jersey' },
+        { label: '250GSM 100% Baumwolle Jersey', name: '250GSM-100%-Baumwolle-Jersey' },
+        { label: '300GSM 100% Baumwolle Jersey', name: '300GSM-100%-Baumwolle-Jersey' },
     ]
 
     return (
-            <FabricForm
-                data={fabricData}
-                selectedFabric={selectedFabric}
-                setSelectedFabric={setSelectedFabric}
-                file={file}
-                setFile={handleFileChange}
-                textareaValue={textareaValue}
-                setTextareaValue={handleTextareaChange}
-            />
+        <FabricForm
+            data={fabricData}
+            selectedFabric={selectedFabric}
+            setSelectedFabric={setSelectedFabric}
+            file={file}
+            setFile={handleFileChange}
+            textareaValue={textareaValue}
+            setTextareaValue={handleTextareaChange}
+        />
     )
 }
 
