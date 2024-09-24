@@ -1,3 +1,4 @@
+import Carelabel from '@/components/dashboard/forms/order-forms/Carelabel'
 import Colourway from '@/components/dashboard/forms/order-forms/Colourway'
 import Fabric from '@/components/dashboard/forms/order-forms/Fabric'
 import Fit from '@/components/dashboard/forms/order-forms/Fit'
@@ -13,6 +14,7 @@ const Page = () => {
         fabricForm={<Fabric />}
         colourwayForm={<Colourway />}
         necklabelForm={<Necklabel />}
+        carelabelForm={<Carelabel />}
       />
     </div>
   )

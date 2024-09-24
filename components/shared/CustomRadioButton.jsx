@@ -1,6 +1,9 @@
 import React from 'react';
 
 const CustomRadioButton = ({ name, value, label, onChange, isChecked }) => {
+
+  const id = `${name}-${value}`;
+
   return (
     <div class="mb-[0.125rem]  block min-h-[1.5rem] ps-[1.5rem]">
       <input
@@ -19,13 +22,13 @@ const CustomRadioButton = ({ name, value, label, onChange, isChecked }) => {
           dark:checked:border-lightBlue"
         type="radio"
         checked={isChecked}
-        onChange={onChange}
+        onChange={() => onChange(value)}
         name={name}
         value={value}
-        id="radioDefault01" />
+        id={id} />
       <label
         class="mt-px inline-block ps-[0.4rem] hover:cursor-pointer"
-        for="radioDefault01">
+        htmlFor={id}>
         {label}
       </label>
     </div>
