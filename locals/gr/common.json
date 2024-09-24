@@ -55,5 +55,16 @@
     "samples": "Muster",
     "bulks": "Großbestellungen",
     "startNewDesign": "Neues Design starten",
-    "startDesign":"Design starten"
+    "startDesign": "Design starten",
+    "whatWouldYouLikeToDesign?": "Was möchten Sie entwerfen?",
+    "basic": "Basic",
+    "tshirt": "T-Shirt",
+    "hoodie": "Kapuzenpullover",
+    "crewNeck": "Rundhalsausschnitt",
+    "zipHoodie": "Kapuzenpullover mit Reißverschluss",
+    "longSleeve": "Langarm",
+    "tankTop": "Tanktop",
+    "joggerOpenLeg": "Jogger mit offenem Bein",
+    "joggerCuffed": "Jogger gefesselt",
+    "shorts": "Shorts"
 }
