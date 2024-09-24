@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { LuArrowLeft } from 'react-icons/lu';
 import Button from './Button';
 import Link from 'next/link';
+import { FaArrowRight } from "react-icons/fa6";
 
 const Stepper = ({
     fitForm,
@@ -25,10 +26,10 @@ const Stepper = ({
         { name: 'Necklabel', id: '4', component: necklabelForm },
         { name: 'Carelabel', id: '5', component: carelabelForm },
         { name: 'Print', id: '6', component: printForm },
-        { name: 'Customization', id: '7', component: customizationForm },
-        { name: 'Quantity', id: '8', component: qunatityForm },
-        { name: 'Packaging', id: '9', component: packagingForm },
-        { name: 'Delivery', id: '10', component: deliveryForm },
+        // { name: 'Customization', id: '7', component: customizationForm },
+        { name: 'Quantity', id: '7', component: qunatityForm },
+        { name: 'Packaging', id: '8', component: packagingForm },
+        { name: 'Delivery', id: '9', component: deliveryForm },
     ];
 
     // Function to handle "Next" button
@@ -56,7 +57,7 @@ const Stepper = ({
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={` px-5 rounded-full text-base whitespace-nowrap py-3 ${activeTab === tab.id ? 'bg-labelColor text-white' : 'bg-white border  text-dark'
+                                    className={` px-5 rounded-full text-base whitespace-nowrap py-3 ${activeTab === tab.id ? 'bg-labelColor text-white' : 'bg-[#f9f9f9] border  text-dark'
                                         }`}
                                 >
                                     {tab.name}
@@ -72,9 +73,9 @@ const Stepper = ({
                 </div>
 
                 {/* Navigation buttons */}
-                <div className="flex justify-end items-center space-x-4 w-full">
+                <div className="flex justify-end items-center space-x-4 mb-4 w-full">
                     <Button
-                        label="Save and next"
+                        label={<span className='flex items-center gap-2'>Save and next <FaArrowRight className='text-lg flex-shrink-0' /></span>}
                         className="!bg-lightBlue !w-48"
                         onClick={handleNext}
                         disabled={activeTab === tabs[tabs.length - 1].id} // Disable on the last tab
