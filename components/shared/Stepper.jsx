@@ -1,6 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import { LuArrowLeft } from 'react-icons/lu';
+import Button from './Button';
+import Link from 'next/link';
 
 const Stepper = ({
     fitForm,
@@ -29,19 +31,25 @@ const Stepper = ({
         { name: 'Delivery', id: '10', component: deliveryForm },
     ];
 
+    // Function to handle "Next" button
+    const handleNext = () => {
+        const currentTabIndex = tabs.findIndex((tab) => tab.id === activeTab);
+        if (currentTabIndex < tabs.length - 1) {
+            setActiveTab(tabs[currentTabIndex + 1].id);  // Move to next tab
+        }
+    };
+
     return (
         <div className=' w-full '>
-
-
             {/* steps */}
             <div className='flex flex-col items-center w-full '>
 
                 <div className='flex items-center sm:flex-row flex-col  justify-start gap-4 w-full'>
                     {/* back button */}
-                    <div className='text-lightBlue whitespace-nowrap cursor-pointer justify-start sm:w-auto w-full flex items-center rounded-full gap-2 px-4 py-3 bg-transparent hover:bg-[#d5dbe6]'>
+                    <Link href='/dashboard' className='text-lightBlue  whitespace-nowrap cursor-pointer justify-start sm:w-auto w-full flex items-center rounded-full gap-2 px-4 py-3 bg-transparent hover:bg-[#d5dbe6]'>
                         <LuArrowLeft className='text-2xl' />
                         <p>My Orders</p>
-                    </div>
+                    </Link>
                     <div className='w-full flex-1  overflow-x-auto flex justify-center'>
                         <div className='flex w-full'>
                             {tabs.map((tab) => (
@@ -61,6 +69,16 @@ const Stepper = ({
                 {/* Render the corresponding form based on the active tab */}
                 <div className='py-8 w-full h-full '>
                     {tabs.find((tab) => tab.id === activeTab)?.component}
+                </div>
+
+                {/* Navigation buttons */}
+                <div className="flex justify-end items-center space-x-4 w-full">
+                    <Button
+                        label="Save and next"
+                        className="!bg-lightBlue !w-48"
+                        onClick={handleNext}
+                        disabled={activeTab === tabs[tabs.length - 1].id} // Disable on the last tab
+                    />
                 </div>
             </div>
         </div>

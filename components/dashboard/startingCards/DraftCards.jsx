@@ -52,7 +52,7 @@ const DraftCards = () => {
                         {Orders.slice(0, visibleCount).map((order) => (
                             <div
                                 key={order.id}
-                                className="bg-cardColor h-72 flex flex-col justify-between shadow-xl p-6"
+                                className="bg-cardColor h-60 flex flex-col justify-between shadow-xl p-6"
                                 style={{ borderRadius: '25px' }}
                             >
                                 <div>

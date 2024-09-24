@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { ContextProvider } from "@/components/provider/context-provider";
 
 
 const dinNext = localFont({
@@ -44,8 +45,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={` ${dinNext.variable} font-dinNext antialiased bg-background`}
-      >
-        {children}
+      > <ContextProvider>
+          {children}
+        </ContextProvider>
       </body>
     </html>
   );

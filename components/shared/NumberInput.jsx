@@ -9,6 +9,8 @@ const NumberInput = ({ name, value, onChange }) => {
                 value={value}
                 onChange={onChange}
                 className='bg-transparent text-dark text-center w-full outline-none'
+                min="0" // Optional: to ensure only non-negative numbers are input
+
             />
         </div>
     )
