@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
-import React from 'react'
+import React, { useState } from 'react'; // Import useState
 import { HiQuestionMarkCircle } from "react-icons/hi";
 import CustomRadioButton from '@/components/shared/CustomRadioButton';
-import img from '@/assets/images/shirtDesign.png';
 import Image from 'next/image';
 import NumberInput from '@/components/shared/NumberInput';
 import { OrdersData } from '@/data/order-form-data';
@@ -11,24 +11,30 @@ import { usePathname } from 'next/navigation';
 
 const Fit = () => {
     const path = usePathname();
-
-    // Find the matching category in OrdersData
     const currentOrder = OrdersData.find(order => path.includes(order.category));
 
     if (!currentOrder) {
         return <div>No matching fit data found for this category.</div>;
     }
 
+    // Local state to manage fit data
+    const [fitData, setFitData] = useState(currentOrder.fitData);
+
+    // Handler to update the fit data
+    const handleChange = (index, sizeKey, value) => {
+        const newFitData = [...fitData];
+        newFitData[index][sizeKey] = value; // Update the corresponding size value
+        setFitData(newFitData); // Update the local state
+    };
+
     // Extract size headers from the keys of the first entry in fitData
     const sizeHeaders = Object.keys(currentOrder.fitData[0]).filter(key => key !== 'name');
 
     return (
         <div className='w-full flex items-start flex-wrap gap-4'>
-            {/* Sidebar with options */}
             <div className='lg:w-[19%] w-full flex flex-col gap-3'>
-                {/* Select fit */}
                 <div className='bg-lightBackground rounded-3xl p-10'>
-                    <h1 className='flex items-center gap-1 lg:text-4xl text-xl font-bold text-dark'>
+                    <h1 className='flex items-center gap-1 lg:text-2xl text-xl font-bold text-dark'>
                         Choose your fit <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
                     </h1>
                     {currentOrder.fitOptions.map((fitOption, index) => (
@@ -40,11 +46,9 @@ const Fit = () => {
                     ))}
                 </div>
 
-                {/* Custom data upload */}
                 <CustomDataUpload />
             </div>
 
-            {/* Main content */}
             <div className='w-full flex-1 bg-lightBackground lg:p-10 p-5 rounded-3xl'>
                 <h1 className='flex items-center gap-1 lg:text-3xl text-xl font-bold text-dark'>
                     Fill in the size chart <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
@@ -63,19 +67,22 @@ const Fit = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {currentOrder.fitData.map((e, i) => (
+                                    {fitData.map((e, i) => (
                                         <tr key={i}>
                                             <td className="px-1 lg:w-48 py-2 whitespace-normal text-sm text-start">
                                                 <div className='flex items-center gap-2'>
                                                     <div className='bg-dark text-white px-2 pt-0.5 rounded-full'>
-                                                        G
+                                                        {String.fromCharCode(65 + i)} {/* A, B, C... */}
                                                     </div>
                                                     {e.name}
                                                 </div>
                                             </td>
                                             {sizeHeaders.map((size) => (
                                                 <td key={size} className="px-1 w-16 py-2 whitespace-nowrap text-sm text-start">
-                                                    <NumberInput value={e[size]} />
+                                                    <NumberInput
+                                                        value={e[size]}
+                                                        onChange={(e) => handleChange(i, size, e.target.value)} // Pass the index and size key to the handler
+                                                    />
                                                 </td>
                                             ))}
                                         </tr>
@@ -91,7 +98,7 @@ const Fit = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Fit;

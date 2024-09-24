@@ -111,7 +111,7 @@ export const OrdersData = [
             { name: 'Hood Length', xs: '38', s: '39', m: '40', l: '41', xl: '42', xxl: '43' }
         ]
     }, {
-        category: "long%20sleeve",
+        category: "long-sleeve",
         fitImg: long, // Assuming 'tShirt' is the image source
         fitOptions: [
             { label: 'Regular fit', value: 'regular_fit' },
@@ -136,7 +136,7 @@ export const OrdersData = [
         ]
     },
     {
-        category: "tank%20top",
+        category: "tank-top",
         fitImg: tank, // Assuming 'tankTop' is the image source
         fitOptions: [
             { label: 'Regular Fit', value: 'regular_fit' },
@@ -180,7 +180,7 @@ export const OrdersData = [
         // }
     },
     {
-        category: "jogger%20open%20leg",
+        category: "jogger-open-leg",
         fitImg: jogger_cuffed, // Assuming 'tShirt' is the image source
         fitOptions: [
             { label: 'Baggy fit', value: 'baggy_fit' },],
@@ -199,7 +199,7 @@ export const OrdersData = [
         ]
     },
     {
-        category: "jogger%20cuffed",
+        category: "jogger-cuffed",
         fitImg: jogger_open_leg, // Assuming 'tShirt' is the image source
         fitOptions: [
             { label: 'Baggy fit', value: 'baggy_fit' },],

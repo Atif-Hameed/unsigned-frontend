@@ -19,15 +19,15 @@ const DesignPage = ({ onClose }) => {
     const { t } = useTranslation()
 
     const items = [
-        { name: t('tshirt'), icon: shirt },
-        { name: t('hoodie'), icon: hoodie },
-        { name: t('crewNeck'), icon: crewneck },
-        { name: t('zipHoodie'), icon: ziphoodie },
-        { name: t('longSleeve'), icon: longsleeve },
-        { name: t('tankTop'), icon: tanktop },
-        { name: t('joggerOpenLeg'), icon: openleg },
-        { name: t('joggerCuffed'), icon: cuffed },
-        { name: t('shorts'), icon: shorts },
+        { name: t('tshirt'), key: 'T-Shirt', icon: shirt },
+        { name: t('hoodie'), key: "Hoodie", icon: hoodie },
+        { name: t('crewNeck'), key: "Crewneck", icon: crewneck },
+        { name: t('zipHoodie'), key: "Zip-Hoodie", icon: ziphoodie },
+        { name: t('longSleeve'), key: "Long-Sleeve", icon: longsleeve },
+        { name: t('tankTop'), key: "Tank-Top", icon: tanktop },
+        { name: t('joggerOpenLeg'), key: "Jogger-Open-Leg", icon: openleg },
+        { name: t('joggerCuffed'), key: "Jogger-Cuffed", icon: cuffed },
+        { name: t('shorts'), key: "Shorts", icon: shorts },
     ];
 
     return (
@@ -51,7 +51,7 @@ const DesignPage = ({ onClose }) => {
                                 key={index}
                                 style={{ borderRadius: '30px' }}
                                 className="p-4 bg-cardColor rounded-2xl shadow hover:shadow-md transition cursor-pointer flex flex-col items-center"
-                                onClick={() => router.push(`/dashboard/designs/${item.name.toLowerCase()}`)}
+                                onClick={() => router.push(`/dashboard/designs/${item.key.toLowerCase()}`)}
                             >
                                 <Image src={item.icon} alt={item.name} className='w-56 ' />
                                 <h3 className="text-xl font-medium text-gray-800">{item.name}</h3>

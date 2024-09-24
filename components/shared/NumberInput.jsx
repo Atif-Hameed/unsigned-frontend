@@ -10,6 +10,7 @@ const NumberInput = ({ name, value, onChange }) => {
                 onChange={onChange}
                 className='bg-transparent text-dark text-center w-full outline-none'
                 min="0" // Optional: to ensure only non-negative numbers are input
+                max={1000}
 
             />
         </div>
