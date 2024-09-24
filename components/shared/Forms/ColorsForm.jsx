@@ -14,8 +14,8 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
     };
 
     return (
-        <div className='flex items-start gap-3'>
-            <div className='w-[75%] bg-lightBackground p-4 rounded-3xl'>
+        <div className='flex items-start flex-wrap gap-3'>
+            <div className='lg:w-[75%] w-full bg-lightBackground p-4 rounded-3xl'>
                 {/* Heading */}
                 <div className='flex items-center gap-3  w-full'>
                     <p className='lg:text-3xl sm:text-2xl text-lg font-medium text-dark'>Choose your fabric color</p>
@@ -58,7 +58,7 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
                 </div>
             </div>
 
-            <div className='w-[25%]'>
+            <div className='lg:w-[25%] w-full'>
                 <CustomDataUpload
                     file={file}
                     onFileChange={onFileChange}

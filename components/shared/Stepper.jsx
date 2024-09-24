@@ -45,14 +45,14 @@ const Stepper = ({
             {/* steps */}
             <div className='flex flex-col items-center w-full '>
 
-                <div className='flex items-center sm:flex-row flex-col  justify-start gap-4 w-full'>
+                <div className='flex items-center md:flex-row flex-col  justify-start gap-4 w-full'>
                     {/* back button */}
                     <Link href='/dashboard' className='text-lightBlue  whitespace-nowrap cursor-pointer justify-start sm:w-auto w-full flex items-center rounded-full gap-2 px-4 py-3 bg-transparent hover:bg-[#d5dbe6]'>
                         <LuArrowLeft className='text-2xl' />
                         <p>My Orders</p>
                     </Link>
-                    <div className='w-full flex-1  overflow-x-auto flex justify-center'>
-                        <div className='flex w-full'>
+                    <div className='w-full lg:flex-1  overflow-x-auto pb-2 flex justify-center'>
+                        <div className='flex w-full gap-1'>
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
