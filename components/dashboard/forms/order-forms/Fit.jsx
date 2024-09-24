@@ -23,12 +23,12 @@ const Fit = () => {
     const sizeHeaders = Object.keys(currentOrder.fitData[0]).filter(key => key !== 'name');
 
     return (
-        <div className='w-full flex items-start gap-4'>
+        <div className='w-full flex items-start flex-wrap gap-4'>
             {/* Sidebar with options */}
-            <div className='w-[19%] flex flex-col gap-3'>
+            <div className='lg:w-[19%] w-full flex flex-col gap-3'>
                 {/* Select fit */}
                 <div className='bg-lightBackground rounded-3xl p-10'>
-                    <h1 className='flex items-center gap-1 text-4xl font-bold text-dark'>
+                    <h1 className='flex items-center gap-1 lg:text-4xl text-xl font-bold text-dark'>
                         Choose your fit <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
                     </h1>
                     {currentOrder.fitOptions.map((fitOption, index) => (
@@ -45,13 +45,13 @@ const Fit = () => {
             </div>
 
             {/* Main content */}
-            <div className='w-full flex-1 bg-lightBackground p-10 rounded-3xl'>
-                <h1 className='flex items-center gap-1 text-4xl font-bold text-dark'>
+            <div className='w-full flex-1 bg-lightBackground lg:p-10 p-5 rounded-3xl'>
+                <h1 className='flex items-center gap-1 lg:text-3xl text-xl font-bold text-dark'>
                     Fill in the size chart <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
                 </h1>
 
-                <div className='flex justify-between items-start'>
-                    <div className='w-[60%]'>
+                <div className='flex justify-between flex-wrap items-start'>
+                    <div className='lg:w-[60%] w-full'>
                         <div className="overflow-x-auto">
                             <table className="min-w-full">
                                 <thead>
@@ -65,7 +65,7 @@ const Fit = () => {
                                 <tbody>
                                     {currentOrder.fitData.map((e, i) => (
                                         <tr key={i}>
-                                            <td className="px-1 w-48 py-2 whitespace-normal text-sm text-start">
+                                            <td className="px-1 lg:w-48 py-2 whitespace-normal text-sm text-start">
                                                 <div className='flex items-center gap-2'>
                                                     <div className='bg-dark text-white px-2 pt-0.5 rounded-full'>
                                                         G
@@ -85,7 +85,7 @@ const Fit = () => {
                         </div>
                     </div>
 
-                    <div className='w-[40%]'>
+                    <div className='lg:w-[40%] w-full'>
                         <Image alt='Shirt design' src={currentOrder.fitImg} className='w-full h-full' />
                     </div>
                 </div>
