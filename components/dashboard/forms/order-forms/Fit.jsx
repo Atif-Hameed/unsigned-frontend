@@ -31,13 +31,13 @@ const Fit = () => {
                     <h1 className='flex items-center gap-1 text-4xl font-bold text-dark'>
                         Choose your fit <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
                     </h1>
-                    <div className='flex flex-col gap-2 mt-3'>
-                        <CustomRadioButton name='radio' label={'Regular fit'} />
-                        <CustomRadioButton name='radio' label={'Boxy fit'} />
-                        <CustomRadioButton name='radio' label={'Acne Fit'} />
-                        <CustomRadioButton name='radio' label={'Kanye Fit'} />
-                        <CustomRadioButton name='radio' label={'Zero Waste 1.0'} />
-                    </div>
+                    {currentOrder.fitOptions.map((fitOption, index) => (
+                        <CustomRadioButton
+                            key={index}
+                            name='radio'
+                            label={fitOption.label}
+                        />
+                    ))}
                 </div>
 
                 {/* Custom data upload */}
@@ -50,7 +50,7 @@ const Fit = () => {
                     Fill in the size chart <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
                 </h1>
 
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-start'>
                     <div className='w-[60%]'>
                         <div className="overflow-x-auto">
                             <table className="min-w-full">
