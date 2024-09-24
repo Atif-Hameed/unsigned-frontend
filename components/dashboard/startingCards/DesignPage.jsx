@@ -11,21 +11,23 @@ import tanktop from '@/assets/images/tanktop.png'
 import openleg from '@/assets/images/openleg.png'
 import cuffed from '@/assets/images/cuffed.png'
 import shorts from '@/assets/images/shorts.png'
+import { useTranslation } from 'next-i18next';
 
 
 const DesignPage = ({ onClose }) => {
     const router = useRouter();
+    const { t } = useTranslation()
 
     const items = [
-        { name: 'T-Shirt', icon: shirt },
-        { name: 'Hoodie', icon: hoodie },
-        { name: 'Crewneck', icon: crewneck },
-        { name: 'Zip-Hoodie', icon: ziphoodie },
-        { name: 'Long Sleeve', icon: longsleeve },
-        { name: 'Tank Top', icon: tanktop },
-        { name: 'Jogger Open Leg', icon: openleg },
-        { name: 'Jogger Cuffed', icon: cuffed },
-        { name: 'Shorts', icon: shorts },
+        { name: t('tshirt'), icon: shirt },
+        { name: t('hoodie'), icon: hoodie },
+        { name: t('crewNeck'), icon: crewneck },
+        { name: t('zipHoodie'), icon: ziphoodie },
+        { name: t('longSleeve'), icon: longsleeve },
+        { name: t('tankTop'), icon: tanktop },
+        { name: t('joggerOpenLeg'), icon: openleg },
+        { name: t('joggerCuffed'), icon: cuffed },
+        { name: t('shorts'), icon: shorts },
     ];
 
     return (
@@ -35,13 +37,13 @@ const DesignPage = ({ onClose }) => {
                     <div>
                         <div>
                             <h2 className="text-center md:text-4xl sm:text-3xl text-2xl py-7 text-dark font-medium">
-                                What would you like to design?
+                                {t('whatWouldYouLikeToDesign?')}
                             </h2>
                             <button onClick={onClose} className='md:h-12 h-8 w-8 md:w-12 bg-white shadow rounded-full justify-center flex items-center absolute right-10 top-7 text-lightBlue'>
                                 <IoCloseOutline size={24} />
                             </button>
                         </div>
-                        <h3 className='text-center sm:text-2xl text-lg py-3 font-medium text-dark'>Basic</h3>
+                        <h3 className='text-center sm:text-2xl text-lg py-3 font-medium text-dark'>{t('basic')}</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pb-20">
                         {items.map((item, index) => (

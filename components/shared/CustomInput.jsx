@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import React, { useState, useRef, useEffect } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-const CustomInput = ({ type, label, id, name, onChange, value, isRequired = false }) => {
+const CustomInput = ({ type, label, id, name, onChange, value, style, inputStyle, isRequired = false }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [inputType, setInputType] = useState(type);
     const [error, setError] = useState(""); // State to handle error messages
@@ -58,7 +58,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, isRequired = fals
                 value={value}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                className={`peer w-full border text-dark rounded-full px-7 py-2 focus:outline-none transition-all duration-200
+                className={`peer w-full border  text-dark rounded-full ${inputStyle} px-7 py-2 focus:outline-none transition-all duration-200
                 ${error ? 'border-red-500' : 'border-labelColor focus:border-lightBlue'} 
                 ${isFocused ? 'sm:py-4 py-3.5' : 'sm:py-4 py-3.5'}`}
                 required={isRequired} // Apply 'required' attribute if 'isRequired' is true
@@ -66,7 +66,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, isRequired = fals
             <label
                 htmlFor={id}
                 onClick={() => inputRef.current.focus()}
-                className={`absolute left-[5%] transition-all duration-200 bg-white px-1 cursor-text
+                className={`absolute left-[5%] transition-all duration-200 ${style} bg-white px-1 cursor-text
                 ${error ? 'text-red-500' : 'text-labelColor'} 
                 ${isFocused ? 'sm:-top-2.5 -top-1.5 sm:text-sm text-xs' : 'top-4  sm:text-lg text-sm'}`}>
                 {label} {isRequired && <span className="font-medium">*</span>} {/* Show * if required */}
