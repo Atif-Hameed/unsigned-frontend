@@ -59,7 +59,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, style, inputStyle
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 className={`peer w-full border  text-dark rounded-full ${inputStyle} px-7 py-2 focus:outline-none transition-all duration-200
-                ${error ? 'border-red-500' : 'border-labelColor focus:border-lightBlue'} 
+                ${error ? 'border-red-500' : 'border-labelColor focus:border-blue'} 
                 ${isFocused ? 'sm:py-4 py-3.5' : 'sm:py-4 py-3.5'}`}
                 required={isRequired} // Apply 'required' attribute if 'isRequired' is true
             />
@@ -75,7 +75,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, style, inputStyle
                 <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="absolute right-3 top-5 text-lightBlue text-xl">
+                    className="absolute right-3 top-5 text-blue text-xl">
                     {inputType === 'password' ? <FiEye /> : <FiEyeOff />}
                 </button>
             )}

@@ -15,7 +15,7 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
 
     return (
         <div className='flex items-start flex-wrap gap-3'>
-            <div className='lg:w-[74%] w-full bg-lightBackground p-4 rounded-3xl'>
+            <div className='lg:w-[74%] w-full bg-lightBackground p-4 '>
                 {/* Heading */}
                 <div className='flex items-center gap-3  w-full'>
                     <p className='lg:text-3xl sm:text-2xl text-lg font-medium text-dark'>Choose your fabric color</p>
@@ -48,7 +48,7 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
                     <div className='w-full mt-4'>
                         <CustomInputTransparent
                             type={'text'}
-                            label={'Custom Color'}
+                            label={'Please provide us with a Pantone Code of your choice '}
                             bgColorLabel='#eeeeee'
                             onChange={onCustomColorChange} // Trigger on change
                             value={customColor} // Bind value from parent component

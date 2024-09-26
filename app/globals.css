@@ -13,37 +13,3 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
-
-/* .gradientBg {
-    background: hsla(18, 76%, 85%, 1);
-
-    background: linear-gradient(-275deg, rgb(254, 231, 221) 0%, rgb(228, 243, 252) 100%);
-
-    background: -moz-linear-gradient(-275deg, rgb(254, 231, 221) 0%, rgb(228, 243, 252) 100%);
-
-    background: -webkit-linear-gradient(-275deg, rgb(254, 231, 221) 0%, rgb(228, 243, 252) 100%);
-
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#F6CFBE", endColorstr="#B9DCF2", GradientType=1);
-} */
-/* .gradientBg {
-    background: hsla(356, 68%, 91%, 1);
-
-    background: linear-gradient(-275deg, rgb(250, 232, 234) 0%, rgb(219, 250, 230) 50%, rgb(229, 197, 221) 100%);
-    
-    background: -moz-linear-gradient(-275deg, rgb(250, 232, 234) 0%, rgb(219, 250, 230) 50%, rgb(229, 197, 221) 100%);
-    
-    background: -webkit-linear-gradient(-275deg, rgb(250, 232, 234) 0%, rgb(219, 250, 230) 50%, rgb(229, 197, 221) 100%);
-    
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F8DADC", endColorstr="#B6EDC8", GradientType=1 );
-} */
-.gradientBg {
-    background: hsla(154, 100%, 76%, 1);
-
-    background: linear-gradient(-275deg, rgb(206, 255, 234) 0%, rgb(206, 211, 255) 50%, rgb(242, 198, 253) 100%);
-    
-    background: -moz-linear-gradient(-275deg, rgb(206, 255, 234) 0%, rgb(206, 211, 255) 50%, rgb(242, 198, 253) 100%);
-    
-    background: -webkit-linear-gradient(-275deg, rgb(206, 255, 234) 0%, rgb(206, 211, 255) 50%, rgb(242, 198, 253) 100%);
-    
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#84FFC9", endColorstr="#AAB2FF", GradientType=1 );
-}

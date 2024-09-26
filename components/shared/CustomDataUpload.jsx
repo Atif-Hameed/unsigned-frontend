@@ -27,7 +27,7 @@ const CustomDataUpload = ({ onFileChange = () => {}, onTextareaChange = () => {}
     };
 
     return (
-        <div className='bg-transparent rounded-3xl border border-dark p-5'>
+        <div className='bg-transparent  border border-dark p-5'>
             <textarea 
                 className='w-full outline-none bg-transparent h-full px-5' 
                 placeholder='special requests or comments' 

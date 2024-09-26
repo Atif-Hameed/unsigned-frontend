@@ -5,15 +5,15 @@ const CustomTooltip = ({ children, tooltipText, width = 'auto' }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <div className="relative flex items-center   justify-center"
+        <div className="relative flex items-center  justify-center"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             {children}
             {isHovered && (
-                <div className="absolute bottom-full mb-1 flex flex-col items-center">
+                <div className="absolute bottom-full mb-1 flex  flex-col items-center">
                     {/* Tooltip Box */}
-                    <div className="bg-[#4a6980] text-white text-sm px-4 py-2 rounded-lg shadow-lg "
+                    <div className="bg-[#4a6980]  text-white font-normal text-sm px-4 py-2 rounded-lg shadow-lg "
                         style={{ width }}
                     >
                         {tooltipText}

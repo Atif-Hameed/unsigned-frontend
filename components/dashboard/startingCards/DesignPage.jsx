@@ -31,7 +31,7 @@ const DesignPage = ({ onClose }) => {
     ];
 
     return (
-        <div className="fixed inset-0 bg-background h-full w-full z-50 overflow-auto">
+        <div className="fixed inset-0 bg-white h-full w-full z-50 overflow-auto">
             <div className="px-2 w-full h-full md:w-[80%] mx-auto">
                 <div className="rounded-lg w-full">
                     <div>
@@ -49,8 +49,7 @@ const DesignPage = ({ onClose }) => {
                         {items.map((item, index) => (
                             <div
                                 key={index}
-                                style={{ borderRadius: '30px' }}
-                                className="p-4 bg-cardColor rounded-2xl shadow hover:shadow-md transition cursor-pointer flex flex-col items-center"
+                                className="p-4 bg-lightBackground  shadow hover:shadow-md transition cursor-pointer flex flex-col items-center"
                                 onClick={() => router.push(`/dashboard/designs/${item.key.toLowerCase()}`)}
                             >
                                 <Image src={item.icon} alt={item.name} className='w-56 ' />

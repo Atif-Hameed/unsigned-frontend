@@ -2,7 +2,7 @@
 import MaxContainer from '@/components/layout/MaxContainer';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import logo from '@/assets/images/mainLogo.png';
+import logo from '@/assets/images/logoSmall.png';
 import CustomInput from '@/components/shared/CustomInput';
 import Button from '@/components/shared/Button';
 import TrnaslateButton from '@/components/shared/TrnaslateButton';
@@ -267,7 +267,7 @@ const Page = () => {
         <MaxContainer>
             <div className='relative min-h-screen w-full sm:px-6 px-4 flex lg:flex-row flex-col justify-center lg:items-start items-center'>
                 {/* logo */}
-                <div className='lg:absolute flex justify-center -top-[2%] left-[7%]'>
+                <div className='lg:absolute flex justify-center top-0 left-[7%]'>
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 

@@ -22,18 +22,18 @@ const Fabric = () => {
     const fabricOptions = {
         labwears: [
             { label: 'Custom Fabric Request', name: 'Custom-Fabric-Request' },
-            { label: '350 GSM 80% Baumwolle 20% Polyester brushed', name: '350GSM-80%-Baumwolle-20%-Polyester' },
-            { label: '400 GSM 80% Baumwolle 20% Polyester brushed', name: '400GSM-80%-Baumwolle-20%-Polyester' },
-            { label: '400 GSM 100% Baumwolle French Terry', name: '400GSM-100%-Baumwolle-French-Terry' },
-            { label: '450 GSM 100% Baumwolle French Terry', name: '450GSM-100%-Baumwolle-French-Terry' },
-            { label: '500 GSM 100% Baumwolle French Terry', name: '500GSM-100%-Baumwolle-French-Terry' },
+            { label: '350 GSM 80% Cotton 20% Polyester brushed', name: '350GSM-80%-Cotton-20%-Polyester' },
+            { label: '400 GSM 80% Cotton 20% Polyester brushed', name: '400GSM-80%-Cotton-20%-Polyester' },
+            { label: '400 GSM 100% Cotton French Terry', name: '400GSM-100%-Cotton-French-Terry' },
+            { label: '450 GSM 100% Cotton French Terry', name: '450GSM-100%-Cotton-French-Terry' },
+            { label: '500 GSM 100% Cotton French Terry', name: '500GSM-100%-Cotton-French-Terry' },
         ],
         tShirts: [
             { label: 'Custom Fabric Request', name: 'Custom-Fabric-Request' },
-            { label: '180GSM 100% Baumwolle Jersey', name: '180GSM-100%-Baumwolle-Jersey' },
-            { label: '200GSM 100% Baumwolle Jersey', name: '200GSM-100%-Baumwolle-Jersey' },
-            { label: '250GSM 100% Baumwolle Jersey', name: '250GSM-100%-Baumwolle-Jersey' },
-            { label: '300GSM 100% Baumwolle Jersey', name: '300GSM-100%-Baumwolle-Jersey' },
+            { label: '180GSM 100% Cotton Jersey', name: '180GSM-100%-Cotton-Jersey' },
+            { label: '200GSM 100% Cotton Jersey', name: '200GSM-100%-Cotton-Jersey' },
+            { label: '250GSM 100% Cotton Jersey', name: '250GSM-100%-Cotton-Jersey' },
+            { label: '300GSM 100% Cotton Jersey', name: '300GSM-100%-Cotton-Jersey' },
         ]
     };
 

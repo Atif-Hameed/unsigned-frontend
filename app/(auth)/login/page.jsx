@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import React from 'react'
-import logo from '@/assets/images/mainLogo.png'
+import logo from '@/assets/images/logoSmall.png'
 import CustomInput from '@/components/shared/CustomInput'
 import Link from 'next/link'
 import Button from '@/components/shared/Button'
@@ -78,7 +78,7 @@ const Page = () => {
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
 
                 {/* logo */}
-                <div className='lg:absolute flex justify-center -top-[2%] left-[7%]'>
+                <div className='lg:absolute flex justify-center top-1 left-[7%]'>
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 

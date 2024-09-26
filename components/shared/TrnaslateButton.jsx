@@ -16,7 +16,7 @@ const TrnaslateButton = () => {
     };
 
     return (
-        <div onClick={() => changeLanguage(isGerman ? 'en' : 'gr')} className='flex  cursor-pointer items-center sm:gap-1'>
+        <div onClick={() => changeLanguage(isGerman ? 'en' : 'gr')} className='flex  cursor-pointer items-center sm:gap-1 gap-2'>
             <p className='text-labelColor sm:block hidden cursor-pointer '>{isGerman ? 'Englisch' : 'German'} </p>
             <p className='text-labelColor sm:hidden block cursor-pointer '>{isGerman ? 'Eng' : 'Ger'} </p>
 

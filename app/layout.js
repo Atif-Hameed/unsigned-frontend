@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={` ${dinNext.variable} font-dinNext antialiased gradientBg`}
+        className={` ${dinNext.variable} font-dinNext antialiased bg-white`}
       > <ContextProvider>
           {children}
         </ContextProvider>

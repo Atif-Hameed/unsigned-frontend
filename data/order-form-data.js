@@ -13,11 +13,7 @@ export const OrdersData = [
         category: "t-shirt",
         fitImg: shirt,
         fitOptions: [
-            { label: 'Regular fit', value: 'regular_fit' },
             { label: 'Boxy fit', value: 'boxy_fit' },
-            { label: 'Acne Fit', value: 'acne_fit' },
-            { label: 'Kanye Fit', value: 'kanye_fit' },
-            { label: 'Zero Waste 1.0', value: 'zero_waste_1' }
         ],
         fitData: [
             { name: 'Total Length', xs: '65', s: '67', m: '69', l: '71', xl: '73', xxl: '75' },

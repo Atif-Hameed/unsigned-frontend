@@ -12,11 +12,11 @@ const FabricForm = ({ data, selectedFabric, setSelectedFabric, file, setFile, te
     };
 
     return (
-        <div className='py-12'>
+        <div className='py-9'>
             <Heading>Choose your fabric</Heading>
             <div className='w-full grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3'>
                 {data.map((e, i) => (
-                    <div key={i} className='bg-lightBackground rounded-3xl sm:h-[132px] h-24 p-5 flex items-start'>
+                    <div key={i} className='bg-lightBackground  sm:h-[132px] h-24 p-5 flex items-start'>
                         <div className='flex items-center gap-3 justify-between w-full'>
                             <div className='flex items-center gap-2'>
                                 <CustomCheckbox
@@ -26,10 +26,16 @@ const FabricForm = ({ data, selectedFabric, setSelectedFabric, file, setFile, te
                                 />
                                 <p className='sm:text-xl text-lg font-semibold text-dark'>{e.label}</p>
                             </div>
-                            <CustomTooltip width='20rem' tooltipText="Lemon Chrome\nPANTONE 13-0859 TCX">
-                        <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
-                    </CustomTooltip>
-                            {/* <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' /> */}
+                            {
+                                i === 0 ?
+                                    <CustomTooltip width='20rem' tooltipText="Jersey MOQ 300pcs, Fleece/French Terry MOQ 150pcs">
+                                        <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
+                                    </CustomTooltip>
+                                    :
+                                    <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
+                            }
+
+
                         </div>
                     </div>
                 ))}

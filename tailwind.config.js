@@ -21,11 +21,12 @@ module.exports = {
       },
       colors: {
         background: '#E6E6E6',
-        lightBackground: "#eeeeee",
+        lightBackground: "#F0F0F0",
         dark: '#464754',
         labelColor: '#464754b2',
-        lightBlue: '#4a6dac',
-        lightBlueText: '#4a6d8c',
+        lightBlue: '#F83A3A',
+        lightBlueText: '#F83A3A',
+        blue: '#4a6d8c',
         cardColor: '#EEEEEE',
         bgColor: '#6b7280'
       },

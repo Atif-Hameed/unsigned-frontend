@@ -52,13 +52,13 @@ const DraftCards = () => {
                         {Orders.slice(0, visibleCount).map((order) => (
                             <div
                                 key={order.id}
-                                className="bg-cardColor h-60 flex flex-col justify-between shadow-xl p-6"
-                                style={{ borderRadius: '25px' }}
+                                className="bg-lightBackground h-60 flex flex-col justify-between shadow-xl p-6"
+                               
                             >
                                 <div>
                                     <div className="flex justify-between items-center">
                                         <div className="">
-                                            <h2 className="text-3xl font-bold text-dark">{order.id}</h2>
+                                            <h2 className="text-3xl font-bold text-[#1A1A1A]">{order.id}</h2>
                                             <p className="text-sm text-labelColor">{order.type}</p>
                                         </div>
                                         <div className="">
