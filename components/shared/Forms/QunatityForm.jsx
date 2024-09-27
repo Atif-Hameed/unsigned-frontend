@@ -44,7 +44,7 @@ const QunatityForm = () => {
     return (
         <div className="md:max-w-6xl">
             <form onSubmit={handleSubmit}>
-                <div className="bg-lightBackground p-6 rounded-3xl shadow-md">
+                <div className="bg-lightBackground p-6  shadow-md">
                     <h2 className="text-2xl flex font-semibold mb-4">
                         <Heading>How many items would you like to produce</Heading>
                         <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
@@ -68,7 +68,7 @@ const QunatityForm = () => {
                 </div>
 
                 <textarea
-                    className="w-full mt-4 bg-transparent text-lightBlue p-4 border border-gray-400 rounded-3xl focus:outline-none"
+                    className="w-full mt-4 bg-transparent text-lightBlue p-4 border border-gray-400  focus:outline-none"
                     placeholder="Special requests or comments"
                     rows={3}
                 ></textarea>

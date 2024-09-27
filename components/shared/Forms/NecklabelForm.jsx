@@ -1,16 +1,18 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Heading from '../Heading';
 import CustomTooltip from '../CustomTooltip';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
 import CustomRadioButton from '../CustomRadioButton';
 import { FaCheck } from 'react-icons/fa';
 import Image from 'next/image';
-import necklabel from '@/assets/images/Necklabel.png';
-import necklabelUpload from '@/assets/images/necklabelUpload.svg';
+import necklabel from '@/assets/images/neckLabelNew.png';
+import neckLabelUplaod from '@/assets/images/neckLabelUplaod.png';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import CustomDataUpload from '../CustomDataUpload';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const NecklabelForm = ({
     selectedColor,
@@ -20,33 +22,43 @@ const NecklabelForm = ({
     onLabelOptionSelect,
     selectedMaterialOption,
     onMaterialOptionSelect,
-    selectedFile,
-    onFileChange,
-    onFileRemove,
-    customFile, // File for CustomDataUpload
-    onCustomFileChange, // Handler for CustomDataUpload file change
-    onCustomFileRemove // Handler for CustomDataUpload file remove
+    selectedFiles = [],
+    onFilesChange = () => { },
+    onFileRemove = () => { },
+    customFile,
+    onCustomFileChange,
+    onCustomFileRemove,
 }) => {
-    const validFileTypes = ['image/svg+xml', 'application/pdf', 'application/postscript'];
 
-    // Handle file upload for the image section
+    // Handle multiple file uploads
     const handleImageFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file && validFileTypes.includes(file.type)) {
-            onFileChange(file); // Using parent handler for image section
-        } else {
-            alert('Only .svg, .pdf, .ai, or .eps files are allowed.');
+        const files = Array.from(e.target.files);
+        const newFiles = [...selectedFiles, ...files];
+        if (newFiles.length > 5) {
+            toast.error('You cannot upload more than 5 files.');
+            return;
         }
+        onFilesChange(newFiles);
     };
 
-    // Handle file upload for the CustomDataUpload section
-    const handleCustomFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file && validFileTypes.includes(file.type)) {
-            onCustomFileChange(file); // Using separate handler for CustomDataUpload
-        } else {
-            alert('Only .svg, .pdf, .ai, or .eps files are allowed.');
-        }
+    const handleFileRemove = (index) => {
+        const updatedFiles = selectedFiles.filter((_, i) => i !== index);
+        onFilesChange(updatedFiles);
+    };
+
+    // Display uploaded files with delete option
+    const renderUploadedFiles = () => {
+        return (selectedFiles || []).map((file, index) => (
+            <div key={index} className='relative w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
+                <span className='text-blue-500 font-bold'>{file.type.split('/')[1].toUpperCase()}</span>
+                <button
+                    className='absolute -bottom-1 z-20 -right-2 bg-white p-1 rounded-full text-red-500'
+                    onClick={() => handleFileRemove(index)}
+                >
+                    <RiDeleteBin6Line className='text-sm' />
+                </button>
+            </div>
+        ));
     };
 
     const Colors = [
@@ -56,6 +68,7 @@ const NecklabelForm = ({
 
     return (
         <div className='w-full flex sm:flex-row flex-col items-start gap-3'>
+            <Toaster />
             <div className='lg:w-[32%] sm:w-[42%] w-full flex flex-col  gap-3'>
                 {/* Label Option Section */}
                 <div className='p-5 bg-lightBackground rounded-3xl'>
@@ -142,65 +155,47 @@ const NecklabelForm = ({
                 {selectedLabelOption === 'standard' && (
                     <div className=' bg-lightBackground justify-between p-5 flex items-center rounded-3xl py-20'>
                         <div className='md:w-[45%] w-[55%]'>
-                            <Image alt='' src={necklabel} />
+                            <Image alt='' src={necklabel} className='w-full h-full' />
                         </div>
-                        <div className='sm:w-[45%] w-[40%]  flex justify-center'>
-                            <div className='w-fit relative'>
-                                <p className='text-center text-sm text-gray-500'>3cm</p>
-                                <div className='flex items-center'>
-                                    <Image alt='' src={necklabelUpload} className='z-30 relative' />
-                                    <div className='h-full flex justify-center items-center'>
-                                        <p className='text-center text-sm text-gray-500'>3cm</p>
+                        <div className='sm:w-[45%] w-[40%] relative flex justify-center'>
+                            <div className='w-full relative flex flex-col items-center'>
+
+                                {/* Display uploaded files */}
+                                <div className='flex gap-2 mb-4'>
+                                    {renderUploadedFiles()}
+                                </div>
+
+                                {/* Upload and delete button */}
+                                <div className='flex items-center w-full relative'>
+                                    <Image alt='' src={neckLabelUplaod} className='z-30 w-full ' />
+
+                                    <div className='bg-lightBlueText cursor-pointer absolute right-[40%] top-[30%] p-2 z-40 rounded-full hover:bg-lightBlue'>
+                                        <IoCloudUploadOutline className='text-lg text-white' />
+                                        <input
+                                            type='file'
+                                            className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
+                                            onChange={handleImageFileChange}
+                                            multiple
+                                        />
                                     </div>
                                 </div>
 
-                                <div className='bg-[#d6e2ec] h-[80%] w-[55%] z-20 absolute bottom-2 left-3 cursor-pointer py-3 flex flex-col justify-start gap-2 items-center'>
-                                    <div>
-                                        {selectedFile ? (
-                                            <div className='w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
-                                                <span className='text-blue-500 font-bold'>{selectedFile.type.split('/')[1].toUpperCase()}</span>
-                                            </div>
-                                        ) : (
-                                            <p></p>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className='absolute bottom-4 left-8 z-40'>
-                                    {!selectedFile && (
-                                        <div className='bg-lightBlueText p-2 z-40 rounded-full hover:bg-lightBlue'>
-                                            <IoCloudUploadOutline className='text-lg text-white' />
-                                            <input
-                                                type='file'
-                                                className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
-                                                onChange={handleImageFileChange} // Handle image upload
-                                                accept='.svg,.pdf,.ai,.eps'
-                                            />
-                                        </div>
-                                    )}
-                                    {selectedFile && (
-                                        <div
-                                            onClick={onFileRemove}
-                                            className='bg-white cursor-pointer z-40 p-2 relative rounded-full hover:bg-[#f3f6f9] mt-4'
-                                        >
-                                            <RiDeleteBin6Line className='text-lightBlue text-xl' />
-                                        </div>
-                                    )}
-                                </div>
+                            </div>
+                            <div className='w-full text-gray-700 text-xs absolute -bottom-[25%] text-center -left-[60%]'>
+                                <p>Please provide us with every Size Label for every Size. For example, if you have 5 Sizes you need to upload 5 files, one with S one with M one with L and so on.</p>
                             </div>
                         </div>
                     </div>
                 )}
 
-                {/* CustomDataUpload Section */}
-                <div className='w-full mt-3'>
+                {/* Custom File Upload */}
+                {selectedLabelOption === 'no_label' && (
                     <CustomDataUpload
-                        file={customFile} // Custom file for the component
-                        onFileChange={handleCustomFileChange} // Separate handler for CustomDataUpload file change
-                        onFileRemove={onCustomFileRemove} // Separate handler for CustomDataUpload file remove
-                        onTextareaChange={onTextareaChange}
+                        file={customFile}
+                        onFileChange={onCustomFileChange}
+                        onFileRemove={onCustomFileRemove}
                     />
-                </div>
+                )}
             </div>
         </div>
     );

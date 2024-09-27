@@ -43,7 +43,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
             <p className='my-4'>To make sure we get it right, please do the following:</p>
 
             <div className='w-full grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3'>
-                <div className='bg-lightBackground flex flex-col items-center gap-10 p-5 rounded-3xl'>
+                <div className='bg-lightBackground flex flex-col items-center gap-10 p-5 '>
                     <h1 className='lg:text-2xl md:text-xl text-lg text-dark font-medium'>1. Download the template and add your design</h1>
                     <div>
                         <Image alt='' src={shirtTemp} />
@@ -53,7 +53,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                     </button>
                 </div>
 
-                <div className='bg-lightBackground flex flex-col items-center gap-10 p-5 rounded-3xl'>
+                <div className='bg-lightBackground flex flex-col items-center gap-10 p-5 '>
                     <h1 className='lg:text-2xl md:text-xl text-lg text-dark font-medium'>2. Upload edited template with your design</h1>
                     <div>
                         <Image alt='' src={shirtPrint} />
@@ -91,7 +91,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                 </div>
 
                 <div className='flex flex-col items-center gap3'>
-                    <div className='bg-lightBackground p-5 rounded-3xl'>
+                    <div className='bg-lightBackground p-5 '>
                         <h1 className='lg:text-2xl md:text-xl text-lg text-dark font-medium'>There are only 3 rules of thumb:</h1>
                         <div className='text-sm mt-2'>
                             <p>1. Your designs must be vectorized or high quality PNG</p>
@@ -100,7 +100,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                             <p>4. Write under the design what type of customization it should be, you have the following options: DTG, Screen Printing and Embroidery, Puff print, if you want something else, please write it also under the design </p>
                         </div>
                     </div>
-                    <div className='bg-transparent rounded-3xl mt-3 w-full h-full border border-dark p-5'>
+                    <div className='bg-transparent  mt-3 w-full h-full border border-dark p-5'>
                         <textarea
                             className='w-full outline-none bg-transparent h-full'
                             placeholder='special requests or comments'
