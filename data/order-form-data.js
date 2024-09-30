@@ -31,7 +31,7 @@ export const OrdersData = [
     }
     , {
         category: "hoodie",
-        fitImg: hoodie, // Assuming 'shirt' is the image source
+        fitImg: hoodie,
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
             { label: 'Balloon Fit', value: 'balloon_fit' },
@@ -64,7 +64,7 @@ export const OrdersData = [
         fitImg: crew, // Assuming 'shirt' is the image source
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
-            { label: 'Balloon Fit', value: 'balloon_fit' },
+            // { label: 'Balloon Fit', value: 'balloon_fit' },
         ],
         fitData: [
             { name: 'Chest Width', xs: '64', s: '66', m: '68', l: '70', xl: '72', xxl: '74' },
@@ -86,7 +86,7 @@ export const OrdersData = [
         fitImg: zip, // Assuming 'hoodie' is the image source
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
-            { label: 'Balloon Fit', value: 'balloon_fit' },
+            // { label: 'Balloon Fit', value: 'balloon_fit' },
         ],
         fitData: [
             { name: 'Total Length', xs: '60', s: '62', m: '64', l: '66', xl: '68', xxl: '70' },
@@ -106,15 +106,13 @@ export const OrdersData = [
             { name: 'Pockets Top to Zipper', xs: '13.5', s: '13.5', m: '14', l: '14', xl: '14', xxl: '14' },
             { name: 'Hood Length', xs: '38', s: '39', m: '40', l: '41', xl: '42', xxl: '43' }
         ]
-    }, {
+    },
+    {
         category: "long-sleeve",
         fitImg: long, // Assuming 'tShirt' is the image source
         fitOptions: [
-            { label: 'Regular fit', value: 'regular_fit' },
             { label: 'Boxy fit', value: 'boxy_fit' },
-            { label: 'Acne Fit', value: 'acne_fit' },
-            { label: 'Kanye Fit', value: 'kanye_fit' },
-            { label: 'Zero Waste 1.0', value: 'zero_waste_1' }
+
         ],
         fitData: [
             { name: 'Chest Width', xs: '58', s: '59', m: '60', l: '61', xl: '62', xxl: '63' },
@@ -147,33 +145,18 @@ export const OrdersData = [
             { name: 'Strap', xs: '5', s: '5', m: '5', l: '5', xl: '5' },
             { name: 'Armhole', xs: '22', s: '23', m: '24', l: '25', xl: '26' },
             { name: 'Neck Opening', xs: '18', s: '18', m: '18', l: '18', xl: '18' }
-        ]
-        // fits: {
-        //     regularFit: {
-        //         fitData: [
-        //             { name: 'Chest Width', xs: '42', s: '44', m: '46', l: '48', xl: '50' },
-        //             { name: 'Total Length', xs: '56', s: '59', m: '62', l: '65', xl: '68' },
-        //             { name: 'Bottom Width', xs: '44', s: '46', m: '48', l: '50', xl: '52' },
-        //             { name: 'Side Length', xs: '32', s: '34', m: '36', l: '38', xl: '40' },
-        //             { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10' },
-        //             { name: 'Strap', xs: '5', s: '5', m: '5', l: '5', xl: '5' },
-        //             { name: 'Armhole', xs: '22', s: '23', m: '24', l: '25', xl: '26' },
-        //             { name: 'Neck Opening', xs: '18', s: '18', m: '18', l: '18', xl: '18' }
-        //         ]
-        //     },
-        //     tightFit: {
-        //         fitData: [
-        //             { name: 'Chest Width', xs: '32', s: '34', m: '36', l: '38', xl: '40' },
-        //             { name: 'Total Length', xs: '49', s: '52', m: '55', l: '58', xl: '61' },
-        //             { name: 'Bottom Width', xs: '33', s: '35', m: '37', l: '39', xl: '41' },
-        //             { name: 'Side Length', xs: '32', s: '34', m: '36', l: '38', xl: '40' },
-        //             { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10' },
-        //             { name: 'Strap', xs: '5', s: '5', m: '5', l: '5', xl: '5' },
-        //             { name: 'Armhole', xs: '18', s: '19', m: '20', l: '21', xl: '22' },
-        //             { name: 'Neck Opening', xs: '18', s: '18', m: '18', l: '18', xl: '18' }
-        //         ]
-        //     }
-        // }
+        ],
+        // tight_fit: [
+        //     { name: 'Chest Width', xs: '32', s: '34', m: '36', l: '38', xl: '40' },
+        //     { name: 'Total Length', xs: '49', s: '52', m: '55', l: '58', xl: '61' },
+        //     { name: 'Bottom Width', xs: '33', s: '35', m: '37', l: '39', xl: '41' },
+        //     { name: 'Side Length', xs: '32', s: '34', m: '36', l: '38', xl: '40' },
+        //     { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10' },
+        //     { name: 'Strap', xs: '5', s: '5', m: '5', l: '5', xl: '5' },
+        //     { name: 'Armhole', xs: '18', s: '19', m: '20', l: '21', xl: '22' },
+        //     { name: 'Neck Opening', xs: '18', s: '18', m: '18', l: '18', xl: '18' }
+        // ]
+
     },
     {
         category: "jogger-open-leg",
@@ -212,7 +195,8 @@ export const OrdersData = [
             { name: 'Waist Rib', xs: '4', s: '4', m: '4', l: '4', xl: '4', xxl: '4' },
             { name: 'Pocket Front Length', xs: '14', s: '14', m: '14', l: '14', xl: '14', xxl: '14' }
         ]
-    }, {
+    },
+    {
         category: "shorts",
         fitImg: short, // Assuming 'tShirt' is the image source
         fitOptions: [
@@ -230,9 +214,5 @@ export const OrdersData = [
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' }
         ]
     }
-
-
-
-
 
 ];

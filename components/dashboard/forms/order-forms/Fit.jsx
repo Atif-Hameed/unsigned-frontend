@@ -34,7 +34,7 @@ const Fit = () => {
     };
 
     // Extract size headers from the keys of the first entry in fitData
-    const sizeHeaders = Object.keys(currentOrder.fitData[0]).filter(key => key !== 'name');
+    const sizeHeaders = Object.keys(currentOrder?.fitData[0]).filter(key => key !== 'name');
 
     return (
         <div className='w-full flex items-start flex-wrap gap-4'>
