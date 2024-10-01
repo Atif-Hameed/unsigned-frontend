@@ -214,5 +214,4 @@ export const OrdersData = [
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' }
         ]
     }
-
 ];
