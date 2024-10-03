@@ -24,6 +24,8 @@ export const Samples = []
 
 export const Bulks = []
 
+export const Inquiry = []
+
 
 export const SizeChartData = [
     {name:'Total Length',xxs:'63',xs:'65',s:'67',m:'69',l:'71',xl:'73',xxl:'75'},

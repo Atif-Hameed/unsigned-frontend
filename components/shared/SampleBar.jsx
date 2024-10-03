@@ -58,6 +58,13 @@ const SampleBar = () => {
                             {t('bulks')}
                         </button>
                     </Link>
+                    <Link href="/dashboard/inquiries">
+                        <button
+                            className={`px-4 py-3 rounded-full ${pathname === '/dashboard/inquiries' ? 'bg-labelColor text-white' : ''}`}
+                        >
+                            {t('inquiries')}
+                        </button>
+                    </Link>
                 </div>
                 <div>
                     <button
