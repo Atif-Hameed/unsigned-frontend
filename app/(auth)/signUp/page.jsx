@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '@/assets/images/logoSmall.png'
 import CustomInput from '@/components/shared/CustomInput'
 import Link from 'next/link'
@@ -8,11 +8,49 @@ import Button from '@/components/shared/Button'
 import MaxContainer from '@/components/layout/MaxContainer'
 import TrnaslateButton from '@/components/shared/TrnaslateButton'
 import { useTranslation } from 'next-i18next'
+import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
 
 const Page = () => {
 
     const { t } = useTranslation();
+    const router = useRouter();
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const trimmedEmail = email.trim();
+
+        if (!trimmedEmail) {
+            toast.error('Please enter a valid email address', {
+                duration: 4000,
+            });
+            setLoading(false);
+            return;
+        }
+        const loadingToastId = toast.loading('loading...');
+        try {
+            const response = await axios.post('/api/verify-email', { email: trimmedEmail });
+            router.push(`/send-email?email=${trimmedEmail}&type=register`);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error sending email:', error);
+            toast.error('Failed to send verification email', {
+                id: loadingToastId,
+                duration: 4000,
+            });
+        } finally {
+            setLoading(false);
+            toast.dismiss(loadingToastId);
+        }
+    };
+
+
+
 
     // const handleSignup = (e) => {
     //     e.preventDefault();
@@ -61,8 +99,10 @@ const Page = () => {
     //             });
     //     }
     // };
+
     return (
         <MaxContainer>
+            <Toaster />
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
 
                 {/* logo */}
@@ -86,12 +126,12 @@ const Page = () => {
                             type='text'
                             label='Email'
                             isRequired={true}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <div className=' w-full '>
-                            <Link href={'/signUp/create-password'} className='w-full'>
-                                <Button label={t('continue')} />
-                            </Link>
+                            <Button label={t('continue')} disabled={loading} onClick={handleSubmit} />
                         </div>
                     </div>
                     <div className='flex items-center text-center flex-wrap gap-4 justify-center text-xl'>

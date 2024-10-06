@@ -54,7 +54,7 @@
     "drafts": "Entwürfe",
     "samples": "Muster",
     "bulks": "Großbestellungen",
-    "inquiries":"Anfragen",
+    "inquiries": "Anfragen",
     "startNewDesign": "Starten Sie Ihr Projekt",
     "startDesign": "Starten Projekt",
     "whatWouldYouLikeToDesign?": "Was möchten Sie entwerfen?",
@@ -67,5 +67,9 @@
     "tankTop": "Tanktop",
     "joggerOpenLeg": "Jogger mit offenem Bein",
     "joggerCuffed": "Jogger gefesselt",
-    "shorts": "Shorts"
+    "shorts": "Shorts",
+    "emailSend": "Wir haben Ihnen eine Bestätigungs-E-Mail an gesendet",
+    "checkEmail": "Überprüfen Sie Ihre E-Mails",
+    "noReceive": "Habe keine E-Mail erhalten",
+    "resend": "Erneut senden"
 }

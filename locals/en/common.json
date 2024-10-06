@@ -67,5 +67,9 @@
   "tankTop": "Tank Top",
   "joggerOpenLeg": "Jogger Open Leg",
   "joggerCuffed": "Jogger Cuffed",
-  "shorts": "Shorts"
+  "shorts": "Shorts",
+  "emailSend":"We have sent you a verification email to",
+  "checkEmail":"Check your email",
+  "noReceive":"Didn't receive an email",
+  "resend":"Resend"
 }

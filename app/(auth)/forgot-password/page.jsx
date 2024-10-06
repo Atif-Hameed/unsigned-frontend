@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '@/assets/images/logoSmall.png'
 import CustomInput from '@/components/shared/CustomInput'
 import Link from 'next/link'
@@ -9,12 +9,49 @@ import MaxContainer from '@/components/layout/MaxContainer'
 import { IoArrowBack } from "react-icons/io5";
 import TrnaslateButton from '@/components/shared/TrnaslateButton'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/navigation'
+import toast, { Toaster } from 'react-hot-toast'
+import axios from 'axios'
 
 const Page = () => {
     const { t } = useTranslation();
+    const router = useRouter();
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const trimmedEmail = email.trim();
+
+        if (!trimmedEmail) {
+            toast.error('Please enter a valid email address', {
+                duration: 4000,
+            });
+            setLoading(false);
+            return;
+        }
+        const loadingToastId = toast.loading('loading...');
+        try {
+            const response = await axios.post('/api/reset-pass', { email: trimmedEmail });
+            router.push(`/send-email?email=${trimmedEmail}&type=pass`);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error sending email:', error);
+            toast.error('Failed to send verification email', {
+                id: loadingToastId,
+                duration: 4000,
+            });
+            setLoading(false);
+        } finally {
+            setLoading(false);
+            toast.dismiss(loadingToastId);
+        }
+    };
 
     return (
         <MaxContainer>
+            <Toaster />
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
 
                 {/* logo */}
@@ -46,12 +83,12 @@ const Page = () => {
                             type='text'
                             label={t('email')}
                             isRequired={true}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <div className=' w-full '>
-                            <Link href={'/reset-password'} className='w-full'>
-                                <Button label={t('sendLink')} />
-                            </Link>
+                            <Button label={t('sendLink')} disabled={loading} onClick={handleSubmit} />
                         </div>
                     </div>
 

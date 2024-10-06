@@ -10,15 +10,22 @@ import { CiCircleRemove } from "react-icons/ci";
 import { CiCircleCheck } from "react-icons/ci";
 import TrnaslateButton from '@/components/shared/TrnaslateButton';
 import { useTranslation } from 'next-i18next';
+import { useRouter, useSearchParams } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const Page = () => {
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [isUpperCase, setIsUpperCase] = useState(false);
     const [isLowerCase, setIsLowerCase] = useState(false);
     const [isNumber, setIsNumber] = useState(false);
     const [isMinLength, setIsMinLength] = useState(false);
+    const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
+    const params = useSearchParams();
+    const router = useRouter();
+    const email = params.get('email');
 
     // Handle password change and validation
     const handlePasswordChange = (e) => {
@@ -32,8 +39,44 @@ const Page = () => {
         setIsMinLength(value.length >= 8);
     };
 
+    // API call to submit the password
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        if (!password) {
+            toast.error('Passwords Required');
+            setLoading(false);
+            return;
+        }
+        if (password !== confirmPassword) {
+            toast.error('Passwords do not match');
+            setLoading(false);
+            return;
+        }
+        const loadingToastId = toast.loading('loading...');
+        try {
+            // const response = await axios.post('/api/set-password', { email, password });
+            console.log(
+                { email, password }
+            )
+            router.push(`/login`);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error setting password:', error);
+            toast.error('Failed to set password', {
+                id: loadingToastId,
+                duration: 4000,
+            });
+            setLoading(false);
+        } finally {
+            setLoading(false);
+            toast.dismiss(loadingToastId);
+        }
+    };
+
     return (
         <MaxContainer>
+            <Toaster/>
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
                 {/* logo */}
                 <div className='lg:absolute flex justify-center top-0 left-[7%]'>
@@ -53,14 +96,14 @@ const Page = () => {
                             type='password'
                             label='Password'
                             value={password}
-                            onChange={handlePasswordChange}
                             isRequired={true}
+                            onChange={handlePasswordChange}
                         />
                         <CustomInput
                             type='password'
                             label={t('repeat') + " " + "Password"}
-                            value={password}
-                            onChange={handlePasswordChange}
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             isRequired={true}
                         />
 
@@ -81,7 +124,7 @@ const Page = () => {
                         </ul>
 
                         <div className='w-full'>
-                            <Button label={t('update') + " " + 'Password'} />
+                            <Button label={t('update') + " " + 'Password'} onClick={handleSubmit} disabled={loading} />
                         </div>
                     </div>
                 </div>

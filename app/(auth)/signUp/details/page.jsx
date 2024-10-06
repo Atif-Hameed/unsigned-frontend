@@ -7,10 +7,15 @@ import CustomInput from '@/components/shared/CustomInput';
 import Button from '@/components/shared/Button';
 import TrnaslateButton from '@/components/shared/TrnaslateButton';
 import { useTranslation } from 'next-i18next';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Page = () => {
     const [activeTab, setActiveTab] = useState('1');
+    const [isSameDelivery, setIsSameDelivery] = useState(false);
+    const router = useRouter();
     const { t } = useTranslation();
+    const params = useSearchParams();
+    const email = params.get('email')
 
     // Unified state for all form sections
     const [formData, setFormData] = useState({
@@ -22,26 +27,67 @@ const Page = () => {
         vat: '',
         companyWebsite: '',
         instaLink: '',
-        billingAddress1: '',
-        billingAddress2: '',
-        billingZipCode: '',
-        billingCity: '',
-        billingCountry: '',
-        deliveryAddress1: '',
-        deliveryAddress2: '',
-        deliveryZipCode: '',
-        deliveryCity: '',
-        deliveryCountry: ''
+        billingAddress: {
+            address1: '',
+            address2: '',
+            zipCode: '',
+            city: '',
+            country: ''
+        },
+        deliveryAddress: {
+            address1: '',
+            address2: '',
+            zipCode: '',
+            city: '',
+            country: ''
+        }
     });
 
     // Handle input changes for the entire form
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
+
+        if (name.startsWith('billing')) {
+            const field = name.replace('billing', '').charAt(0).toLowerCase() + name.replace('billing', '').slice(1);
+            setFormData((prev) => ({
+                ...prev,
+                billingAddress: {
+                    ...prev.billingAddress,
+                    [field]: value
+                }
+            }));
+        } else if (name.startsWith('delivery')) {
+            const field = name.replace('delivery', '').charAt(0).toLowerCase() + name.replace('delivery', '').slice(1);
+            setFormData((prev) => ({
+                ...prev,
+                deliveryAddress: {
+                    ...prev.deliveryAddress,
+                    [field]: value
+                }
+            }));
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                [name]: value
+            }));
+        }
     };
+
+
+    // Handle checkbox change
+    const handleCheckboxChange = () => {
+        setIsSameDelivery(!isSameDelivery);
+
+        if (!isSameDelivery) {
+            // If checked, copy billing address to delivery address
+            setFormData((prev) => ({
+                ...prev,
+                deliveryAddress: { ...prev.billingAddress }
+            }));
+        }
+    };
+
+
 
     // Function to navigate between steps
     const handleNextStep = () => {
@@ -72,6 +118,7 @@ const Page = () => {
                                     name={'firstName'}
                                     value={formData.firstName}
                                     onChange={handleChange}
+                                    isRequired={true}
                                 />
                                 <CustomInput
                                     type={'text'}
@@ -79,6 +126,7 @@ const Page = () => {
                                     name={'lastName'}
                                     value={formData.lastName}
                                     onChange={handleChange}
+                                    isRequired={true}
                                 />
                                 <CustomInput
                                     type={'text'}
@@ -86,13 +134,13 @@ const Page = () => {
                                     name={'phone'}
                                     value={formData.phone}
                                     onChange={handleChange}
+                                    isRequired={true}
                                 />
                                 <CustomInput
                                     type={'email'}
                                     label={t('email')}
                                     name={'email'}
-                                    value={formData.email}
-                                    onChange={handleChange}
+                                    value={email}
                                 />
                                 <p className='text-xs w-full text-labelColor text-start'>{t('requiredField')}</p>
                                 <div className='w-full mt-6'>
@@ -114,6 +162,7 @@ const Page = () => {
                                     name={'brandName'}
                                     value={formData.brandName}
                                     onChange={handleChange}
+                                    isRequired={true}
                                 />
                                 <CustomInput
                                     type={'text'}
@@ -121,6 +170,7 @@ const Page = () => {
                                     name={'vat'}
                                     value={formData.vat}
                                     onChange={handleChange}
+                                    isRequired={true}
                                 />
                                 <CustomInput
                                     type={'text'}
@@ -153,17 +203,17 @@ const Page = () => {
                                 <div className='w-full mt-3'>
                                     <h1 className='text-labelColor sm:text-2xl text-lg text-start w-full'>{t('billingAddress')}</h1>
                                     <CustomInput
-                                        type={'text'}
+                                        type="text"
                                         label={t('addressLine1')}
-                                        name={'billingAddress1'}
-                                        value={formData.billingAddress1}
+                                        name="billingAddress1"
+                                        value={formData.billingAddress.address1}
                                         onChange={handleChange}
                                     />
                                     <CustomInput
                                         type={'text'}
                                         label={t('addressLine2')}
                                         name={'billingAddress2'}
-                                        value={formData.billingAddress2}
+                                        value={formData.billingAddress.address2}
                                         onChange={handleChange}
                                     />
                                     <div className='w-full flex gap-2'>
@@ -172,7 +222,7 @@ const Page = () => {
                                                 type={'text'}
                                                 label={t('zipCode')}
                                                 name={'billingZipCode'}
-                                                value={formData.billingZipCode}
+                                                value={formData.billingAddress.zipCode}
                                                 onChange={handleChange}
                                             />
                                         </div>
@@ -181,7 +231,7 @@ const Page = () => {
                                                 type={'text'}
                                                 label={t('city')}
                                                 name={'billingCity'}
-                                                value={formData.billingCity}
+                                                value={formData.billingAddress.city}
                                                 onChange={handleChange}
                                             />
                                         </div>
@@ -190,57 +240,70 @@ const Page = () => {
                                         type={'text'}
                                         label={t('country')}
                                         name={'billingCountry'}
-                                        value={formData.billingCountry}
+                                        value={formData.billingAddress.country}
                                         onChange={handleChange}
                                     />
                                 </div>
+
+                                {/* Checkbox for Same Delivery Address */}
                                 <div className='w-full mt-3'>
                                     <h1 className='text-labelColor sm:text-2xl text-lg text-start w-full'>{t('deliveryAddress')}</h1>
                                     <div className='flex items-center gap-2 w-full justify-start mt-2'>
-                                        <input type="checkbox" className='h-5 w-5' name="" id="" />
+                                        <input
+                                            type="checkbox"
+                                            className='h-5 w-5'
+                                            checked={isSameDelivery}
+                                            onChange={handleCheckboxChange}
+                                        />
                                         <p className='text-sm text-labelColor'>{t('samedelivery')}</p>
                                     </div>
-                                    <CustomInput
-                                        type={'text'}
-                                        label={t('addressLine1')}
-                                        name={'deliveryAddress1'}
-                                        value={formData.deliveryAddress1}
-                                        onChange={handleChange}
-                                    />
-                                    <CustomInput
-                                        type={'text'}
-                                        label={t('addressLine2')}
-                                        name={'deliveryAddress2'}
-                                        value={formData.deliveryAddress2}
-                                        onChange={handleChange}
-                                    />
-                                    <div className='w-full flex gap-2'>
-                                        <div className='w-[40%]'>
+
+                                    {/* Conditionally hide delivery address form */}
+                                    {!isSameDelivery && (
+                                        <>
                                             <CustomInput
                                                 type={'text'}
-                                                label={t('zipCode')}
-                                                name={'deliveryZipCode'}
-                                                value={formData.deliveryZipCode}
+                                                label={t('addressLine1')}
+                                                name={'deliveryAddress1'}
+                                                value={formData.deliveryAddress.address1}
                                                 onChange={handleChange}
                                             />
-                                        </div>
-                                        <div className='w-[60%]'>
                                             <CustomInput
                                                 type={'text'}
-                                                label={t('city')}
-                                                name={'deliveryCity'}
-                                                value={formData.deliveryCity}
+                                                label={t('addressLine2')}
+                                                name={'deliveryAddress2'}
+                                                value={formData.deliveryAddress.address2}
                                                 onChange={handleChange}
                                             />
-                                        </div>
-                                    </div>
-                                    <CustomInput
-                                        type={'text'}
-                                        label={t('country')}
-                                        name={'deliveryCountry'}
-                                        value={formData.deliveryCountry}
-                                        onChange={handleChange}
-                                    />
+                                            <div className='w-full flex gap-2'>
+                                                <div className='w-[40%]'>
+                                                    <CustomInput
+                                                        type={'text'}
+                                                        label={t('zipCode')}
+                                                        name={'deliveryZipCode'}
+                                                        value={formData.deliveryAddress.zipCode}
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                                <div className='w-[60%]'>
+                                                    <CustomInput
+                                                        type={'text'}
+                                                        label={t('city')}
+                                                        name={'deliveryCity'}
+                                                        value={formData.deliveryAddress.city}
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <CustomInput
+                                                type={'text'}
+                                                label={t('country')}
+                                                name={'deliveryCountry'}
+                                                value={formData.deliveryAddress.country}
+                                                onChange={handleChange}
+                                            />
+                                        </>
+                                    )}
                                 </div>
 
                                 <div className='w-full mt-6 flex justify-between items-center'>
@@ -261,6 +324,7 @@ const Page = () => {
     // Function to handle form submission and gather all the data
     const handleSubmit = () => {
         console.log('Form Data:', formData);
+        router.push('/dashboard')
     };
 
     return (
