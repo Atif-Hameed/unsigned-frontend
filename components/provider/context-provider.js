@@ -12,8 +12,65 @@ export const ContextProvider = ({ children }) => {
     const [formData, setFormData] = useState({
         category: "",
         status: "pending",
-    });
+        fit: {
+            fit_type: '',
+            fit_values: {},
+            custom_data: {
+                comments: "",
+                file: "",
+            }
+        },
+        fabric: {
+            fabric_name: "",
+            custom_data: {
+                comments: "",
+                file: "",
+            }
+        },
+        color: {
+            color_code: "",
+            custom_data: {
+                comments: "",
+                file: "",
+            }
+        },
+        neck_label: {
+            label_name: "",
+            label_material: "",
+            label_color: "",
+            custom_data: {
+                comments: "",
+                file: "",
+            }
+        },
+        care_label: {
+            carelabel_name: "",
+            custom_data: {
+                comments: "",
+                file: "",
+            }
+        },
 
+        print: {
+            template_file: "",
+            custom_data: {
+                comments: "",
+                file: "",
+            }
+        },
+        quantity: {
+            quantities: {},
+            custom_data: {
+                comments: "",
+                file: "",
+            }
+        },
+        packing: {
+            type: '',
+            logo: '',
+        },
+    });
+    console.log('formData', formData)
     return (
         // Use MyContext.Provider to pass down state and updater
         <MyContext.Provider value={{ formData, setFormData }}>

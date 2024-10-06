@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Heading from '../Heading';
 import CustomDataUpload from '../CustomDataUpload';
 import Image from 'next/image';
@@ -9,10 +9,25 @@ import polybagEmpty from '@/assets/images/polybagEmpty.png'
 import CustomRadioButton from '../CustomRadioButton';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoCloudUploadOutline } from 'react-icons/io5';
+import { MyContext } from '@/components/provider/context-provider';
 
 const PackagingForm = () => {
+    const { formData, setFormData } = useContext(MyContext); // Access context
+
     const [selectedOption, setSelectedOption] = useState('polybag');
     const [ownLogo, setOwnLogo] = useState(null);
+
+    // Update context whenever selected option changes
+    useEffect(() => {
+        setFormData((prevData) => ({
+            ...prevData,
+            packing: {
+                ...prevData.packing,
+                type: selectedOption,
+                logo: ownLogo,
+            },
+        }));
+    }, [selectedOption, ownLogo, setFormData]); // Dependency array includes selectedOption and ownLogo
 
     const handleOptionChange = (value) => {
         setSelectedOption(value);
@@ -105,15 +120,15 @@ const PackagingForm = () => {
                                         {/* Upload button if no file is uploaded */}
                                         {!ownLogo && (
                                             <div className='flex flex-col items-center gap-3'>
-                                            <div className='bg-lightBlueText p-2 z-40 rounded-full hover:bg-lightBlue'>
-                                                <IoCloudUploadOutline className='text-2xl cursor-pointer text-white' />
-                                                <input
-                                                    type='file'
-                                                    className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
-                                                    onChange={handleOwnLogoFileChange} // Handle logo file upload
-                                                />
-                                            </div>
-                                            <p>Upload Own logo</p>
+                                                <div className='bg-lightBlueText p-2 z-40 rounded-full hover:bg-lightBlue'>
+                                                    <IoCloudUploadOutline className='text-2xl cursor-pointer text-white' />
+                                                    <input
+                                                        type='file'
+                                                        className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
+                                                        onChange={handleOwnLogoFileChange} // Handle logo file upload
+                                                    />
+                                                </div>
+                                                <p>Upload Own logo</p>
                                             </div>
                                         )}
                                         {/* Delete button if file is uploaded */}
