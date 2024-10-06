@@ -1,11 +1,12 @@
 'use client'
+import { MyContext } from '@/components/provider/context-provider'
 import FabricForm from '@/components/shared/Forms/FabricForm'
-import Heading from '@/components/shared/Heading'
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 const Fabric = () => {
     const currentPath = usePathname();
+    const { formData, setFormData } = useContext(MyContext);
 
     const [selectedFabric, setSelectedFabric] = useState(''); // To track selected checkbox
     const [file, setFile] = useState(null); // To handle file in CustomDataUpload
@@ -44,6 +45,19 @@ const Fabric = () => {
             : fabricOptions.labwears;
     };
 
+    // Update formData when selectedFabric, file, or textareaValue changes
+    useEffect(() => {
+        setFormData((prevData) => ({
+            ...prevData,
+            fabric: {
+                fabric_name: selectedFabric,
+                custom_data: {
+                    comments: textareaValue,
+                    file: file,
+                },
+            },
+        }));
+    }, [selectedFabric, file, textareaValue, setFormData]);
 
     return (
         <FabricForm

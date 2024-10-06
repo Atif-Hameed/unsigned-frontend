@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { GrAttachment } from 'react-icons/gr'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 
-const CustomDataUpload = ({ onFileChange = () => {}, onTextareaChange = () => {}, file = null, textareaValue = "" }) => {
+const CustomDataUpload = ({ onFileChange = () => { }, onTextareaChange = () => { }, file = null, textareaValue = "" }) => {
     const [selectedFile, setSelectedFile] = useState(file);
     const [textarea, setTextarea] = useState(textareaValue);
 
@@ -28,9 +28,9 @@ const CustomDataUpload = ({ onFileChange = () => {}, onTextareaChange = () => {}
 
     return (
         <div className='bg-transparent  border border-dark p-5'>
-            <textarea 
-                className='w-full outline-none bg-transparent h-full px-5' 
-                placeholder='special requests or comments' 
+            <textarea
+                className='w-full outline-none bg-transparent h-full px-5'
+                placeholder='special requests or comments'
                 value={textarea}
                 onChange={handleTextareaChange}
             />
