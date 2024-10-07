@@ -37,10 +37,10 @@ const Carelabel = () => {
             ...prevData,
             care_label: {
                 carelabel_name: selectedLabel, // Care label selection ('unsigned', etc.)
+                brand_file: brandFile, // Brand logo file uploaded (if any)
                 custom_data: {
                     comments: textareaValue, // Comments entered in the textarea
                     file: file, // File uploaded (if any)
-                    brand_file: brandFile, // Brand logo file uploaded (if any)
                 },
             },
         }));

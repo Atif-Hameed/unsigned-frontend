@@ -98,9 +98,10 @@ const Page = () => {
 
 
     const handleNextStep = async () => {
+        console.log('Current Active Tab:', activeTab);
         try {
             await updateUserData(uid, formData); // Ensure data is updated
-            setActiveTab((prev) => (prev < tabs.length - 1 ? String(Number(prev) + 1) : prev));
+            setActiveTab((prev) => (prev < (tabs.length+1) - 1 ? String(Number(prev) + 1) : prev));
         } catch (error) {
             console.error('Error updating user data:', error);
             // Optionally display an error message to the user

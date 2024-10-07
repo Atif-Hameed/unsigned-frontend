@@ -46,6 +46,7 @@ export const ContextProvider = ({ children }) => {
         },
         care_label: {
             carelabel_name: "",
+            brand_file: "",
             custom_data: {
                 comments: "",
                 file: "",
