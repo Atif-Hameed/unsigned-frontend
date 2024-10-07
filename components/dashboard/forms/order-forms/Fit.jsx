@@ -28,8 +28,8 @@ const Fit = () => {
 
     // Local state to manage custom data (comments and file)
     const [customData, setCustomData] = useState({
-        comments: '',
-        file: null,
+        comments: formData?.fit?.custom_data.comments || '',
+        file: formData?.fit?.custom_data.file || null,
     });
 
     // Effect to update context whenever local fitData, selectedFit, or customData changes
@@ -73,6 +73,8 @@ const Fit = () => {
 
     // Extract size headers from the keys of the first entry in fitData
     const sizeHeaders = Object.keys(currentOrder?.fitData[0]).filter(key => key !== 'name');
+
+    console.log(formData)
 
     return (
         <div className='w-full flex items-start flex-wrap gap-4'>

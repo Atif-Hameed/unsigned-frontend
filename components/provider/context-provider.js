@@ -38,9 +38,10 @@ export const ContextProvider = ({ children }) => {
             label_name: "",
             label_material: "",
             label_color: "",
+            files: "",
             custom_data: {
                 comments: "",
-                file: "",
+                custom_file: "",
             }
         },
         care_label: {
