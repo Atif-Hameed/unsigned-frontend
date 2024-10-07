@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from 'react';
+'use client';
+import React from 'react';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
 import { FaCheck } from 'react-icons/fa'; // For the tick mark
 import CustomTooltip from '../CustomTooltip';
@@ -10,7 +10,12 @@ import CustomDataUpload from '../CustomDataUpload';
 const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorChange, file, onFileChange, textareaValue, onTextareaChange }) => {
     // Handle color selection
     const handleColorSelect = (color) => {
-        onColorSelect(color);  // Pass the selected color to the parent component
+        if (selectedColor === color) {
+            // If the clicked color is already selected, unselect it by passing null
+            onColorSelect(null);
+        } else {
+            onColorSelect(color);
+        }
     };
 
     return (

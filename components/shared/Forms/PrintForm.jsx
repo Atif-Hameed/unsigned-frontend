@@ -1,15 +1,26 @@
-'use client'
-import React from 'react';
+'use client';
+import React, { useContext } from 'react';
 import Heading from '../Heading';
 import CustomTooltip from '../CustomTooltip';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
-import shirtTemp from '@/assets/images/shirtTemp.png';
-import shirtPrint from '@/assets/images/shirtPrint.png';
 import Image from 'next/image';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { usePathname } from 'next/navigation';
+import { MyContext } from '@/components/provider/context-provider';
+import { OrdersData } from '@/data/order-form-data';
 
 const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) => {
+    const path = usePathname();
+    const currentOrder = OrdersData.find(order => path.includes(order.category));
+
+    // console.log(currentOrder)
+
+    // If no matching data is found for the category, return a message
+    if (!currentOrder) {
+        return <div>No matching print data found for this category.</div>;
+    }
+
     const handleImageFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -46,7 +57,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                 <div className='bg-lightBackground flex flex-col items-center gap-10 p-5 '>
                     <h1 className='lg:text-2xl md:text-xl text-lg text-dark font-medium'>1. Download the template and add your design</h1>
                     <div>
-                        <Image alt='' src={shirtTemp} />
+                        <Image alt='Template' src={currentOrder.printSimpleImg} className='w-full object-cover' />
                     </div>
                     <button className='text-white px-4 flex items-center gap-2 py-2 bg-lightBlueText rounded-full' onClick={downloadTemplate}>
                         <IoCloudUploadOutline className='text-xl rotate-180' /> Download Template
@@ -56,7 +67,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                 <div className='bg-lightBackground flex flex-col items-center gap-10 p-5 '>
                     <h1 className='lg:text-2xl md:text-xl text-lg text-dark font-medium'>2. Upload edited template with your design</h1>
                     <div>
-                        <Image alt='' src={shirtPrint} />
+                        <Image alt='Print Example' src={currentOrder.printDesignImg} className='w-full object-cover' />
                     </div>
 
                     <div className='flex items-center justify-center gap-3'>

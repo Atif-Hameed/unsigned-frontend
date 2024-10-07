@@ -7,6 +7,25 @@ import tank from '/public/orders/Tank Top Sizing Picture.png';
 import jogger_open_leg from '/public/orders/Jogger Cuffed Sizing Picture.png';
 import jogger_cuffed from '/public/orders/Jogger Open Leg Sizing Picture.png';
 import short from '/public/orders/Shorts Sizing Picture.png';
+import shirtSimple from '@/assets/prints/shirt-print/shirt1.png'
+import shirtDesign from '@/assets/prints/shirt-print/shirt2.png'
+import hoodieSimple from '@/assets/prints/hoodie-print/hoodie1.png'
+import hoodieDesign from '@/assets/prints/hoodie-print/hoodie2.png'
+import crewneckSimple from '@/assets/prints/crewneck-print/crewneck1.png'
+import crewneckDesign from '@/assets/prints/crewneck-print/crewneck2.png'
+import zipHoodieSimple from '@/assets/prints/zipper-print/zipnormal2.png'
+import zipHoodieDesign from '@/assets/prints/zipper-print/zipnormal1.png'
+import longSleevSimple from '@/assets/prints/longsleev-print/longsleeve1.png'
+import longSleevDesign from '@/assets/prints/longsleev-print/longsleeve2.png'
+import openlegSimple from '@/assets/prints/openleg-print/openleg1.png'
+import openlegDesign from '@/assets/prints/openleg-print/openleg2.png'
+import closelegSimple from '@/assets/prints/closeleg-print/closeleg1.png'
+import closelegDesign from '@/assets/prints/closeleg-print/closeleg2.png'
+import shortsSimple from '@/assets/prints/shorts-print/shorts1.png'
+import shortsDesign from '@/assets/prints/shorts-print/shorts2.png'
+import tankSimple from '@/assets/prints/tank-print/tank1.png'
+import tankDesign from '@/assets/prints/tank-print/tank2.png'
+
 
 export const OrdersData = [
     {
@@ -27,7 +46,9 @@ export const OrdersData = [
             { name: 'Neck Rib Length', xs: '2', s: '2', m: '2', l: '2', xl: '2', xxl: '2' },
             { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10', xxl: '10' },
             { name: 'Shoulder to Shoulder', xs: '58', s: '59', m: '60', l: '61', xl: '62', xxl: '63' }
-        ]
+        ],
+        printSimpleImg: shirtSimple,
+        printDesignImg: shirtDesign,
     }
     , {
         category: "hoodie",
@@ -35,7 +56,6 @@ export const OrdersData = [
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
             { label: 'Balloon Fit', value: 'balloon_fit' },
-
         ],
         fitData: [
             { name: 'Total Length', xs: '60', s: '62', m: '64', l: '66', xl: '68', xxl: '70' },
@@ -58,7 +78,9 @@ export const OrdersData = [
             { name: 'Sleeve Opening', xs: '21', s: '21.5', m: '22', l: '22.5', xl: '23', xxl: '23.5' },
             { name: 'Neck Rib Length', xs: '2', s: '2', m: '2', l: '2', xl: '2', xxl: '2' },
             { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10', xxl: '10' }
-        ]
+        ],
+        printSimpleImg: hoodieSimple,
+        printDesignImg: hoodieDesign,
     }, {
         category: "crewneck",
         fitImg: crew, // Assuming 'shirt' is the image source
@@ -79,7 +101,9 @@ export const OrdersData = [
             { name: 'Neck Opening', xs: '19', s: '19', m: '19', l: '19', xl: '19', xxl: '19' },
             { name: 'Shoulder to Shoulder', xs: '63', s: '64', m: '65', l: '66', xl: '67', xxl: '68' },
             { name: 'Armhole', xs: '30', s: '30.5', m: '31', l: '31.5', xl: '32', xxl: '32.5' }
-        ]
+        ],
+        printSimpleImg: crewneckSimple,
+        printDesignImg: crewneckDesign,
     },
     {
         category: "zip-hoodie",
@@ -105,7 +129,9 @@ export const OrdersData = [
             { name: 'Hood Width', xs: '27', s: '28', m: '29', l: '30', xl: '31', xxl: '32' },
             { name: 'Pockets Top to Zipper', xs: '13.5', s: '13.5', m: '14', l: '14', xl: '14', xxl: '14' },
             { name: 'Hood Length', xs: '38', s: '39', m: '40', l: '41', xl: '42', xxl: '43' }
-        ]
+        ],
+        printSimpleImg: zipHoodieSimple,
+        printDesignImg: zipHoodieDesign,
     },
     {
         category: "long-sleeve",
@@ -127,7 +153,9 @@ export const OrdersData = [
             { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10', xxl: '10' },
             { name: 'Neck Opening', xs: '20', s: '20', m: '20', l: '20', xl: '20', xxl: '20' },
             { name: 'Shoulder to Shoulder', xs: '58', s: '59', m: '60', l: '61', xl: '62', xxl: '63' }
-        ]
+        ],
+        printSimpleImg: longSleevSimple,
+        printDesignImg: longSleevDesign,
     },
     {
         category: "tank-top",
@@ -155,7 +183,9 @@ export const OrdersData = [
         //     { name: 'Strap', xs: '5', s: '5', m: '5', l: '5', xl: '5' },
         //     { name: 'Armhole', xs: '18', s: '19', m: '20', l: '21', xl: '22' },
         //     { name: 'Neck Opening', xs: '18', s: '18', m: '18', l: '18', xl: '18' }
-        // ]
+        // ],
+        printSimpleImg: tankSimple,
+        printDesignImg: tankDesign,
 
     },
     {
@@ -175,7 +205,9 @@ export const OrdersData = [
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' },
             { name: 'Waist Rib', xs: '4', s: '4', m: '4', l: '4', xl: '4', xxl: '4' },
             { name: 'Pocket Front Length', xs: '14', s: '14', m: '14', l: '14', xl: '14', xxl: '14' }
-        ]
+        ],
+        printSimpleImg: openlegSimple,
+        printDesignImg: openlegDesign,
     },
     {
         category: "jogger-cuffed",
@@ -194,7 +226,9 @@ export const OrdersData = [
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' },
             { name: 'Waist Rib', xs: '4', s: '4', m: '4', l: '4', xl: '4', xxl: '4' },
             { name: 'Pocket Front Length', xs: '14', s: '14', m: '14', l: '14', xl: '14', xxl: '14' }
-        ]
+        ],
+        printSimpleImg: closelegSimple,
+        printDesignImg: closelegDesign,
     },
     {
         category: "shorts",
@@ -212,6 +246,8 @@ export const OrdersData = [
             { name: 'Crotch Back', xs: '37', s: '37', m: '37', l: '37', xl: '37', xxl: '37' },
             { name: 'Pocket Back Width', xs: '10', s: '10', m: '10', l: '10', xl: '10', xxl: '10' },
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' }
-        ]
+        ],
+        printSimpleImg: shortsSimple,
+        printDesignImg: shortsDesign,
     }
 ];

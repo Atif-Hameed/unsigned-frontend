@@ -71,7 +71,7 @@ const NecklabelForm = ({
             <Toaster />
             <div className='lg:w-[32%] sm:w-[42%] w-full flex flex-col  gap-3'>
                 {/* Label Option Section */}
-                <div className='p-5 bg-lightBackground rounded-3xl'>
+                <div className='p-5 bg-lightBackground '>
                     <div className='flex items-center gap-3  w-full'>
                         <Heading>Select a label option</Heading>
                         <CustomTooltip width='30rem' tooltipText={'Select the label attachment here. Labels get attached with tone-in-tone threads as standard.'}>
@@ -98,7 +98,7 @@ const NecklabelForm = ({
 
                 {/* Material Option Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className='p-5 bg-lightBackground rounded-3xl'>
+                    <div className='p-5 bg-lightBackground '>
                         <div className='flex items-center gap-3 w-full'>
                             <Heading>Choose the material</Heading>
                             <CustomTooltip width='30rem' tooltipText={"Labels come in different materials. As standard, labels are done in a printed polyester."}>
@@ -126,7 +126,7 @@ const NecklabelForm = ({
 
                 {/* Color Selection Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className='p-5 bg-lightBackground rounded-3xl'>
+                    <div className='p-5 bg-lightBackground '>
                         <div className='flex items-center gap-3  w-full'>
                             <Heading>Choose the label color</Heading>
                             <CustomTooltip width='30rem' tooltipText={"Labels are in a limited range of colors available."}>
@@ -153,7 +153,7 @@ const NecklabelForm = ({
             <div className='lg:w-[68%] sm:w-[58%] w-full'>
                 {/* Conditionally Render Image Upload Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className=' bg-lightBackground justify-between p-5 flex items-center rounded-3xl py-20'>
+                    <div className=' bg-lightBackground justify-between mb-3 p-5 flex items-center  py-20'>
                         <div className='md:w-[45%] w-[55%]'>
                             <Image alt='' src={necklabel} className='w-full h-full' />
                         </div>
@@ -189,13 +189,11 @@ const NecklabelForm = ({
                 )}
 
                 {/* Custom File Upload */}
-                {selectedLabelOption === 'no_label' && (
                     <CustomDataUpload
                         file={customFile}
                         onFileChange={onCustomFileChange}
                         onFileRemove={onCustomFileRemove}
                     />
-                )}
             </div>
         </div>
     );

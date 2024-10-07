@@ -8,9 +8,9 @@ const Fabric = () => {
     const currentPath = usePathname();
     const { formData, setFormData } = useContext(MyContext);
 
-    const [selectedFabric, setSelectedFabric] = useState(''); // To track selected checkbox
-    const [file, setFile] = useState(null); // To handle file in CustomDataUpload
-    const [textareaValue, setTextareaValue] = useState(''); // To handle textarea in CustomDataUpload
+    const [selectedFabric, setSelectedFabric] = useState(formData?.fabric.fabric_name || ''); // To track selected checkbox
+    const [file, setFile] = useState(formData?.fabric.custom_data.file || null); // To handle file in CustomDataUpload
+    const [textareaValue, setTextareaValue] = useState(formData?.fabric.custom_data.comments || ''); // To handle textarea in CustomDataUpload
 
     const handleFileChange = (file) => {
         setFile(file);
