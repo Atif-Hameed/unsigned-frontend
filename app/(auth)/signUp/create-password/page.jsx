@@ -13,6 +13,9 @@ import TrnaslateButton from '@/components/shared/TrnaslateButton';
 import { useTranslation } from 'next-i18next';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { toast, Toaster } from 'react-hot-toast';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc, collection } from 'firebase/firestore';
+import { auth, db } from '@/config/firebase-config'; // Ensure these are correctly imported
 
 const Page = () => {
     const [password, setPassword] = useState('');
@@ -44,30 +47,34 @@ const Page = () => {
         e.preventDefault();
         setLoading(true);
         if (!password) {
-            toast.error('Passwords Required');
+            toast.error(t('passwordRequired'));
             setLoading(false);
             return;
         }
         if (password !== confirmPassword) {
-            toast.error('Passwords do not match');
+            toast.error(t('passwordsDoNotMatch'));
             setLoading(false);
             return;
         }
-        const loadingToastId = toast.loading('loading...');
+        const loadingToastId = toast.loading(t('loading'));
+
         try {
-            // const response = await axios.post('/api/set-password', { email, password });
-            console.log(
-                { email, password }
-            )
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            const userData = {
+                email: email,
+                role: "user",
+            };
+            const usersCollectionRef = collection(db, "users");
+            const userDocRef = doc(usersCollectionRef, user.uid);
+
+            await setDoc(userDocRef, userData);
+            localStorage.setItem("uid", user.uid);
+
+            toast.success(t('signupSuccessful'));
             router.push(`/signUp/details?email=${email}`);
-            setLoading(false);
         } catch (error) {
-            console.error('Error setting password:', error);
-            toast.error('Failed to set password', {
-                id: loadingToastId,
-                duration: 4000,
-            });
-            setLoading(false);
+            toast.error(error.message);
         } finally {
             setLoading(false);
             toast.dismiss(loadingToastId);
@@ -99,14 +106,14 @@ const Page = () => {
                     <div className='space-y-6'>
                         <CustomInput
                             type='password'
-                            label='Password'
+                            label={t('password')}
                             value={password}
                             isRequired={true}
                             onChange={handlePasswordChange}
                         />
                         <CustomInput
                             type='password'
-                            label={t('repeat') + " " + 'Password'}
+                            label={t('repeatPassword')}
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
@@ -114,16 +121,16 @@ const Page = () => {
                         {/* Password requirements */}
                         <ul className="space-y-1 text-sm">
                             <li className={`flex items-center ${isMinLength ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('minChar')} </span>
+                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('minChar')}</span>
                             </li>
                             <li className={`flex items-center ${isUpperCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('uppercase')} </span>
+                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('uppercase')}</span>
                             </li>
                             <li className={`flex items-center ${isLowerCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('lowercase')} </span>
+                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('lowercase')}</span>
                             </li>
                             <li className={`flex items-center ${isNumber ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('number')} </span>
+                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('number')}</span>
                             </li>
                         </ul>
 

@@ -1,22 +1,33 @@
 'use client'
 import MaxContainer from '@/components/layout/MaxContainer';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '@/assets/images/logoSmall.png';
 import CustomInput from '@/components/shared/CustomInput';
 import Button from '@/components/shared/Button';
 import TrnaslateButton from '@/components/shared/TrnaslateButton';
 import { useTranslation } from 'next-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { updateUserData } from '@/app/action/profile-update-action';
 
 const Page = () => {
+    const [uid, setUid] = useState('');
+
+    useEffect(() => {
+        // Get the UID from local storage
+        const storedUid = localStorage.getItem('uid'); // Replace 'uid' with the actual key used to store the UID
+        if (storedUid) {
+            setUid(storedUid); // Set the UID in the state
+        }
+    }, []);
+    // const [email, setEmail] = useState("");
     const [activeTab, setActiveTab] = useState('1');
     const [isSameDelivery, setIsSameDelivery] = useState(false);
     const router = useRouter();
     const { t } = useTranslation();
     const params = useSearchParams();
-    const email = params.get('email')
-
+    const email = params.get('email');
+    // console.log(user)
     // Unified state for all form sections
     const [formData, setFormData] = useState({
         firstName: '',
@@ -73,11 +84,9 @@ const Page = () => {
         }
     };
 
-
     // Handle checkbox change
     const handleCheckboxChange = () => {
         setIsSameDelivery(!isSameDelivery);
-
         if (!isSameDelivery) {
             // If checked, copy billing address to delivery address
             setFormData((prev) => ({
@@ -88,16 +97,15 @@ const Page = () => {
     };
 
 
-
-    // Function to navigate between steps
-    const handleNextStep = () => {
-        if (activeTab === '1') {
-            setActiveTab('2');
-        } else if (activeTab === '2') {
-            setActiveTab('3');
+    const handleNextStep = async () => {
+        try {
+            await updateUserData(uid, formData); // Ensure data is updated
+            setActiveTab((prev) => (prev < tabs.length - 1 ? String(Number(prev) + 1) : prev));
+        } catch (error) {
+            console.error('Error updating user data:', error);
+            // Optionally display an error message to the user
         }
     };
-
     const tabs = [
         { name: t('personalData'), id: '1' },
         { name: t('companyData'), id: '2' },
