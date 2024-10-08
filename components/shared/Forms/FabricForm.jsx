@@ -5,14 +5,14 @@ import React from 'react';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
 import CustomTooltip from '../CustomTooltip';
 
-const FabricForm = ({ data, selectedFabric, setSelectedFabric, file, setFile, textareaValue, setTextareaValue }) => {
+const FabricForm = ({ data, selectedFabric, setSelectedFabric, file, setFile, textareaValue, setTextareaValue, error }) => {
 
     const handleCheckboxChange = (name) => {
         setSelectedFabric(name); // Only one can be selected at a time
     };
 
     const handleBoxClick = (name) => {
-        setSelectedFabric(name); 
+        setSelectedFabric(name);
     };
 
     return (
@@ -46,6 +46,7 @@ const FabricForm = ({ data, selectedFabric, setSelectedFabric, file, setFile, te
                         </div>
                     </div>
                 ))}
+                
                 <div>
                     <CustomDataUpload
                         file={file}
@@ -54,6 +55,10 @@ const FabricForm = ({ data, selectedFabric, setSelectedFabric, file, setFile, te
                         onTextareaChange={setTextareaValue}
                     />
                 </div>
+
+                {error && (
+                    <p className="text-red-500">{error}</p>
+                )}
             </div>
         </div>
     );

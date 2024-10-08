@@ -8,33 +8,38 @@ const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        setIsLoading(true);
+        // Only access localStorage if window is defined (client-side)
+        if (typeof window !== "undefined") {
+            const uid = localStorage.getItem("uid");
+            if (uid) {
+                setUser({ uid });
+            }
+        }
+
         const unsub = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
-                // Store UID in localStorage
                 localStorage.setItem("uid", user.uid);
             } else {
                 setUser(null);
-                // Remove UID from localStorage if logged out
                 localStorage.removeItem("uid");
             }
             setIsLoading(false);
         });
+
         return () => unsub();
     }, []);
 
-    // Login with email and password
     const handleLoginWithEmailAndPassword = async (email, password) => {
         setIsLoading(true);
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             setUser(userCredential.user);
-            localStorage.setItem("uid", userCredential.user.uid); // Store UID in localStorage
+            localStorage.setItem("uid", userCredential.user.uid);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -42,13 +47,12 @@ export default function AuthContextProvider({ children }) {
         }
     };
 
-    // Logout function
     const handleLogout = async () => {
         setIsLoading(true);
         try {
             await signOut(auth);
             setUser(null);
-            localStorage.removeItem("uid"); // Clear UID from localStorage on logout
+            localStorage.removeItem("uid");
         } catch (error) {
             setError(error?.message);
         } finally {
@@ -62,8 +66,8 @@ export default function AuthContextProvider({ children }) {
                 user,
                 isLoading,
                 error,
-                handleLoginWithEmailAndPassword,  // Login function
-                handleLogout,  // Logout function
+                handleLoginWithEmailAndPassword,
+                handleLogout,
             }}
         >
             {children}
@@ -71,5 +75,4 @@ export default function AuthContextProvider({ children }) {
     );
 }
 
-// Custom hook to access the AuthContext
 export const useAuth = () => useContext(AuthContext);

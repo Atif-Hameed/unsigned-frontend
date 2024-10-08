@@ -34,9 +34,11 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
 
     const downloadTemplate = () => {
         const link = document.createElement('a');
-        link.href = '../../../public/template.zip';
+        link.href = '/template.zip'; // Use the root-relative path
         link.download = 'template.zip';
+        document.body.appendChild(link); // Append the link to the body
         link.click();
+        document.body.removeChild(link); // Clean up the link element after download
     };
 
     return (

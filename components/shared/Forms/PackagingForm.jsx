@@ -14,8 +14,21 @@ import { MyContext } from '@/components/provider/context-provider';
 const PackagingForm = () => {
     const { formData, setFormData } = useContext(MyContext); // Access context
 
-    const [selectedOption, setSelectedOption] = useState('polybag');
-    const [ownLogo, setOwnLogo] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(formData?.packing.type || 'polybag');
+    const [ownLogo, setOwnLogo] = useState(formData?.packing.logo || null);
+    const [customSelectedFile, setCustomSelectedFile] = useState(formData?.packing.custom_data.custom_file || null);
+    const [textareaValue, setTextareaValue] = useState(formData?.packing.custom_data.comments || '');
+
+
+    const handleTextareaChange = (value) => {
+        setTextareaValue(value);
+    };
+
+    // Handle changes to the file input
+    const handleCustomFileChange = (file) => {
+        setCustomSelectedFile(file);
+    };
+
 
     // Update context whenever selected option changes
     useEffect(() => {
@@ -25,9 +38,13 @@ const PackagingForm = () => {
                 ...prevData.packing,
                 type: selectedOption,
                 logo: ownLogo,
+                custom_data: {
+                    comments: textareaValue,
+                    custom_file: customSelectedFile,
+                },
             },
         }));
-    }, [selectedOption, ownLogo, setFormData]); // Dependency array includes selectedOption and ownLogo
+    }, [selectedOption, ownLogo, setFormData, textareaValue, customSelectedFile]); // Dependency array includes selectedOption and ownLogo
 
     const handleOptionChange = (value) => {
         setSelectedOption(value);
@@ -90,7 +107,13 @@ const PackagingForm = () => {
                             </div>
                         </div>
                         <div className="py-10">
-                            <CustomDataUpload />
+                            <CustomDataUpload
+                                textareaValue={textareaValue}
+                                onTextareaChange={handleTextareaChange}
+                                file={customSelectedFile}
+                                onFileChange={handleCustomFileChange}
+                                onFileRemove={() => setCustomSelectedFile(null)}
+                            />
                         </div>
                     </div>
                     <div className="md:col-span-7">

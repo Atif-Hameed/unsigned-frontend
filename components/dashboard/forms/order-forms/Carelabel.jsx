@@ -6,10 +6,10 @@ import { MyContext } from '@/components/provider/context-provider'; // Assuming 
 const Carelabel = () => {
     const { formData, setFormData } = useContext(MyContext); // Use context for formData and setFormData
 
-    const [selectedLabel, setSelectedLabel] = useState('unsigned'); // For care label selection
-    const [file, setFile] = useState(null); // For file upload
-    const [textareaValue, setTextareaValue] = useState(''); // For comments textarea
-    const [brandFile, setBrandFile] = useState(null); // For "My Brand Logo" file upload
+    const [selectedLabel, setSelectedLabel] = useState(formData?.care_label.carelabel_name || 'unsigned'); // For care label selection
+    const [file, setFile] = useState(formData?.care_label.custom_data.file || null); // For file upload
+    const [textareaValue, setTextareaValue] = useState(formData?.care_label.custom_data.comments || ''); // For comments textarea
+    const [brandFile, setBrandFile] = useState(formData?.care_label.brand_file || null); // For "My Brand Logo" file upload
 
     // Handler for label selection
     const handleSelect = (value) => {

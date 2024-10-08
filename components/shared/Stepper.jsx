@@ -12,31 +12,42 @@ const Stepper = ({
     necklabelForm,
     carelabelForm,
     printForm,
-    customizationForm,
     qunatityForm,
     packagingForm,
-    deliveryForm
+    deliveryForm,
+    validateFabricForm,
+    validateColorsForm,
+    validateNecklabelForm,
+    validateQuantityForm
 }) => {
     const [activeTab, setActiveTab] = useState('1');
 
     const tabs = [
-        { name: 'Fit', id: '1', component: fitForm },
-        { name: 'Fabric', id: '2', component: fabricForm },
-        { name: 'Colourway', id: '3', component: colourwayForm },
-        { name: 'Necklabel', id: '4', component: necklabelForm },
-        { name: 'Carelabel', id: '5', component: carelabelForm },
-        { name: 'Print', id: '6', component: printForm },
-        // { name: 'Customization', id: '7', component: customizationForm },
-        { name: 'Quantity', id: '7', component: qunatityForm },
-        { name: 'Packaging', id: '8', component: packagingForm },
-        { name: 'Delivery', id: '9', component: deliveryForm },
+        { name: 'Fit', id: '1', component: fitForm, validate: '' },
+        { name: 'Fabric', id: '2', component: fabricForm, validate: validateFabricForm },
+        { name: 'Colourway', id: '3', component: colourwayForm, validate: validateColorsForm },
+        { name: 'Necklabel', id: '4', component: necklabelForm, validate: validateNecklabelForm },
+        { name: 'Carelabel', id: '5', component: carelabelForm, validate: '' },
+        { name: 'Print', id: '6', component: printForm, validate: '' },
+        { name: 'Quantity', id: '7', component: qunatityForm, validate: validateQuantityForm },
+        { name: 'Packaging', id: '8', component: packagingForm, validate: '' },
+        { name: 'Delivery', id: '9', component: deliveryForm, validate: '' },
     ];
 
     // Function to handle "Next" button
     const handleNext = () => {
         const currentTabIndex = tabs.findIndex((tab) => tab.id === activeTab);
+        const currentTab = tabs[currentTabIndex];
+        // Validate the current tab's form
+        if (currentTab.validate) {
+            const isValid = currentTab.validate();
+            if (!isValid) {
+                return;
+            }
+        }
+        // Proceed to the next tab
         if (currentTabIndex < tabs.length - 1) {
-            setActiveTab(tabs[currentTabIndex + 1].id);  // Move to next tab
+            setActiveTab(tabs[currentTabIndex + 1].id);
         }
     };
 

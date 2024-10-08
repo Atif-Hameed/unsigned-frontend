@@ -82,6 +82,7 @@ const Colourway = () => {
         onFileChange={handleFileChange}
         textareaValue={textareaValue}
         onTextareaChange={handleTextareaChange}
+        error={formData?.errors.color_code}
       />
     </div>
   );

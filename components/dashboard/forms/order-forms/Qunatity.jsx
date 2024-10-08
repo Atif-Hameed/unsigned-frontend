@@ -1,10 +1,14 @@
+import { MyContext } from '@/components/provider/context-provider';
 import QunatityForm from '@/components/shared/Forms/QunatityForm'
-import React from 'react'
+import React, { useContext } from 'react'
 
 const Qunatity = () => {
+
+    const { formData, setFormData } = useContext(MyContext);
+
     return (
         <div>
-            <QunatityForm />
+            <QunatityForm error={formData?.errors.quantity} />
         </div>
     )
 }

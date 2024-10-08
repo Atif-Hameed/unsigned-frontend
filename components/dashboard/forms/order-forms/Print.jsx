@@ -6,8 +6,8 @@ import { MyContext } from '@/components/provider/context-provider'; // Assuming 
 const Print = () => {
     const { formData, setFormData } = useContext(MyContext); // Use context for formData and setFormData
 
-    const [selectedFile, setSelectedFile] = useState(null); // For file upload
-    const [textarea, setTextarea] = useState(''); // For comments textarea
+    const [selectedFile, setSelectedFile] = useState(formData?.print.template_file || null); // For file upload
+    const [textarea, setTextarea] = useState(formData?.print.custom_data.comments || ''); // For comments textarea
 
     // Handler for file upload
     const handleFileChange = (file) => {

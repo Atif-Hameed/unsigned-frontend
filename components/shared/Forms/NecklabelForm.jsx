@@ -28,6 +28,7 @@ const NecklabelForm = ({
     customFile,
     onCustomFileChange,
     onCustomFileRemove,
+    error
 }) => {
 
     // Handle multiple file uploads
@@ -146,6 +147,10 @@ const NecklabelForm = ({
                                 </CustomTooltip>
                             ))}
                         </div>
+
+                        {error && (
+                            <p className="text-red-500">{error}</p>
+                        )}
                     </div>
                 )}
             </div>
@@ -189,11 +194,11 @@ const NecklabelForm = ({
                 )}
 
                 {/* Custom File Upload */}
-                    <CustomDataUpload
-                        file={customFile}
-                        onFileChange={onCustomFileChange}
-                        onFileRemove={onCustomFileRemove}
-                    />
+                <CustomDataUpload
+                    file={customFile}
+                    onFileChange={onCustomFileChange}
+                    onFileRemove={onCustomFileRemove}
+                />
             </div>
         </div>
     );

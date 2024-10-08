@@ -68,6 +68,7 @@ const Fabric = () => {
             setFile={handleFileChange}
             textareaValue={textareaValue}
             setTextareaValue={handleTextareaChange}
+            error={formData?.errors.fabric_name}
         />
     );
 }

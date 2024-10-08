@@ -5,14 +5,14 @@ import { HiQuestionMarkCircle } from 'react-icons/hi';
 import Heading from '../Heading';
 import { MyContext } from '@/components/provider/context-provider';
 
-const QuantityForm = () => {
+const QuantityForm = ({ error }) => {
     const sizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
     // Get form data and setter from context
     const { formData, setFormData } = useContext(MyContext);
 
     const [totalQuantity, setTotalQuantity] = useState(0);
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
 
     const handleInputChange = (size, value) => {
         // Update the quantity in the formData
@@ -51,11 +51,12 @@ const QuantityForm = () => {
         setTotalQuantity(total);
 
         // Show error if the total quantity is less than 50
-        if (total < 50) {
-            setError('Minimum order quantity is 50 pieces in total.');
-        } else {
-            setError('');
-        }
+        // if (total < 50) {
+        //     setError('Minimum order quantity is 50 pieces in total.');
+        // } else {
+        //     setError('');
+        //     setTotalQuantity(total);
+        // }
     }, [formData.quantity.quantities]);
 
     return (
@@ -80,11 +81,13 @@ const QuantityForm = () => {
                         </div>
                     ))}
                 </div>
-                {error && <p className="text-red-500">{error}</p>}
+                {error && (
+                    <p className="text-red-500">{error}</p>
+                )}
             </div>
 
             <textarea
-                className="w-full mt-4 bg-transparent text-lightBlue p-4 border border-gray-400 focus:outline-none"
+                className="w-full mt-4 bg-transparent text-dark p-4 border border-gray-400 focus:outline-none"
                 placeholder="Special requests or comments"
                 rows={3}
                 value={formData.quantity.custom_data.comments} // Controlled textarea using context

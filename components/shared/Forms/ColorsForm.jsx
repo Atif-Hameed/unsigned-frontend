@@ -7,7 +7,7 @@ import { Colors } from '@/data';
 import CustomInputTransparent from '../CustomInputTransparent';
 import CustomDataUpload from '../CustomDataUpload';
 
-const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorChange, file, onFileChange, textareaValue, onTextareaChange }) => {
+const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorChange, file, onFileChange, textareaValue, onTextareaChange, error }) => {
     // Handle color selection
     const handleColorSelect = (color) => {
         if (selectedColor === color) {
@@ -61,6 +61,9 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
                         />
                     </div>
                 </div>
+                {error && (
+                    <p className="text-red-500">{error}</p>
+                )}
             </div>
 
             <div className='lg:w-[24%] w-full'>

@@ -10,8 +10,13 @@ import logo from "@/assets/images/logoSmall.png";
 import Link from "next/link";
 import TrnaslateButton from "@/components/shared/TrnaslateButton";
 import { useAuth } from "@/app/action/auth-action";
+import { useTranslation } from "react-i18next";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/config/firebase-config";
 
 const Page = () => {
+
+    const { t } = useTranslation();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -21,16 +26,25 @@ const Page = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (!email || !password) {
             setErrorMessage("Please enter both email and password");
             toast.error("Please enter both email and password");
             return;
         }
 
+        const trimmedEmail = email.trim();
+
+        if (!trimmedEmail) {
+            toast.error('Please enter a valid email address', {
+                duration: 4000,
+            });
+            setIsLoading(false);
+            return;
+        }
+
         try {
             setIsLoading(true);
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, trimmedEmail, password);
 
             localStorage.setItem("uid", userCredential.user.uid);
 
@@ -54,7 +68,7 @@ const Page = () => {
                     <TrnaslateButton />
                 </div>
                 <div className="bg-white sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] w-full space-y-6 p-8">
-                    <h1 className="text-center text-4xl font-semibold">Login</h1>
+                    <h1 className="text-center text-4xl font-semibold">{t('login')}</h1>
                     <CustomInput
                         type="text"
                         label="Email"
@@ -70,10 +84,15 @@ const Page = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
-                    <Button label="Login" onClick={handleSubmit} disabled={isLoading} />
+                    <div className='flex items-center justify-between pl-3'>
+                        <Link href={'/forgot-password'} className='text-lightBlueText sm:text-xl text-lg'> {t('forgotPass')}?</Link>
+                        <div className='w-fit'>
+                            <Button label={t('login')} onClick={handleSubmit} />
+                        </div>
+                    </div>
                     <div className="flex justify-center text-lg">
-                        <p>No account?</p>
-                        <Link href="/signUp" className="text-lightBlueText">Sign Up</Link>
+                        <p>{t('noAccount')}?</p>
+                        <Link href="/signUp" className="text-lightBlueText">{t('signup')}</Link>
                     </div>
                 </div>
             </div>

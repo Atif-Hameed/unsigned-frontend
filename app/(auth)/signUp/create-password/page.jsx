@@ -71,7 +71,7 @@ const Page = () => {
             await setDoc(userDocRef, userData);
             localStorage.setItem("uid", user.uid);
 
-            toast.success(t('signupSuccessful'));
+            toast.success(t('signup Successful'));
             router.push(`/signUp/details?email=${email}`);
         } catch (error) {
             toast.error(error.message);

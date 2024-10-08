@@ -11,12 +11,13 @@ import { useTranslation } from 'next-i18next';
 import i18n from '@/utils/i18n';
 import TrnaslateButton from '../shared/TrnaslateButton';
 import Link from 'next/link';
+import { useAuth } from '../provider/auth_context';
 
 const Navbar = () => {
     const [openPopup, setOpenPopup] = useState(false);
     const popupRef = useRef(null);
     const pathname = usePathname();
-    // const [isGerman, setIsGerman] = useState(false);
+    const { handleLogout } = useAuth();
     const { t } = useTranslation();
 
     // const changeLanguage = (lang) => {
@@ -27,6 +28,7 @@ const Navbar = () => {
     const handlePopup = () => {
         setOpenPopup((prev) => !prev);
     };
+
 
     // Close popup when clicking outside
     useEffect(() => {
@@ -61,7 +63,7 @@ const Navbar = () => {
                             {openPopup && (
                                 <div className='absolute left-1/2 -translate-x-1/2 top-14 flex flex-col p-2 shadow-2xl rounded-lg bg-white'>
                                     <Link href={'/dashboard/profile'} className='py-2 px-4 cursor-pointer rounded-md hover:bg-[#d6ece3]'>Profile</Link>
-                                    <p className='py-2 px-4 cursor-pointer rounded-md hover:bg-[#d6ece3]'>Logout</p>
+                                    <button onClick={handleLogout} className='py-2 px-4 cursor-pointer rounded-md hover:bg-[#d6ece3]'>Logout</button>
                                 </div>
                             )}
                         </div>

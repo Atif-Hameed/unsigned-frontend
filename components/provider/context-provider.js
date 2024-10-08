@@ -57,7 +57,7 @@ export const ContextProvider = ({ children }) => {
             template_file: "",
             custom_data: {
                 comments: "",
-                file: "",
+                // file: "",
             }
         },
         quantity: {
@@ -70,9 +70,14 @@ export const ContextProvider = ({ children }) => {
         packing: {
             type: '',
             logo: '',
+            custom_data: {
+                comments: "",
+                file: "",
+            }
         },
+        errors: {},  // An errors object 
     });
-    console.log('formData', formData)
+    // console.log('formData', formData)
     return (
         // Use MyContext.Provider to pass down state and updater
         <MyContext.Provider value={{ formData, setFormData }}>

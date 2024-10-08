@@ -77,6 +77,7 @@ const Necklabel = () => {
                 textareaValue={textareaValue}
                 onTextareaChange={handleTextareaChange}
                 isLabelVisible={isLabelVisible}
+                error={formData?.errors.neck_label}
             />
         </div>
     );
