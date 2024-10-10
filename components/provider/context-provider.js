@@ -12,6 +12,7 @@ export const ContextProvider = ({ children }) => {
     const [formData, setFormData] = useState({
         category: "",
         status: "pending",
+        user_id: '',
         fit: {
             fit_type: '',
             fit_values: {},
@@ -77,7 +78,7 @@ export const ContextProvider = ({ children }) => {
         },
         errors: {},  // An errors object 
     });
-    // console.log('formData', formData)
+    console.log('formData', formData)
     return (
         // Use MyContext.Provider to pass down state and updater
         <MyContext.Provider value={{ formData, setFormData }}>

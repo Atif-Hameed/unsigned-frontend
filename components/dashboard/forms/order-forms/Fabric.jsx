@@ -40,7 +40,7 @@ const Fabric = () => {
 
     // Function to get the appropriate fabric data based on current path
     const getFabricData = () => {
-        return ['t-shirt', 'tank-top', 'long-sleeve']?.some(item => currentPath.includes(item))
+        return ['t-shirt', 'tank-top', 'long-sleeve']?.some(item => formData?.category?.toLowerCase() === item)
             ? fabricOptions.tShirts
             : fabricOptions.labwears;
     };

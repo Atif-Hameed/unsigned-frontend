@@ -13,10 +13,14 @@ import { MyContext } from '@/components/provider/context-provider';
 
 const Fit = () => {
     const path = usePathname();
-    const currentOrder = OrdersData.find(order => path.includes(order.category));
+    const { formData, setFormData } = useContext(MyContext);
+    // console.log(' data2 :', formData);
+
+    // console.log(path)
+    const currentOrder = OrdersData.find(order => formData?.category?.toLowerCase() === order.category.toLowerCase());
+
 
     // Get formData and setFormData from MyContext
-    const { formData, setFormData } = useContext(MyContext);
 
     if (!currentOrder) {
         return <div>No matching fit data found for this category.</div>;
@@ -41,7 +45,7 @@ const Fit = () => {
                 fit_values: fitData,
                 custom_data: customData,  // Include custom data in fit object
             },
-            category: currentOrder.type // Update the type or other relevant details
+            // category: currentOrder.type // Update the type or other relevant details
         }));
     }, [fitData, selectedFit, customData, setFormData, currentOrder.type, path]);
 
@@ -74,7 +78,7 @@ const Fit = () => {
     // Extract size headers from the keys of the first entry in fitData
     const sizeHeaders = Object.keys(currentOrder?.fitData[0]).filter(key => key !== 'name');
 
-    console.log(formData)
+    // console.log(formData)
 
     return (
         <div className='w-full flex items-start flex-wrap gap-4'>

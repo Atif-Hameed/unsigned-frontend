@@ -11,8 +11,10 @@ import { MyContext } from '@/components/provider/context-provider';
 import { OrdersData } from '@/data/order-form-data';
 
 const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) => {
+    const { formData, setFormData } = useContext(MyContext); // Use context for form data management
+
     const path = usePathname();
-    const currentOrder = OrdersData.find(order => path.includes(order.category));
+    const currentOrder = OrdersData.find(order => formData?.category?.toLowerCase() === order.category);
 
     // console.log(currentOrder)
 

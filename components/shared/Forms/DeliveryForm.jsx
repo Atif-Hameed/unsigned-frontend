@@ -2,8 +2,10 @@ import React from 'react'
 import Heading from '../Heading'
 import CustomInput from '../CustomInput'
 import { CiLock } from 'react-icons/ci'
+import { useAuth } from '@/components/provider/auth_context'
 
 const DeliveryForm = () => {
+    const { user } = useAuth()
     return (
         <div className=''>
             <div className="">
