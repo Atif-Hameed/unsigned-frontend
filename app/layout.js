@@ -4,6 +4,7 @@ import "./globals.css";
 import { ContextProvider } from "@/components/provider/context-provider";
 import { Suspense } from "react";
 import { AuthContextProvider } from "@/components/provider/auth_context";
+import QueryProviders from "@/components/provider/query-provider";
 
 
 const dinNext = localFont({
@@ -52,10 +53,12 @@ export default function RootLayout({ children }) {
         {/* <AuthContextProvider> */}
 
         <Suspense>
-          <ContextProvider>
-            {children}
+          <QueryProviders>
+            <ContextProvider>
+              {children}
 
-          </ContextProvider>
+            </ContextProvider>
+          </QueryProviders>
         </Suspense>
         {/* </AuthContextProvider> */}
 

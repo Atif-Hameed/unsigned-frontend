@@ -76,6 +76,32 @@ export const ContextProvider = ({ children }) => {
                 file: "",
             }
         },
+        delivery: {
+            billingAddress: {
+                companyName: '',
+                addressLine1: '',
+                addressLine2: '',
+                zipCode: '',
+                city: '',
+                country: '',
+                vat: ''
+            },
+            deliveryAddress: {
+                companyName: '',
+                addressLine1: '',
+                addressLine2: '',
+                zipCode: '',
+                city: '',
+                country: '',
+                sameAsBilling: false
+            },
+            contactInfo: {
+                name: '',
+                phone: '',
+                email: '',
+                specialRequests: ''
+            }
+        },
         errors: {},  // An errors object 
     });
     console.log('formData', formData)

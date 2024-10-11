@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { FaArrowRight } from "react-icons/fa6";
 import { updateOrder } from '@/app/action/orders-action';
 import { MyContext } from '../provider/context-provider';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const Stepper = ({
     orderID,
@@ -25,6 +27,7 @@ const Stepper = ({
 }) => {
     const [activeTab, setActiveTab] = useState('1');
 
+    const router = useRouter(); // Initialize useRouter
     const { formData, setFormData } = useContext(MyContext); // Use context for form data management
 
     const tabs = [
@@ -52,17 +55,31 @@ const Stepper = ({
             }
         }
 
+        // Prepare updated form data
+        let updatedFormData = { ...formData }; // Clone the form data
+
+        // If the current tab is the last one, update status to 'complete'
+        if (currentTabIndex === tabs.length - 1) {
+            updatedFormData = {
+                ...updatedFormData,
+                status: 'complete', // Update the status to 'complete'
+            };
+        }
+
         // Update order with current form data
         try {
-            await updateOrder(orderID, formData);
+            await updateOrder(orderID, updatedFormData); // Pass the updated form data
             console.log('Order updated successfully.');
         } catch (error) {
             console.error('Failed to update order:', error.message);
         }
 
-        // Proceed to the next tab
+        // Proceed to the next tab or redirect to the dashboard
         if (currentTabIndex < tabs.length - 1) {
             setActiveTab(tabs[currentTabIndex + 1].id);
+        } else {
+            toast.success("Order created Successfully");
+            router.push('/dashboard'); // Redirect to dashboard
         }
     };
 
@@ -103,7 +120,7 @@ const Stepper = ({
                         label={<span className='flex items-center gap-2'>Save and next <FaArrowRight className='text-lg flex-shrink-0' /></span>}
                         className="!bg-lightBlue !w-48"
                         onClick={handleNext}
-                        disabled={activeTab === tabs[tabs.length - 1].id} // Disable on the last tab
+                    // disabled={activeTab === tabs[tabs.length - 1].id} // Disable on the last tab
                     />
                 </div>
             </div>

@@ -5,12 +5,15 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import SampleBar from '../../shared/SampleBar';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdOutlineColorLens } from "react-icons/md";
-import { Orders } from '@/data';
+// import { Orders } from '@/data';
 import Button from '../../shared/Button';
 import EmptyCards from './EmptyCards';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/navigation';
 
-const DraftCards = () => {
+const DraftCards = ({ orders }) => {
+    const router = useRouter();
+
     const [visibleCount, setVisibleCount] = useState(10); // Track number of visible cards
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
@@ -44,22 +47,22 @@ const DraftCards = () => {
             </div>
 
             {/* Check if Orders array is empty */}
-            {Orders.length === 0 ? (
+            {orders && orders.length === 0 ? (
                 <EmptyCards />
             ) : (
                 <>
                     <div className="grid md:grid-cols-3 grid-cols-1 py-6 gap-6 w-full">
-                        {Orders.slice(0, visibleCount).map((order) => (
+                        {orders.slice(0, visibleCount).map((order, i) => (
                             <div
                                 key={order.id}
                                 className="bg-lightBackground h-60 flex flex-col justify-between shadow-xl p-6"
-                               
+
                             >
                                 <div>
                                     <div className="flex justify-between items-center">
                                         <div className="">
-                                            <h2 className="text-3xl font-bold text-[#1A1A1A]">{order.id}</h2>
-                                            <p className="text-sm text-labelColor">{order.type}</p>
+                                            <h2 className="text-3xl font-bold text-[#1A1A1A]">0{i + 1}</h2>
+                                            <p className="text-sm text-labelColor">{order.category}</p>
                                         </div>
                                         <div className="">
                                             <button onClick={() => handleDeleteClick(order)}>
@@ -69,13 +72,13 @@ const DraftCards = () => {
                                     </div>
                                     <div className="text-lightBlue flex items-center gap-1 mt-6">
                                         <MdOutlineColorLens className="text-lg" />
-                                        <p className="">{order.status}</p>
+                                        <p className="">{order.status === 'pending' && "Draft"}</p>
                                     </div>
                                 </div>
 
                                 <div className="flex justify-between items-center">
                                     <p className="text-labelColor">{order.date}</p>
-                                    <button className="bg-white hover:bg-black hover:text-white text-black px-6 py-3 rounded-full">
+                                    <button onClick={() => router.push(`/dashboard/designs/${order.id}`)} className="bg-white hover:bg-black hover:text-white text-black px-6 py-3 rounded-full">
                                         {t('continue')}
                                     </button>
                                 </div>
@@ -84,7 +87,7 @@ const DraftCards = () => {
                     </div>
 
                     {/* Load more button */}
-                    {visibleCount < Orders.length && (
+                    {visibleCount < orders.length && (
                         <div className="w-full flex items-end justify-end py-6">
                             <button
                                 onClick={handleLoadMore}
