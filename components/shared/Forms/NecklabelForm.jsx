@@ -158,11 +158,11 @@ const NecklabelForm = ({
             <div className='lg:w-[68%] sm:w-[58%] w-full'>
                 {/* Conditionally Render Image Upload Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className=' bg-lightBackground justify-between mb-3 p-5 flex items-center  py-20'>
-                        <div className='md:w-[45%] w-[55%]'>
+                    <div className=' bg-lightBackground justify-between mb-3 p-5 flex items-center  sm:pb-0 pb-20 sm:pt-0 pt-8 sm:py-20'>
+                        <div className='md:w-[45%] sm:w-[55%] w-1/2 '>
                             <Image alt='' src={necklabel} className='w-full h-full' />
                         </div>
-                        <div className='sm:w-[45%] w-[40%] relative flex justify-center'>
+                        <div className='sm:w-[45%]  w-1/2 relative flex justify-center'>
                             <div className='w-full relative flex flex-col items-center'>
 
                                 {/* Display uploaded files */}
@@ -186,7 +186,7 @@ const NecklabelForm = ({
                                 </div>
 
                             </div>
-                            <div className='w-full text-gray-700 text-xs absolute -bottom-[25%] text-center -left-[60%]'>
+                            <div className='md:w-full w-[200px] text-gray-700 lg:text-xs text-[10px] absolute xl:-bottom-[25%] lg:-bottom-[40%] sm:-bottom-[90%] -bottom-[100%] text-center sm:-left-[60%] -left-[80%]'>
                                 <p>Please provide us with every Size Label for every Size. For example, if you have 5 Sizes you need to upload 5 files, one with S one with M one with L and so on.</p>
                             </div>
                         </div>

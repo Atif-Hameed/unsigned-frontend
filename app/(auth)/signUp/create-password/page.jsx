@@ -16,6 +16,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, collection } from 'firebase/firestore';
 import { auth, db } from '@/config/firebase-config'; // Ensure these are correctly imported
+import { firebaseErrorMessages } from '@/utils/firebaseErrorHandling';
 
 const Page = () => {
     const [password, setPassword] = useState('');
@@ -47,12 +48,12 @@ const Page = () => {
         e.preventDefault();
         setLoading(true);
         if (!password) {
-            toast.error(t('passwordRequired'));
+            toast.error(t('Password Required'));
             setLoading(false);
             return;
         }
         if (password !== confirmPassword) {
-            toast.error(t('passwordsDoNotMatch'));
+            toast.error(t('Passwords Do Not Match'));
             setLoading(false);
             return;
         }
@@ -71,13 +72,30 @@ const Page = () => {
             await setDoc(userDocRef, userData);
             localStorage.setItem("uid", user.uid);
 
-            toast.success(t('signup Successful'));
+            toast.success(t('Signup Successful'), {
+                id: loadingToastId,
+                duration: 4000,
+            });
             router.push(`/signUp/details?email=${email}`);
         } catch (error) {
-            toast.error(error.message);
+            const customError = firebaseErrorMessages[error.code] || {
+                code: 500,
+                message: 'UNKNOWN_ERROR',
+                errors: [
+                    {
+                        message: 'An unknown error occurred. Please try again later.',
+                        domain: 'global',
+                        reason: 'unknown'
+                    }
+                ]
+            };
+            console.log(customError)
+            toast.error(customError.message, {
+                id: loadingToastId,
+                duration: 4000,
+            });
         } finally {
             setLoading(false);
-            toast.dismiss(loadingToastId);
         }
     };
 

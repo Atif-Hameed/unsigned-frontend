@@ -13,6 +13,7 @@ import { useAuth } from "@/app/action/auth-action";
 import { useTranslation } from "react-i18next";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/config/firebase-config";
+import { firebaseErrorMessages } from "@/utils/firebaseErrorHandling";
 
 const Page = () => {
 
@@ -42,6 +43,8 @@ const Page = () => {
             return;
         }
 
+        const loadingToastId = toast.loading('loading...');
+
         try {
             setIsLoading(true);
             const userCredential = await signInWithEmailAndPassword(auth, trimmedEmail, password);
@@ -49,12 +52,35 @@ const Page = () => {
             localStorage.setItem("uid", userCredential.user.uid);
 
             setIsLoading(false);
-            toast.success("Successfully logged in");
-            router.push("/dashboard");
+            toast.success("Successfully logged in", {
+                id: loadingToastId,
+                duration: 4000,
+            });
+            router.push("/dashboard/drafts");
         } catch (error) {
-            setErrorMessage(error?.message || "Failed to login.");
-            toast.error(error?.message || "Failed to login.");
-        }
+            // setErrorMessage(error?.message || "Failed to login.");
+            console.log(error)
+            // toast.error(error?.message || "Failed to login.");
+
+            const customError = firebaseErrorMessages[error.code] || {
+                code: 500,
+                message: 'UNKNOWN_ERROR',
+                errors: [
+                    {
+                        message: 'An unknown error occurred. Please try again later.',
+                        domain: 'global',
+                        reason: 'unknown'
+                    }
+                ]
+            };
+            console.error('Error:', customError);
+            setErrorMessage(customError.message)
+            toast.error(customError.message, {
+                id: loadingToastId,
+                duration: 4000,
+            });
+        } 
+        
     };
 
     return (

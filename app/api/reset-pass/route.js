@@ -17,10 +17,10 @@ export async function POST(req) {
             <p>We received a request to reset your password. You can reset your password by clicking the button below:</p>
             <p>Click the button below to verify your email address:</p>
             <div style="text-align: center; margin: 20px 0;">
-                <a href="http://localhost:3000/reset-password?email=${encodeURIComponent(email)}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Reset Password</a>
+                <a href="https://unsigned-nu.vercel.app/reset-password?email=${encodeURIComponent(email)}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Reset Password</a>
             </div>
             <p>If the button doesn't work, you can also click the link below:</p>
-            <p><a href="http://localhost:3000/reset-password?email=${encodeURIComponent(email)}">Reset Password</a></p>
+            <p><a href="https://unsigned-nu.vercel.app/reset-password?email=${encodeURIComponent(email)}">Reset Password</a></p>
             <p>If you did not request a password reset, you can safely ignore this email.</p>
             <p>Best regards,</p>
             <p>Unsigned</p>

@@ -55,7 +55,7 @@ export const OrdersData = [
         fitImg: hoodie,
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
-            { label: 'Balloon Fit', value: 'balloon_fit' },
+            // { label: 'Balloon Fit', value: 'balloon_fit' },
         ],
         fitData: [
             { name: 'Total Length', xs: '60', s: '62', m: '64', l: '66', xl: '68', xxl: '70' },
@@ -162,7 +162,7 @@ export const OrdersData = [
         fitImg: tank, // Assuming 'tankTop' is the image source
         fitOptions: [
             { label: 'Regular Fit', value: 'regular_fit' },
-            { label: 'Tight Fit', value: 'tight_fit' }
+            // { label: 'Tight Fit', value: 'tight_fit' }
         ],
         fitData: [
             { name: 'Chest Width', xs: '42', s: '44', m: '46', l: '48', xl: '50' },

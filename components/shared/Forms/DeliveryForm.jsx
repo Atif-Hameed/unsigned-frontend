@@ -1,15 +1,51 @@
-'use client'
-import React, { useContext } from 'react'
-import Heading from '../Heading'
-import CustomInput from '../CustomInput'
-import { CiLock } from 'react-icons/ci'
+'use client';
+import React, { useContext, useEffect } from 'react';
+import Heading from '../Heading';
+import CustomInput from '../CustomInput';
+import { CiLock } from 'react-icons/ci';
 import { MyContext } from '@/components/provider/context-provider';
-import { useAuth } from '@/components/provider/auth_context'
+import { useAuth } from '@/components/provider/auth_context';
 
 const DeliveryForm = () => {
     const { formData, setFormData } = useContext(MyContext);
-    const { user } = useAuth()
-    // console.log("user", user)
+    const { user } = useAuth();
+    console.log("user:",user)
+
+    // Set initial values from user if formData is empty
+    useEffect(() => {
+        if (user && !formData.delivery) {
+            setFormData((prevData) => ({
+                ...prevData,
+                delivery: {
+                    billingAddress: {
+                        companyName: user?.brandName || '',
+                        addressLine1: user?.billingAddress?.address1 || '',
+                        addressLine2: user?.billingAddress?.address2 || '',
+                        zipCode: user?.billingAddress?.zipCode || '',
+                        city: user?.billingAddress?.city || '',
+                        country: user?.billingAddress?.country || '',
+                        vat: user?.vat || ''
+                    },
+                    deliveryAddress: {
+                        companyName: user?.brandName || '',
+                        addressLine1: user?.deliveryAddress?.address1 || '',
+                        addressLine2: user?.deliveryAddress?.address2 || '',
+                        zipCode: user?.deliveryAddress?.zipCode || '',
+                        city: user?.deliveryAddress?.city || '',
+                        country: user?.deliveryAddress?.country || '',
+                        sameAsBilling: false,
+                    },
+                    contactInfo: {
+                        name: user?.firstName + " " + user?.lastName || '',
+                        phone: user?.phone || '',
+                        email: user?.email || '',
+                        specialRequests: ''
+                    }
+                }
+            }));
+        }
+    }, [user, formData.delivery, setFormData]);
+
     // Handle input changes
     const handleInputChange = (section, field, value) => {
         setFormData((prevData) => ({
@@ -62,7 +98,6 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.billingAddress.addressLine1}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine1', e.target.value)}
                     />
@@ -71,7 +106,6 @@ const DeliveryForm = () => {
                         label='Address Line 2'
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.billingAddress.addressLine2}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine2', e.target.value)}
                     />
@@ -82,7 +116,6 @@ const DeliveryForm = () => {
                             isRequired={true}
                             inputStyle="!bg-lightBackground"
                             style='!bg-lightBackground'
-
                             value={formData.delivery.billingAddress.zipCode}
                             onChange={(e) => handleInputChange('billingAddress', 'zipCode', e.target.value)}
                         />
@@ -92,7 +125,6 @@ const DeliveryForm = () => {
                             isRequired={true}
                             inputStyle="!bg-lightBackground"
                             style='!bg-lightBackground'
-
                             value={formData.delivery.billingAddress.city}
                             onChange={(e) => handleInputChange('billingAddress', 'city', e.target.value)}
                         />
@@ -103,7 +135,6 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.billingAddress.country}
                         onChange={(e) => handleInputChange('billingAddress', 'country', e.target.value)}
                     />
@@ -112,7 +143,6 @@ const DeliveryForm = () => {
                         label='VAT (Optional)'
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.billingAddress.vat}
                         onChange={(e) => handleInputChange('billingAddress', 'vat', e.target.value)}
                     />
@@ -125,7 +155,6 @@ const DeliveryForm = () => {
                         <input type="checkbox" checked={formData.delivery.deliveryAddress.sameAsBilling} onChange={handleSameAsBilling} />
                         <label className='text-gray-600 text-sm'>Same as billing address</label>
                     </div>
-                    {/* Only show delivery address fields if not same as billing */}
                     {!formData.delivery.deliveryAddress.sameAsBilling && (
                         <>
                             <CustomInput
@@ -134,7 +163,6 @@ const DeliveryForm = () => {
                                 isRequired={true}
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-
                                 value={formData.delivery.deliveryAddress.companyName}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'companyName', e.target.value)}
                             />
@@ -144,7 +172,6 @@ const DeliveryForm = () => {
                                 isRequired={true}
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-
                                 value={formData.delivery.deliveryAddress.addressLine1}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'addressLine1', e.target.value)}
                             />
@@ -153,7 +180,6 @@ const DeliveryForm = () => {
                                 label='Address Line 2'
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-
                                 value={formData.delivery.deliveryAddress.addressLine2}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'addressLine2', e.target.value)}
                             />
@@ -164,7 +190,6 @@ const DeliveryForm = () => {
                                     isRequired={true}
                                     inputStyle="!bg-lightBackground"
                                     style='!bg-lightBackground'
-
                                     value={formData.delivery.deliveryAddress.zipCode}
                                     onChange={(e) => handleInputChange('deliveryAddress', 'zipCode', e.target.value)}
                                 />
@@ -174,7 +199,6 @@ const DeliveryForm = () => {
                                     isRequired={true}
                                     inputStyle="!bg-lightBackground"
                                     style='!bg-lightBackground'
-
                                     value={formData.delivery.deliveryAddress.city}
                                     onChange={(e) => handleInputChange('deliveryAddress', 'city', e.target.value)}
                                 />
@@ -185,7 +209,6 @@ const DeliveryForm = () => {
                                 isRequired={true}
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-
                                 value={formData.delivery.deliveryAddress.country}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'country', e.target.value)}
                             />
@@ -202,7 +225,6 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.contactInfo.name}
                         onChange={(e) => handleInputChange('contactInfo', 'name', e.target.value)}
                     />
@@ -212,7 +234,6 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.contactInfo.phone}
                         onChange={(e) => handleInputChange('contactInfo', 'phone', e.target.value)}
                     />
@@ -222,16 +243,14 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.contactInfo.email}
                         onChange={(e) => handleInputChange('contactInfo', 'email', e.target.value)}
                     />
                     <CustomInput
-                        type='text'
-                        label='Special Requests (Optional)'
+                        type='textarea'
+                        label='Special Requests(Optional)'
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-
                         value={formData.delivery.contactInfo.specialRequests}
                         onChange={(e) => handleInputChange('contactInfo', 'specialRequests', e.target.value)}
                     />

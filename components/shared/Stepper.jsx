@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { LuArrowLeft } from 'react-icons/lu';
 import Button from './Button';
 import Link from 'next/link';
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight } from 'react-icons/fa6';
 import { updateOrder } from '@/app/action/orders-action';
 import { MyContext } from '../provider/context-provider';
 import { useRouter } from 'next/navigation';
@@ -23,9 +23,10 @@ const Stepper = ({
     validateFabricForm,
     validateColorsForm,
     validateNecklabelForm,
-    validateQuantityForm
+    validateQuantityForm,
 }) => {
     const [activeTab, setActiveTab] = useState('1');
+    const [completedTabs, setCompletedTabs] = useState(['1']); // Track completed tabs
 
     const router = useRouter(); // Initialize useRouter
     const { formData, setFormData } = useContext(MyContext); // Use context for form data management
@@ -72,14 +73,25 @@ const Stepper = ({
             console.log('Order updated successfully.');
         } catch (error) {
             console.error('Failed to update order:', error.message);
+            return;
         }
 
-        // Proceed to the next tab or redirect to the dashboard
+        // Proceed to the next tab and mark it as completed
         if (currentTabIndex < tabs.length - 1) {
-            setActiveTab(tabs[currentTabIndex + 1].id);
+            const nextTabId = tabs[currentTabIndex + 1].id;
+            setActiveTab(nextTabId);
+            setCompletedTabs((prev) => [...prev, nextTabId]); // Add next tab to completed list
         } else {
-            toast.success("Order created Successfully");
+            toast.success('Order created Successfully');
             router.push('/dashboard'); // Redirect to dashboard
+        }
+    };
+
+    // Function to handle tab click
+    const handleTabClick = (tabId) => {
+        // Allow navigation only to completed or current tab
+        if (completedTabs.includes(tabId) || tabId === activeTab) {
+            setActiveTab(tabId);
         }
     };
 
@@ -98,9 +110,13 @@ const Stepper = ({
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
-                                    onClick={() => setActiveTab(tab.id)}
-                                    className={`px-5 rounded-full text-base whitespace-nowrap py-3 ${activeTab === tab.id ? 'bg-labelColor text-white' : 'bg-[#f9f9f9] border text-dark'
-                                        }`}
+                                    onClick={() => handleTabClick(tab.id)}
+                                    className={`px-5 rounded-full text-base whitespace-nowrap py-3 ${
+                                        activeTab === tab.id ? 'bg-labelColor text-white' : 
+                                        completedTabs.includes(tab.id) ? 'bg-[#f9f9f9] border text-dark' : 
+                                        'bg-[#e0e0e0] text-gray-500 cursor-not-allowed' 
+                                    }`}
+                                    disabled={!completedTabs.includes(tab.id) && tab.id !== activeTab}
                                 >
                                     {tab.name}
                                 </button>
@@ -120,7 +136,6 @@ const Stepper = ({
                         label={<span className='flex items-center gap-2'>Save and next <FaArrowRight className='text-lg flex-shrink-0' /></span>}
                         className="!bg-lightBlue !w-48"
                         onClick={handleNext}
-                    // disabled={activeTab === tabs[tabs.length - 1].id} // Disable on the last tab
                     />
                 </div>
             </div>

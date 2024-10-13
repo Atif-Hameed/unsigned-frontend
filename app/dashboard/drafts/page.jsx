@@ -15,12 +15,12 @@ const Page = () => {
     });
     // Handle loading state
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className='min-h-screen flex justify-center items-center'>Loading...</div>;
     }
 
     // Handle error state
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div className='min-h-screen flex justify-center items-center'>Error: {error.message}</div>;
     }
     console.log("order", myData)
     return (

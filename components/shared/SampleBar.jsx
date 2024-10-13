@@ -44,6 +44,13 @@ const SampleBar = () => {
                             {t('drafts')}
                         </button>
                     </Link>
+                    <Link href="/dashboard/inquiries">
+                        <button
+                            className={`px-4 py-3 rounded-full ${pathname === '/dashboard/inquiries' ? 'bg-labelColor text-white' : ''}`}
+                        >
+                            {t('inquiries')}
+                        </button>
+                    </Link>
                     <Link href="/dashboard/samples">
                         <button
                             className={`px-4 py-3 rounded-full ${pathname === '/dashboard/samples' ? 'bg-labelColor text-white' : ''}`}
@@ -58,13 +65,7 @@ const SampleBar = () => {
                             {t('bulks')}
                         </button>
                     </Link>
-                    <Link href="/dashboard/inquiries">
-                        <button
-                            className={`px-4 py-3 rounded-full ${pathname === '/dashboard/inquiries' ? 'bg-labelColor text-white' : ''}`}
-                        >
-                            {t('inquiries')}
-                        </button>
-                    </Link>
+                    
                 </div>
                 <div>
                     <button

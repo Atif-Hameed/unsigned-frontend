@@ -27,13 +27,14 @@ const Page = () => {
     const { t } = useTranslation();
     const params = useSearchParams();
     const email = params.get('email');
+    const emailParam = params.get('email');
     // console.log(user)
     // Unified state for all form sections
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         phone: '',
-        email: '',
+        email: emailParam || '',
         brandName: '',
         vat: '',
         companyWebsite: '',
@@ -53,6 +54,17 @@ const Page = () => {
             country: ''
         }
     });
+
+
+    useEffect(() => {
+        // Update email in formData if emailParam changes
+        if (emailParam) {
+            setFormData(prev => ({
+                ...prev,
+                email: emailParam
+            }));
+        }
+    }, [emailParam]);
 
     // Handle input changes for the entire form
     const handleChange = (e) => {
@@ -100,8 +112,9 @@ const Page = () => {
     const handleNextStep = async () => {
         console.log('Current Active Tab:', activeTab);
         try {
-            await updateUserData(uid, formData); // Ensure data is updated
-            setActiveTab((prev) => (prev < (tabs.length+1) - 1 ? String(Number(prev) + 1) : prev));
+            const data = await updateUserData(uid, formData); // Ensure data is updated
+            console.log(data)
+            setActiveTab((prev) => (prev < (tabs.length + 1) - 1 ? String(Number(prev) + 1) : prev));
         } catch (error) {
             console.error('Error updating user data:', error);
             // Optionally display an error message to the user
@@ -149,7 +162,7 @@ const Page = () => {
                                     type={'email'}
                                     label={t('email')}
                                     name={'email'}
-                                    value={email}
+                                    value={emailParam}
                                 />
                                 <p className='text-xs w-full text-labelColor text-start'>{t('requiredField')}</p>
                                 <div className='w-full mt-6'>
@@ -316,7 +329,7 @@ const Page = () => {
                                 </div>
 
                                 <div className='w-full mt-6 flex justify-between items-center'>
-                                    <button className='rounded-full text-lightBlueText hover:bg-blue-100 py-3 px-5'>
+                                    <button onClick={handleSubmit} className='rounded-full text-lightBlueText hover:bg-sky-300 bg-sky-100 py-3 px-5'>
                                         {t('skip')}
                                     </button>
                                     <div className='w-fit'>
@@ -332,8 +345,10 @@ const Page = () => {
 
     // Function to handle form submission and gather all the data
     const handleSubmit = () => {
+        handleNextStep();
         console.log('Form Data:', formData);
         router.push('/dashboard')
+
     };
 
     return (

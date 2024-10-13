@@ -1,5 +1,30 @@
 import { db } from '@/config/firebase-config';
-import { collection, doc, getDocs, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
+
+
+// Function to get a specific order by ID
+export const getOrder = async (orderID) => {
+    const orderRef = doc(db, "orders", orderID); // Reference to the specific order document
+
+    try {
+        const orderSnapshot = await getDoc(orderRef); // Fetch the document from Firestore
+
+        if (orderSnapshot.exists()) {
+            const orderData = { id: orderSnapshot.id, ...orderSnapshot.data() };
+            console.log("Order fetched successfully:", orderData);
+            return orderData; // Return the order data
+        } else {
+            console.log("No such order found with the given ID");
+            return null; // Return null if no order is found
+        }
+    } catch (error) {
+        console.error("Error fetching order from Firestore:", error.message);
+        throw new Error("Failed to fetch order");
+    }
+};
+
+
+
 
 // Function to create a new order with status 'pending'
 export const createOrder = async (orderData) => {

@@ -1,8 +1,9 @@
-"use client";
-
+'use client'
 import { auth } from "@/config/firebase-config";
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore"; // Import Firestore functions
+import { db } from "@/config/firebase-config"; // Ensure you have your Firestore db configured
 
 const AuthContext = createContext();
 
@@ -12,17 +13,15 @@ export default function AuthContextProvider({ children }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Only access localStorage if window is defined (client-side)
-        if (typeof window !== "undefined") {
-            const uid = localStorage.getItem("uid");
-            if (uid) {
-                setUser({ uid });
-            }
-        }
-
-        const unsub = onAuthStateChanged(auth, (user) => {
+        const unsub = onAuthStateChanged(auth, async (user) => {
             if (user) {
-                setUser(user);
+                // Fetch additional user details from Firestore
+                const userDoc = await getDoc(doc(db, "users", user.uid)); // Adjust to your Firestore collection
+                if (userDoc.exists()) {
+                    setUser({ ...user, ...userDoc.data() }); // Combine Firebase Auth user with Firestore data
+                } else {
+                    setUser({ uid: user.uid, email: user.email }); // Fallback if no profile exists
+                }
                 localStorage.setItem("uid", user.uid);
             } else {
                 setUser(null);
@@ -38,8 +37,16 @@ export default function AuthContextProvider({ children }) {
         setIsLoading(true);
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            setUser(userCredential.user);
-            localStorage.setItem("uid", userCredential.user.uid);
+            const user = userCredential.user;
+
+            // Fetch additional user details from Firestore
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                setUser({ ...user, ...userDoc.data() }); // Combine Firebase Auth user with Firestore data
+            } else {
+                setUser({ uid: user.uid, email: user.email }); // Fallback if no profile exists
+            }
+            localStorage.setItem("uid", user.uid);
         } catch (err) {
             setError(err.message);
         } finally {
