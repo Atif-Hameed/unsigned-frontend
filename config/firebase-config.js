@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 
 
 export const db = getFirestore(app);
-export const storage = getStorage(app);
+export const storage = getStorage(app, 'gs://unsigned-9fbda.appspot.com');
 export const auth = getAuth(app);
 export const realtimeDB = getDatabase(app);
 

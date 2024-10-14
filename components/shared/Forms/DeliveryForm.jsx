@@ -9,11 +9,12 @@ import { useAuth } from '@/components/provider/auth_context';
 const DeliveryForm = () => {
     const { formData, setFormData } = useContext(MyContext);
     const { user } = useAuth();
-    console.log("user:",user)
+    console.log("User Data:", user);
+    console.log("Initial Form Data:", formData);
 
     // Set initial values from user if formData is empty
     useEffect(() => {
-        if (user && !formData.delivery) {
+        if (user && (!formData.delivery || Object.keys(formData.delivery).length === 0)) {
             setFormData((prevData) => ({
                 ...prevData,
                 delivery: {
@@ -44,7 +45,7 @@ const DeliveryForm = () => {
                 }
             }));
         }
-    }, [user, formData.delivery, setFormData]);
+    }, [user, setFormData, formData.delivery]);
 
     // Handle input changes
     const handleInputChange = (section, field, value) => {
@@ -89,7 +90,7 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.billingAddress.companyName}
+                        value={formData.delivery.billingAddress.companyName || user?.brandName || ''}
                         onChange={(e) => handleInputChange('billingAddress', 'companyName', e.target.value)}
                     />
                     <CustomInput
@@ -98,7 +99,7 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.billingAddress.addressLine1}
+                        value={formData.delivery.billingAddress.addressLine1 || user?.billingAddress?.address1 || ''}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine1', e.target.value)}
                     />
                     <CustomInput
@@ -106,7 +107,7 @@ const DeliveryForm = () => {
                         label='Address Line 2'
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.billingAddress.addressLine2}
+                        value={formData.delivery.billingAddress.addressLine2 || user?.billingAddress?.address2 || ''}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine2', e.target.value)}
                     />
                     <div className="flex gap-2 w-full">
@@ -116,7 +117,7 @@ const DeliveryForm = () => {
                             isRequired={true}
                             inputStyle="!bg-lightBackground"
                             style='!bg-lightBackground'
-                            value={formData.delivery.billingAddress.zipCode}
+                            value={formData.delivery.billingAddress.zipCode || user?.billingAddress?.zipCode || ''}
                             onChange={(e) => handleInputChange('billingAddress', 'zipCode', e.target.value)}
                         />
                         <CustomInput
@@ -125,7 +126,7 @@ const DeliveryForm = () => {
                             isRequired={true}
                             inputStyle="!bg-lightBackground"
                             style='!bg-lightBackground'
-                            value={formData.delivery.billingAddress.city}
+                            value={formData.delivery.billingAddress.city || user?.billingAddress?.city || ''}
                             onChange={(e) => handleInputChange('billingAddress', 'city', e.target.value)}
                         />
                     </div>
@@ -135,7 +136,7 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.billingAddress.country}
+                        value={formData.delivery.billingAddress.country || user?.billingAddress?.country || ''}
                         onChange={(e) => handleInputChange('billingAddress', 'country', e.target.value)}
                     />
                     <CustomInput
@@ -143,7 +144,7 @@ const DeliveryForm = () => {
                         label='VAT (Optional)'
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.billingAddress.vat}
+                        value={formData.delivery.billingAddress.vat || user?.vat || ''}
                         onChange={(e) => handleInputChange('billingAddress', 'vat', e.target.value)}
                     />
                 </div>
@@ -163,7 +164,7 @@ const DeliveryForm = () => {
                                 isRequired={true}
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-                                value={formData.delivery.deliveryAddress.companyName}
+                                value={formData.delivery.deliveryAddress.companyName || user?.brandName || ''}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'companyName', e.target.value)}
                             />
                             <CustomInput
@@ -172,7 +173,7 @@ const DeliveryForm = () => {
                                 isRequired={true}
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-                                value={formData.delivery.deliveryAddress.addressLine1}
+                                value={formData.delivery.deliveryAddress.addressLine1 || user?.deliveryAddress?.address1 || ''}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'addressLine1', e.target.value)}
                             />
                             <CustomInput
@@ -180,7 +181,7 @@ const DeliveryForm = () => {
                                 label='Address Line 2'
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-                                value={formData.delivery.deliveryAddress.addressLine2}
+                                value={formData.delivery.deliveryAddress.addressLine2 || user?.deliveryAddress?.address2 || ''}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'addressLine2', e.target.value)}
                             />
                             <div className="flex gap-2 w-full">
@@ -190,7 +191,7 @@ const DeliveryForm = () => {
                                     isRequired={true}
                                     inputStyle="!bg-lightBackground"
                                     style='!bg-lightBackground'
-                                    value={formData.delivery.deliveryAddress.zipCode}
+                                    value={formData.delivery.deliveryAddress.zipCode || user?.deliveryAddress?.zipCode || ''}
                                     onChange={(e) => handleInputChange('deliveryAddress', 'zipCode', e.target.value)}
                                 />
                                 <CustomInput
@@ -199,7 +200,7 @@ const DeliveryForm = () => {
                                     isRequired={true}
                                     inputStyle="!bg-lightBackground"
                                     style='!bg-lightBackground'
-                                    value={formData.delivery.deliveryAddress.city}
+                                    value={formData.delivery.deliveryAddress.city || user?.deliveryAddress?.city || ''}
                                     onChange={(e) => handleInputChange('deliveryAddress', 'city', e.target.value)}
                                 />
                             </div>
@@ -209,7 +210,7 @@ const DeliveryForm = () => {
                                 isRequired={true}
                                 inputStyle="!bg-lightBackground"
                                 style='!bg-lightBackground'
-                                value={formData.delivery.deliveryAddress.country}
+                                value={formData.delivery.deliveryAddress.country || user?.deliveryAddress?.country || ''}
                                 onChange={(e) => handleInputChange('deliveryAddress', 'country', e.target.value)}
                             />
                         </>
@@ -225,7 +226,7 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.contactInfo.name}
+                        value={formData.delivery.contactInfo.name || user?.firstName + " " + user?.lastName || ''}
                         onChange={(e) => handleInputChange('contactInfo', 'name', e.target.value)}
                     />
                     <CustomInput
@@ -234,7 +235,7 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.contactInfo.phone}
+                        value={formData.delivery.contactInfo.phone || user?.phone || ''}
                         onChange={(e) => handleInputChange('contactInfo', 'phone', e.target.value)}
                     />
                     <CustomInput
@@ -243,7 +244,7 @@ const DeliveryForm = () => {
                         isRequired={true}
                         inputStyle="!bg-lightBackground"
                         style='!bg-lightBackground'
-                        value={formData.delivery.contactInfo.email}
+                        value={formData.delivery.contactInfo.email || user?.email || ''}
                         onChange={(e) => handleInputChange('contactInfo', 'email', e.target.value)}
                     />
                     <CustomInput

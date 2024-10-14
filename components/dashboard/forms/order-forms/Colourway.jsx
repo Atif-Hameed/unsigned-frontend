@@ -3,6 +3,7 @@ import ColorsForm from '@/components/shared/Forms/ColorsForm';
 import React, { useState, useEffect, useContext } from 'react';
 import { MyContext } from '@/components/provider/context-provider'; // Assuming context provider is set up
 import { Colors } from '@/data'; // Assuming Colors is the array of predefined colors
+import { getFileNameFromUrl } from '@/app/action/orders-action';
 
 const Colourway = () => {
   const { formData, setFormData } = useContext(MyContext); // Use context for formData and setFormData
@@ -19,7 +20,7 @@ const Colourway = () => {
       : ''
   );
 
-  const [file, setFile] = useState(formData?.color.custom_data.file || null); // For handling file uploads
+  const [file, setFile] = useState(getFileNameFromUrl(formData?.color.custom_data.file) || null); // For handling file uploads
   const [textareaValue, setTextareaValue] = useState(formData?.color.custom_data.comments || ''); // For handling comments in the textarea
 
 

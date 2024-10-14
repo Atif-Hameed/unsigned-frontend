@@ -9,7 +9,7 @@ const Page = () => {
     const { user } = useAuth();
 
     // Use a function that returns another function to call getAllPendingOrders with the user ID
-    const { data: myData, error, isLoading } = useQuery({
+    const { data: myData, error, isLoading, refetch } = useQuery({
         queryKey: ['myData', user.uid], // Include user ID for the query
         queryFn: () => getAllPendingOrders(user.uid), // Function to fetch the data
     });
@@ -25,7 +25,7 @@ const Page = () => {
     console.log("order", myData)
     return (
         <div>
-            <DraftCards orders={myData} /> {/* Pass the fetched data to DraftCards */}
+            <DraftCards orders={myData} refetch={refetch} /> {/* Pass the fetched data to DraftCards */}
         </div>
     );
 };

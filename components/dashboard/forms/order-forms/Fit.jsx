@@ -10,6 +10,7 @@ import CustomDataUpload from '@/components/shared/CustomDataUpload';
 import { usePathname } from 'next/navigation';
 import CustomTooltip from '@/components/shared/CustomTooltip';
 import { MyContext } from '@/components/provider/context-provider';
+import { getFileNameFromUrl, uploadFile } from '@/app/action/orders-action';
 
 const Fit = () => {
     const path = usePathname();
@@ -33,7 +34,7 @@ const Fit = () => {
     // Local state to manage custom data (comments and file)
     const [customData, setCustomData] = useState({
         comments: formData?.fit?.custom_data.comments || '',
-        file: formData?.fit?.custom_data.file || null,
+        file: getFileNameFromUrl(formData?.fit.custom_data.file) || null,
     });
 
     // Effect to update context whenever local fitData, selectedFit, or customData changes
@@ -61,10 +62,12 @@ const Fit = () => {
     };
 
     // Handlers for custom data (comments and file)
-    const handleFileChange = (file) => {
+    const handleFileChange = async (file) => {
+        const fileURL = await uploadFile(file);
+        console.log(fileURL)
         setCustomData((prevCustomData) => ({
             ...prevCustomData,
-            file,
+            file: fileURL,
         }));
     };
 

@@ -1,4 +1,5 @@
 'use client'
+import { getFileNameFromUrl } from '@/app/action/orders-action'
 import { MyContext } from '@/components/provider/context-provider'
 import FabricForm from '@/components/shared/Forms/FabricForm'
 import { usePathname } from 'next/navigation'
@@ -9,7 +10,7 @@ const Fabric = () => {
     const { formData, setFormData } = useContext(MyContext);
 
     const [selectedFabric, setSelectedFabric] = useState(formData?.fabric.fabric_name || ''); // To track selected checkbox
-    const [file, setFile] = useState(formData?.fabric.custom_data.file || null); // To handle file in CustomDataUpload
+    const [file, setFile] = useState(getFileNameFromUrl(formData?.fabric.custom_data.file) || null); // To handle file in CustomDataUpload
     const [textareaValue, setTextareaValue] = useState(formData?.fabric.custom_data.comments || ''); // To handle textarea in CustomDataUpload
 
     const handleFileChange = (file) => {

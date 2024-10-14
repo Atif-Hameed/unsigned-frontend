@@ -111,10 +111,10 @@ const Stepper = ({
                                 <button
                                     key={tab.id}
                                     onClick={() => handleTabClick(tab.id)}
-                                    className={`px-5 rounded-full text-base whitespace-nowrap py-3 ${
+                                    className={`px-5 rounded-full text-base cursor-pointer whitespace-nowrap py-3 ${
                                         activeTab === tab.id ? 'bg-labelColor text-white' : 
                                         completedTabs.includes(tab.id) ? 'bg-[#f9f9f9] border text-dark' : 
-                                        'bg-[#e0e0e0] text-gray-500 cursor-not-allowed' 
+                                        'bg-[#e0e0e0] text-gray-500 cursor-auto' 
                                     }`}
                                     disabled={!completedTabs.includes(tab.id) && tab.id !== activeTab}
                                 >
