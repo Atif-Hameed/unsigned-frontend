@@ -128,6 +128,37 @@ export const getAllCompleteOrders = async (user_id) => {
 
 
 
+// Function to get all orders with the status "samples"
+export const getAllSampleOrders = async (user_id) => {
+    const orderCollectionRef = collection(db, "orders"); // Reference to the 'orders' collection
+
+    // Create a query to filter orders based on user_id and status "samples"
+    const ordersQuery = query(
+        orderCollectionRef,
+        where("user_id", "==", user_id),
+        where("status", "==", "samples")
+    );
+
+    try {
+        const querySnapshot = await getDocs(ordersQuery); // Execute the query
+        const orders = [];
+
+        querySnapshot.forEach((doc) => {
+            // Push the document data into the orders array
+            orders.push({ id: doc.id, ...doc.data() });
+        });
+
+        console.log("Sample orders fetched successfully:", orders);
+        return orders; // Return the array of orders
+    } catch (error) {
+        console.error("Error fetching sample orders from Firestore:", error.message);
+        throw new Error("Failed to fetch sample orders");
+    }
+};
+
+
+
+
 // upalod file on firebase and get url
 
 export const uploadFile = async (file) => {
@@ -145,18 +176,39 @@ export const uploadFile = async (file) => {
 };
 
 
-//file name get
-export const getFileNameFromUrl = (url) => {
+export const uploadMultiFiles = async (files) => {
+    if (!files || files.length === 0) return [];
+
     try {
-        const decodedUrl = decodeURIComponent(url);
-        const parts = decodedUrl.split('/'); // Split by slashes to get the path segments
-        const lastSegment = parts[parts.length - 1]; // Get the last segment (e.g., 'uploads%2Fhero-shield.png?alt=media&token=...')
-        const nameWithParams = lastSegment.split('?')[0]; // Remove any query parameters (e.g., 'uploads/hero-shield.png')
-        const name = nameWithParams.split('/').pop(); // Get the actual file name (e.g., 'hero-shield.png')
-        return name;
+        const storage = getStorage(); // Initialize Firebase storage
+        const uploadPromises = files.map(async (file) => {
+            const storageRef = ref(storage, `multiFileUploads/${file.name}`); // Create a reference to the file's path
+            await uploadBytes(storageRef, file); // Upload the file to Firebase Storage
+            const downloadURL = await getDownloadURL(storageRef); // Get the download URL after upload
+            return downloadURL; // Return the download URL for this file
+        });
+
+        const downloadURLs = await Promise.all(uploadPromises); // Wait for all uploads to complete
+        return downloadURLs; // Return an array of all download URLs
     } catch (error) {
-        console.error('Error extracting file name:', error);
-        return null;
+        console.error('Error uploading files:', error);
+        return [];
     }
 };
+
+
+//file name get
+export function getFileNameFromUrl(url) {
+    if (!url) return ''; // Return empty string if the URL is undefined or empty
+    try {
+        // Extract and decode the path from the URL
+        const decodedPath = decodeURIComponent(url.split('/').pop().split('?')[0]);
+        const fileName = decodedPath.split('/').pop();
+        // Ensure the result is always a string
+        return typeof fileName === 'string' ? fileName : '';
+    } catch (error) {
+        console.error('Error extracting file name:', error);
+        return '';
+    }
+}
 

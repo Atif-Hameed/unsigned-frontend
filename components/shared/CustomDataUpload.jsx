@@ -11,14 +11,14 @@ const CustomDataUpload = ({ onFileChange = () => { }, onTextareaChange = () => {
     const [textarea, setTextarea] = useState(textareaValue);
     const [isLoading, setIsLoading] = useState(false); // Track the loading state
 
-console.log(selectedFile)
+    console.log(selectedFile)
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
         setIsLoading(true); // Start the loading state
         try {
             const fileURL = await uploadFile(file);
-            setSelectedFile(file); // Store the File object for displaying details
+            setSelectedFile(fileURL); // Store the File object for displaying details
             if (fileURL) {
                 setUploadedFileURL(fileURL);
                 onFileChange(fileURL); // Notify parent component
@@ -66,13 +66,13 @@ console.log(selectedFile)
                         {selectedFile && (
                             <div className="flex items-center space-x-4">
                                 <div className='flex items-center space-x-2'>
-                                    <div className='w-12 h-12 bg-blue-100 flex items-center justify-center rounded-lg'>
-                                        <span className='text-blue-500 font-bold'>{selectedFile.type?.split('/')[1]?.toUpperCase()}</span>
+                                    <div className='w-12 h-12 bg-sky-100 flex items-center justify-center rounded-lg'>
+                                        <span className='text-blue-500 font-bold'>{getFileNameFromUrl(selectedFile).split('.').pop()}</span>
                                     </div>
 
                                     <div>
                                         <p className='text-gray-800'>{getFileNameFromUrl(selectedFile)}</p>
-                                        <p className='text-gray-500 text-sm'>{(selectedFile.size / 1024).toFixed(1)} KB</p>
+                                        {/* <p className='text-gray-500 text-sm'>{(selectedFile.size / 1024).toFixed(1)} KB</p> */}
                                     </div>
                                 </div>
                             </div>

@@ -20,7 +20,7 @@ const Colourway = () => {
       : ''
   );
 
-  const [file, setFile] = useState(getFileNameFromUrl(formData?.color.custom_data.file) || null); // For handling file uploads
+  const [file, setFile] = useState(formData?.color.custom_data.file || null); // For handling file uploads
   const [textareaValue, setTextareaValue] = useState(formData?.color.custom_data.comments || ''); // For handling comments in the textarea
 
 

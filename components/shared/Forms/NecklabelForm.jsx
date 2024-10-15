@@ -12,6 +12,7 @@ import { IoCloudUploadOutline } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import CustomDataUpload from '../CustomDataUpload';
 import toast, { Toaster } from 'react-hot-toast';
+import { uploadMultiFiles } from '@/app/action/orders-action';
 
 
 const NecklabelForm = ({
@@ -31,15 +32,28 @@ const NecklabelForm = ({
     error
 }) => {
 
+    const [isLoading, setIsLoading] = useState(false);
+
     // Handle multiple file uploads
-    const handleImageFileChange = (e) => {
+    const handleImageFileChange = async (e) => {
         const files = Array.from(e.target.files);
+        setIsLoading(true);
         const newFiles = [...selectedFiles, ...files];
         if (newFiles.length > 5) {
             toast.error('You cannot upload more than 5 files.');
             return;
         }
-        onFilesChange(newFiles);
+        try {
+            const fileURLs = await uploadMultiFiles(newFiles);
+            console.log(fileURLs)
+            if (fileURLs) {
+                onFilesChange(newFiles);
+            }
+        } catch (error) {
+            console.error('File upload failed', error);
+        } finally {
+            setIsLoading(false); // End the loading state
+        }
     };
 
     const handleFileRemove = (index) => {
@@ -70,6 +84,14 @@ const NecklabelForm = ({
     return (
         <div className='w-full flex sm:flex-row flex-col items-start gap-3'>
             <Toaster />
+            {isLoading && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="text-white ">
+                        <p >loading...</p>
+                    </div>
+                </div>
+            )}
+
             <div className='lg:w-[32%] sm:w-[42%] w-full flex flex-col  gap-3'>
                 {/* Label Option Section */}
                 <div className='p-5 bg-lightBackground '>

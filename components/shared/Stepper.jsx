@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { LuArrowLeft } from 'react-icons/lu';
 import Button from './Button';
 import Link from 'next/link';
@@ -43,6 +43,14 @@ const Stepper = ({
         { name: 'Delivery', id: '9', component: deliveryForm, validate: '' },
     ];
 
+    // Use effect to check if there's a saved tab when component loads
+    useEffect(() => {
+        const savedTab = localStorage.getItem(`order_${orderID}_activeTab`); // Use order ID to make the key unique
+        if (savedTab && tabs.some(tab => tab.id === savedTab)) {
+            setActiveTab(savedTab); // Set saved tab as active
+        }
+    }, [orderID, tabs]);
+
     // Function to handle "Next" button
     const handleNext = async () => {
         const currentTabIndex = tabs.findIndex((tab) => tab.id === activeTab);
@@ -81,6 +89,9 @@ const Stepper = ({
             const nextTabId = tabs[currentTabIndex + 1].id;
             setActiveTab(nextTabId);
             setCompletedTabs((prev) => [...prev, nextTabId]); // Add next tab to completed list
+
+            // Save the next active tab to localStorage
+            localStorage.setItem(`order_${orderID}_activeTab`, nextTabId);
         } else {
             toast.success('Order created Successfully');
             router.push('/dashboard'); // Redirect to dashboard
@@ -92,6 +103,9 @@ const Stepper = ({
         // Allow navigation only to completed or current tab
         if (completedTabs.includes(tabId) || tabId === activeTab) {
             setActiveTab(tabId);
+
+            // Save the active tab to localStorage
+            localStorage.setItem(`order_${orderID}_activeTab`, tabId);
         }
     };
 

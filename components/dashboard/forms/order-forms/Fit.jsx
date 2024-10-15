@@ -34,7 +34,7 @@ const Fit = () => {
     // Local state to manage custom data (comments and file)
     const [customData, setCustomData] = useState({
         comments: formData?.fit?.custom_data.comments || '',
-        file: getFileNameFromUrl(formData?.fit.custom_data.file) || null,
+        file: formData?.fit.custom_data.file || null,
     });
 
     // Effect to update context whenever local fitData, selectedFit, or customData changes
@@ -63,11 +63,10 @@ const Fit = () => {
 
     // Handlers for custom data (comments and file)
     const handleFileChange = async (file) => {
-        const fileURL = await uploadFile(file);
-        console.log(fileURL)
+        console.log(file)
         setCustomData((prevCustomData) => ({
             ...prevCustomData,
-            file: fileURL,
+            file,
         }));
     };
 
