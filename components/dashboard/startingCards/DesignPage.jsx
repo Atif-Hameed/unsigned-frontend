@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { IoCloseOutline } from 'react-icons/io5';
 import Image from 'next/image';
@@ -16,9 +17,12 @@ import { useAuth } from '@/components/provider/auth_context';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/config/firebase-config';
 import toast from 'react-hot-toast';
+import { MyContext } from '@/components/provider/context-provider';
 
 
 const DesignPage = ({ onClose }) => {
+    const { formData, setFormData, resetForm } = useContext(MyContext); // Use context for form data management
+
     const router = useRouter();
     const { user } = useAuth()
     const { t } = useTranslation()
@@ -42,7 +46,16 @@ const DesignPage = ({ onClose }) => {
                 user_id: user.uid,
                 category: key,
             };
-            console.log(data);
+            // console.log(data);
+            // resetForm()
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                status: "pending",
+                user_id: user.uid,
+                category: key,
+            }));
+            console.log(formData);
+
 
             // Reference to the "orders" collection
             const ordersCollectionRef = collection(db, "orders");

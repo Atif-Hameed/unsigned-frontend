@@ -18,7 +18,7 @@ import { doc, getDoc } from 'firebase/firestore'; // Import Firebase Firestore m
 import { db } from '@/config/firebase-config'; // Firebase config
 
 const Page = () => {
-  const { formData, setFormData } = useContext(MyContext); // Use context for form data management
+  const { formData, setFormData, resetForm } = useContext(MyContext); // Use context for form data management
   const pathname = usePathname(); // Get the current pathname
   const [id, setId] = useState(null); // Order ID state
 
@@ -31,6 +31,12 @@ const Page = () => {
     }
   }, [pathname]);
 
+
+  useEffect(() => {
+    resetForm()
+
+  }, [id])
+
   // Fetch order data from Firestore
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -39,7 +45,6 @@ const Page = () => {
           // Get the order document from Firestore using the order ID
           const docRef = doc(db, 'orders', id);
           const docSnap = await getDoc(docRef);
-
           if (docSnap.exists()) {
             const orderData = docSnap.data();
             // Update formData in context with fetched order data
@@ -59,7 +64,6 @@ const Page = () => {
 
     fetchOrderData();
   }, [id, setFormData]); // Dependency array includes id and setFormData
-  // console.log(' data :', formData);
 
   return (
     <div className='w-full flex justify-center'>

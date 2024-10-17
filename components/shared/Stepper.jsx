@@ -9,6 +9,7 @@ import { MyContext } from '../provider/context-provider';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
+
 const Stepper = ({
     orderID,
     fitForm,
@@ -73,6 +74,11 @@ const Stepper = ({
                 ...updatedFormData,
                 status: 'complete', // Update the status to 'complete'
             };
+        } else {
+            updatedFormData = {
+                ...updatedFormData,
+                currentStep: currentTabIndex, // Update the status to 'complete'
+            };
         }
 
         // Update order with current form data
@@ -125,11 +131,10 @@ const Stepper = ({
                                 <button
                                     key={tab.id}
                                     onClick={() => handleTabClick(tab.id)}
-                                    className={`px-5 rounded-full text-base cursor-pointer whitespace-nowrap py-3 ${
-                                        activeTab === tab.id ? 'bg-labelColor text-white' : 
-                                        completedTabs.includes(tab.id) ? 'bg-[#f9f9f9] border text-dark' : 
-                                        'bg-[#e0e0e0] text-gray-500 cursor-auto' 
-                                    }`}
+                                    className={`px-5 rounded-full text-base cursor-pointer whitespace-nowrap py-3 ${activeTab === tab.id ? 'bg-labelColor text-white' :
+                                        completedTabs.includes(tab.id) ? 'bg-[#f9f9f9] border text-dark' :
+                                            'bg-[#e0e0e0] text-gray-500 cursor-auto'
+                                        }`}
                                     disabled={!completedTabs.includes(tab.id) && tab.id !== activeTab}
                                 >
                                     {tab.name}
