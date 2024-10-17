@@ -12,7 +12,7 @@ import { IoCloudUploadOutline } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import CustomDataUpload from '../CustomDataUpload';
 import toast, { Toaster } from 'react-hot-toast';
-import { uploadMultiFiles } from '@/app/action/orders-action';
+import { getFileNameFromUrl, uploadMultiFiles } from '@/app/action/orders-action';
 
 
 const NecklabelForm = ({
@@ -47,7 +47,7 @@ const NecklabelForm = ({
             const fileURLs = await uploadMultiFiles(newFiles);
             console.log(fileURLs)
             if (fileURLs) {
-                onFilesChange(newFiles);
+                onFilesChange(fileURLs);
             }
         } catch (error) {
             console.error('File upload failed', error);
@@ -65,7 +65,7 @@ const NecklabelForm = ({
     const renderUploadedFiles = () => {
         return (selectedFiles || []).map((file, index) => (
             <div key={index} className='relative w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
-                <span className='text-blue-500 font-bold'>{file.type.split('/')[1].toUpperCase()}</span>
+                <span className='text-blue-500 font-bold'>{getFileNameFromUrl(file).split('.').pop()}</span>
                 <button
                     className='absolute -bottom-1 z-20 -right-2 bg-white p-1 rounded-full text-red-500'
                     onClick={() => handleFileRemove(index)}

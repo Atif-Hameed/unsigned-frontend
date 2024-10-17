@@ -102,7 +102,7 @@ const SampleCards = () => {
             ) : (
                 <>
                     <div className="grid md:grid-cols-3 grid-cols-1 py-6 gap-6 w-full">
-                        {orders.slice(0, visibleCount).map((order) => (
+                        {orders.slice(0, visibleCount).map((order,i) => (
                             <div
                                 key={order.id}
                                 className="bg-cardColor h-72 flex flex-col justify-between shadow-xl p-6"
@@ -111,7 +111,9 @@ const SampleCards = () => {
                                 <div>
                                     <div className="flex justify-between items-center">
                                         <div className="">
-                                            <h2 className="text-3xl font-bold text-dark">{order.id}</h2>
+                                        <h2 className="text-3xl font-bold flex flex-col text-[#1A1A1A]">#0{i + 1}
+                                                <span className="text-sm text-labelColor">{order.category}</span>
+                                            </h2>
                                             <p className="text-sm text-labelColor">{order.type}</p>
                                         </div>
                                         <div className="relative">

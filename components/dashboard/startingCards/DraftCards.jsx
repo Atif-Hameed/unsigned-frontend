@@ -92,7 +92,7 @@ const DraftCards = ({ orders, refetch }) => {
                                 <div>
                                     <div className="flex justify-between items-center">
                                         <div>
-                                            <h2 className="text-3xl font-bold text-[#1A1A1A]">0{i + 1}</h2>
+                                            <h2 className="text-3xl font-bold text-[#1A1A1A]">#0{i + 1}</h2>
                                             <p className="text-sm text-labelColor">{order.category}</p>
                                         </div>
                                         <div className="relative">

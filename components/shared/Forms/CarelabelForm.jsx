@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import Heading from '../Heading';
 import CustomTooltip from '../CustomTooltip';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
@@ -87,11 +87,11 @@ const CarelabelForm = ({
             <Image alt='Care label empty' src={carelabelEmpty} />
           ) : selectedLabel === 'unsigned' ? (
             <Image alt='Care label' src={carelabel} />
-          ) :
-            <div className='relative '>
+          ) : (
+            <div className='relative'>
               <Image alt='Care label empty' src={carelabelEmpty} />
               <div className='z-20 absolute top-8 left-1/2 -translate-x-1/2 cursor-pointer py-3 flex flex-col justify-start gap-2 items-center'>
-                {/* Display uploaded file type */}
+                {/* Display uploaded file name or type */}
                 <div>
                   {brandFile ? (
                     <div className='w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
@@ -128,7 +128,7 @@ const CarelabelForm = ({
                 )}
               </div>
             </div>
-          }
+          )}
         </div>
       </div>
     </div>

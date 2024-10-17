@@ -55,7 +55,7 @@ const BulkCards = () => {
                                 <div>
                                     <div className="flex justify-between items-center">
                                         <div className="">
-                                            <h2 className="text-3xl font-bold text-dark">{order.id}</h2>
+                                            <h2 className="text-3xl font-bold text-dark">#0{i + 1}</h2>
                                             <p className="text-sm text-labelColor">{order.type}</p>
                                         </div>
                                         <div className="">

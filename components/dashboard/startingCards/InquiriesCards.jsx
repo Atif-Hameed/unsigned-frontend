@@ -94,7 +94,9 @@ const InquiriesCards = ({ orders }) => {
                                 <div>
                                     <div className="flex justify-between items-center">
                                         <div className="">
-                                            <h2 className="text-3xl font-bold text-dark">0{i + 1}</h2>
+                                            <h2 className="text-3xl font-bold flex flex-col text-[#1A1A1A]">#0{i + 1}
+                                                <span className="text-sm text-labelColor">{order.category}</span>
+                                            </h2>
                                             <p className="text-sm text-labelColor">{order.type}</p>
                                         </div>
                                         <div className="relative">

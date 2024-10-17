@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import CarelabelForm from '@/components/shared/Forms/CarelabelForm';
 import { MyContext } from '@/components/provider/context-provider'; // Assuming context provider is set up
+import { uploadFile } from '@/app/action/orders-action';
 
 const Carelabel = () => {
     const { formData, setFormData } = useContext(MyContext); // Use context for formData and setFormData
@@ -10,7 +11,7 @@ const Carelabel = () => {
     const [file, setFile] = useState(formData?.care_label.custom_data.file || null); // For file upload
     const [textareaValue, setTextareaValue] = useState(formData?.care_label.custom_data.comments || ''); // For comments textarea
     const [brandFile, setBrandFile] = useState(formData?.care_label.brand_file || null); // For "My Brand Logo" file upload
-
+    
     // Handler for label selection
     const handleSelect = (value) => {
         setSelectedLabel(value); // Update state on radio button selection
@@ -22,8 +23,15 @@ const Carelabel = () => {
     };
 
     // Handler for brand logo file upload
-    const handleBrandFileChange = (file) => {
-        setBrandFile(file);
+    const handleBrandFileChange = async (file) => {
+        if (file) {
+            const fileUrl = await uploadFile(file); // Upload file to Firebase and get the URL
+            if (fileUrl) {
+                setBrandFile({ name: file.name, url: fileUrl, type: file.type }); // Save file info (name, URL, type)
+            }
+        } else {
+            setBrandFile(null); // Remove file
+        }
     };
 
     // Handler for textarea change
