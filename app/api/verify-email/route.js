@@ -17,10 +17,10 @@ export async function POST(req) {
             <p>Thank you for signing up! Please verify your email address to complete your registration.</p>
             <p>Click the button below to verify your email address:</p>
             <div style="text-align: center; margin: 20px 0;">
-                <a href="http://localhost:3000/signUp/create-password?email=${encodeURIComponent(email)}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Verify Email</a>
+                <a href="https://unsigned-nu.vercel.app/signUp/create-password?email=${encodeURIComponent(email)}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Verify Email</a>
             </div>
             <p>If the button doesn't work, you can also click the link below:</p>
-            <p><a href="http://localhost:3000/signUp/create-password?email=${encodeURIComponent(email)}">Verify Email</a></p>
+            <p><a href="https://unsigned-nu.vercel.app/create-password?email=${encodeURIComponent(email)}">Verify Email</a></p>
             <p>If you didn't create an account, you can safely ignore this email.</p>
             <p>Best regards,</p>
             <p>Unsigned</p>
