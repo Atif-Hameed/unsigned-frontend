@@ -15,7 +15,7 @@ import { deleteOrder } from '@/app/action/orders-action';
 const DraftCards = ({ orders, refetch }) => {
 
     const router = useRouter();
-    const [visibleCount, setVisibleCount] = useState(10);
+    const [visibleCount, setVisibleCount] = useState(9);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [loading, setLoading] = useState(false); // Loading state
@@ -25,7 +25,7 @@ const DraftCards = ({ orders, refetch }) => {
     const { t } = useTranslation();
 
     const handleLoadMore = () => {
-        setVisibleCount((prevCount) => prevCount + 10);
+        setVisibleCount((prevCount) => prevCount + 9);
     };
 
     const handleOpenPopup = (orderId) => {

@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const InquiriesCards = ({ orders }) => {
 
-    const [visibleCount, setVisibleCount] = useState(10); // Track number of visible cards
+    const [visibleCount, setVisibleCount] = useState(9); // Track number of visible cards
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [loading, setLoading] = useState(false); // Loading state
@@ -25,7 +25,7 @@ const InquiriesCards = ({ orders }) => {
     const { t } = useTranslation();
 
     const handleLoadMore = () => {
-        setVisibleCount((prevCount) => prevCount + 10); // Load 10 more cards
+        setVisibleCount((prevCount) => prevCount + 9); // Load 10 more cards
     };
 
     const handleOpenPopup = (orderId) => {
@@ -99,7 +99,7 @@ const InquiriesCards = ({ orders }) => {
                                             </h2>
                                             <p className="text-sm text-labelColor">{order.type}</p>
                                         </div>
-                                        <div className="relative">
+                                        {/* <div className="relative">
                                             <button onClick={() => handleOpenPopup(order.id)}>
                                                 <BiDotsVerticalRounded className="text-2xl text-lightBlue" />
                                             </button>
@@ -109,20 +109,23 @@ const InquiriesCards = ({ orders }) => {
                                                     <button onClick={() => handleDeleteClick(order)} className='px-3 py-2 w-full rounded-lg cursor-pointer hover:bg-[#d6ece3]'>Delete</button>
                                                 </div>
                                             )}
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="text-lightBlue flex items-center gap-1 mt-6">
                                         <MdOutlineColorLens className="text-lg" />
                                         <p className="">{order.status}</p>
                                     </div>
+                                    <div>
+                                        <p>We received your inquiry, and we will send your offer to your email in 4-5 days.</p>
+                                    </div>
                                 </div>
 
-                                <div className="flex justify-between items-center">
+                                {/* <div className="flex justify-between items-center">
                                     <p className="text-labelColor">{order.date}</p>
                                     <button onClick={() => router.push(`/dashboard/designs/${order.id}`)} className="bg-white hover:bg-black hover:text-white text-black px-6 py-3 rounded-full">
                                         Continue
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                         ))}
                     </div>
@@ -134,7 +137,7 @@ const InquiriesCards = ({ orders }) => {
                                 onClick={handleLoadMore}
                                 className="bg-lightBlue text-white px-6 py-3 rounded-full"
                             >
-                                Load more drafts
+                                Load more inquiries
                             </button>
                         </div>
                     )}
@@ -142,7 +145,7 @@ const InquiriesCards = ({ orders }) => {
             )}
 
             {/* Delete Confirmation Dialog */}
-            {showDeleteDialog && (
+            {/* {showDeleteDialog && (
                 <div className="">
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                         <div className="relative">
@@ -167,15 +170,15 @@ const InquiriesCards = ({ orders }) => {
                                 <button
                                     onClick={handleConfirmDelete}
                                     className="bg-lightBlueText text-white py-2 px-6 rounded-full"
-                                    disabled={loading} // Disable button while loading
+                                    disabled={loading} 
                                 >
-                                    {loading ? 'Deleting...' : t('confirmDelete')} {/* Show loading state */}
+                                    {loading ? 'Deleting...' : t('confirmDelete')} 
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };

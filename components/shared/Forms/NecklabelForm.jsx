@@ -1,4 +1,3 @@
-'use client';
 import React, { useState } from 'react';
 import Heading from '../Heading';
 import CustomTooltip from '../CustomTooltip';
@@ -13,7 +12,6 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import CustomDataUpload from '../CustomDataUpload';
 import toast, { Toaster } from 'react-hot-toast';
 import { getFileNameFromUrl, uploadMultiFiles } from '@/app/action/orders-action';
-
 
 const NecklabelForm = ({
     selectedColor,
@@ -31,30 +29,30 @@ const NecklabelForm = ({
     onCustomFileRemove,
     error
 }) => {
-
-    const [isLoading, setIsLoading] = useState(false);
+    const [isUploading, setIsUploading] = useState(false); // State to manage upload status
 
     // Handle multiple file uploads
     const handleImageFileChange = async (e) => {
-        const files = Array.from(e.target.files);
-        setIsLoading(true);
-        const newFiles = [...selectedFiles, ...files];
-        if (newFiles.length > 5) {
+        const files = Array.from(e.target.files); // Get the newly selected files
+        const newFiles = [...files];
+
+        // Check the total number of files doesn't exceed the limit (e.g., 5)
+        if (selectedFiles.length + newFiles.length > 5) {
             toast.error('You cannot upload more than 5 files.');
             return;
         }
+
+        setIsUploading(true); // Set uploading status
         try {
-            const fileURLs = await uploadMultiFiles(newFiles);
-            console.log(fileURLs)
-            if (fileURLs) {
-                onFilesChange(fileURLs);
-            }
+            const downloadURLs = await uploadMultiFiles(newFiles); // Upload new files and get download URLs
+            onFilesChange([...selectedFiles, ...downloadURLs]); // Merge existing and new download URLs
         } catch (error) {
-            console.error('File upload failed', error);
+            console.error('Error uploading files:', error);
         } finally {
-            setIsLoading(false); // End the loading state
+            setIsUploading(false); // Reset uploading status
         }
     };
+
 
     const handleFileRemove = (index) => {
         const updatedFiles = selectedFiles.filter((_, i) => i !== index);
@@ -65,7 +63,10 @@ const NecklabelForm = ({
     const renderUploadedFiles = () => {
         return (selectedFiles || []).map((file, index) => (
             <div key={index} className='relative w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
-                <span className='text-blue-500 font-bold'>{getFileNameFromUrl(file).split('.').pop()}</span>
+                <span className='text-blue-500 font-bold'>{file.type?.split('/')[1]?.toUpperCase()}</span>
+                <div className='w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
+                    <span className='text-blue-500 font-bold'>{getFileNameFromUrl(file).split('.').pop()}</span>
+                </div>
                 <button
                     className='absolute -bottom-1 z-20 -right-2 bg-white p-1 rounded-full text-red-500'
                     onClick={() => handleFileRemove(index)}
@@ -84,10 +85,12 @@ const NecklabelForm = ({
     return (
         <div className='w-full flex sm:flex-row flex-col items-start gap-3'>
             <Toaster />
-            {isLoading && (
+
+            {/* Uploading Overlay */}
+            {isUploading && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="text-white ">
-                        <p >loading...</p>
+                        <p >Uploading...</p>
                     </div>
                 </div>
             )}
@@ -197,30 +200,23 @@ const NecklabelForm = ({
                                     <Image alt='' src={neckLabelUplaod} className='z-30 w-full ' />
 
                                     <div className='bg-lightBlueText cursor-pointer absolute right-[40%] top-[30%] p-2 z-40 rounded-full hover:bg-lightBlue'>
-                                        <IoCloudUploadOutline className='text-lg text-white' />
+                                        <IoCloudUploadOutline className='w-6 h-6 text-white' />
                                         <input
-                                            type='file'
-                                            className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
-                                            onChange={handleImageFileChange}
+                                            type="file"
+                                            className="absolute inset-0 opacity-0 cursor-pointer"
                                             multiple
+                                            onChange={handleImageFileChange}
+                                            accept="image/*"
                                         />
                                     </div>
                                 </div>
 
-                            </div>
-                            <div className='md:w-full w-[200px] text-gray-700 lg:text-xs text-[10px] absolute xl:-bottom-[25%] lg:-bottom-[40%] sm:-bottom-[90%] -bottom-[100%] text-center sm:-left-[60%] -left-[80%]'>
-                                <p>Please provide us with every Size Label for every Size. For example, if you have 5 Sizes you need to upload 5 files, one with S one with M one with L and so on.</p>
+                                <span className='text-center text-xs mt-2 '>Max 5 files</span>
                             </div>
                         </div>
                     </div>
                 )}
-
-                {/* Custom File Upload */}
-                <CustomDataUpload
-                    file={customFile}
-                    onFileChange={onCustomFileChange}
-                    onFileRemove={onCustomFileRemove}
-                />
+                <CustomDataUpload file={customFile} onFileChange={onCustomFileChange} onFileRemove={onCustomFileRemove} />
             </div>
         </div>
     );

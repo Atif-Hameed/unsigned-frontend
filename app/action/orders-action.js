@@ -157,6 +157,35 @@ export const getAllSampleOrders = async (user_id) => {
 };
 
 
+// Function to get all orders with the status "bulks"
+export const getAllBulksOrders = async (user_id) => {
+    const orderCollectionRef = collection(db, "orders"); // Reference to the 'orders' collection
+
+    // Create a query to filter orders based on user_id and status "samples"
+    const ordersQuery = query(
+        orderCollectionRef,
+        where("user_id", "==", user_id),
+        where("status", "==", "bulks")
+    );
+
+    try {
+        const querySnapshot = await getDocs(ordersQuery); // Execute the query
+        const orders = [];
+
+        querySnapshot.forEach((doc) => {
+            // Push the document data into the orders array
+            orders.push({ id: doc.id, ...doc.data() });
+        });
+
+        console.log("Sample orders fetched successfully:", orders);
+        return orders; // Return the array of orders
+    } catch (error) {
+        console.error("Error fetching sample orders from Firestore:", error.message);
+        throw new Error("Failed to fetch sample orders");
+    }
+};
+
+
 
 
 // upalod file on firebase and get url

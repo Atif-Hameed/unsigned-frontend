@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-'use client'
+'use client';
 import React, { useContext, useState, useEffect } from 'react';
 import { HiQuestionMarkCircle } from "react-icons/hi";
 import CustomRadioButton from '@/components/shared/CustomRadioButton';
@@ -10,60 +10,60 @@ import CustomDataUpload from '@/components/shared/CustomDataUpload';
 import { usePathname } from 'next/navigation';
 import CustomTooltip from '@/components/shared/CustomTooltip';
 import { MyContext } from '@/components/provider/context-provider';
-import { getFileNameFromUrl, uploadFile } from '@/app/action/orders-action';
 
 const Fit = () => {
     const path = usePathname();
     const { formData, setFormData } = useContext(MyContext);
-    // console.log(' data2 :', formData);
 
-    // console.log(path)
+    // Get the current order based on the selected category
     const currentOrder = OrdersData.find(order => formData?.category?.toLowerCase() === order.category.toLowerCase());
 
-
-    // Get formData and setFormData from MyContext
-
+    // Handle case where no current order is found
     if (!currentOrder) {
         return <div>No matching fit data found for this category.</div>;
     }
 
-    // Local state to manage fit data
-    const [fitData, setFitData] = useState(currentOrder.fitData);
+    // Extract the initial selected fit and fit data
     const [selectedFit, setSelectedFit] = useState(currentOrder.fitOptions[0].value);
+    const [fitData, setFitData] = useState(currentOrder[selectedFit] || []);
 
-    // Local state to manage custom data (comments and file)
+    // Local state for custom data (comments and file)
     const [customData, setCustomData] = useState({
-        comments: formData?.fit?.custom_data.comments || '',
-        file: formData?.fit.custom_data.file || null,
+        comments: formData?.fit?.custom_data?.comments || '',
+        file: formData?.fit?.custom_data?.file || null,
     });
 
-    // Effect to update context whenever local fitData, selectedFit, or customData changes
+    // Update formData in the context whenever selectedFit, fitData, or customData changes
     useEffect(() => {
         setFormData((prevFormData) => ({
             ...prevFormData,
             fit: {
                 fit_type: selectedFit,
                 fit_values: fitData,
-                custom_data: customData,  // Include custom data in fit object
+                custom_data: customData, 
             },
-            // category: currentOrder.type // Update the type or other relevant details
         }));
-    }, [fitData, selectedFit, customData, setFormData, currentOrder.type, path]);
+    }, [fitData, selectedFit, customData, setFormData, path]);
 
-    // Handler to update the fit data
-    const handleChange = (index, sizeKey, value) => {
-        const newFitData = [...fitData];
-        newFitData[index][sizeKey] = value; // Update the corresponding size value
-        setFitData(newFitData); // Update the local state
-    };
+    // Update fit data whenever selected fit changes
+    useEffect(() => {
+        setFitData(currentOrder[selectedFit] || []);
+    }, [selectedFit, currentOrder]);
 
+    // Handler for radio button changes
     const handleRadioChange = (value) => {
         setSelectedFit(value);
     };
 
+    // Handler to update fit data for specific size
+    const handleChange = (index, sizeKey, value) => {
+        const updatedFitData = [...fitData];
+        updatedFitData[index][sizeKey] = value;
+        setFitData(updatedFitData);
+    };
+
     // Handlers for custom data (comments and file)
-    const handleFileChange = async (file) => {
-        console.log(file)
+    const handleFileChange = (file) => {
         setCustomData((prevCustomData) => ({
             ...prevCustomData,
             file,
@@ -77,24 +77,20 @@ const Fit = () => {
         }));
     };
 
-    // Extract size headers from the keys of the first entry in fitData
-    const sizeHeaders = Object.keys(currentOrder?.fitData[0]).filter(key => key !== 'name');
-
-    // console.log(formData)
+    // Extract size headers dynamically based on fitData
+    const sizeHeaders = Object.keys(currentOrder.fitData[0]).filter(key => key !== 'name');
 
     return (
         <div className='w-full flex items-start flex-wrap gap-4'>
             <div className='lg:w-[19%] w-full flex flex-col gap-3'>
                 <div className='bg-lightBackground p-10'>
                     <div className='flex items-center gap-1 mb-2'>
-                        <h1 className=' w-fit lg:text-2xl text-xl font-bold text-dark '>
+                        <h1 className='w-fit lg:text-2xl text-xl font-bold text-dark'>
                             Choose your fit
                         </h1>
-                        <div>
-                            <CustomTooltip width='20rem' tooltipText={'Either select a pre-engineered fit or create a custom fit, meaning that you can adapt all measurements of the standard product for your own silhouette. Make sure to have a PLUS or ADVANCED subscription to access the custom fit feature ;)'}>
-                                <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
-                            </CustomTooltip>
-                        </div>
+                        <CustomTooltip width='20rem' tooltipText={'...'}>
+                            <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
+                        </CustomTooltip>
                     </div>
                     {currentOrder.fitOptions.map((fitOption, index) => (
                         <CustomRadioButton
@@ -108,7 +104,7 @@ const Fit = () => {
                     ))}
                 </div>
 
-                {/* CustomDataUpload component for handling file and comments */}
+                {/* CustomDataUpload for file and comments */}
                 <CustomDataUpload
                     onFileChange={handleFileChange}
                     onTextareaChange={handleTextareaChange}
@@ -117,16 +113,12 @@ const Fit = () => {
                 />
             </div>
 
-            <div className='w-full flex-1 bg-lightBackground lg:p-10 p-5 '>
+            <div className='w-full flex-1 bg-lightBackground lg:p-10 p-5'>
                 <div className='flex items-center gap-1'>
-                    <h1 className=' lg:text-3xl text-xl font-bold text-dark'>
-                        Fill in the size chart
-                    </h1>
-                    <div>
-                        <CustomTooltip width='25rem' tooltipText={"Fill in all measurements here. If you don't want a specific size, fill in that size with zeros [ 0 ]. If you want to customize more than just the dimensions (e.g. delete or add pockets, 3-part hood, ...), please note it in the comment box and include specific drawings with according measurements."}>
-                            <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
-                        </CustomTooltip>
-                    </div>
+                    <h1 className='lg:text-3xl text-xl font-bold text-dark'>Fill in the size chart</h1>
+                    <CustomTooltip width='25rem' tooltipText={"..."}>
+                        <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
+                    </CustomTooltip>
                 </div>
 
                 <div className='flex justify-between flex-wrap items-start'>
@@ -142,21 +134,19 @@ const Fit = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {fitData.map((e, i) => (
-                                        <tr key={i}>
-                                            <td className="px-1 lg:w-48 py-2 whitespace-normal text-sm text-start">
+                                    {fitData.map((item, index) => (
+                                        <tr key={index}>
+                                            <td className="px-1 lg:w-48 py-2 text-start text-sm">
                                                 <div className='flex items-center gap-2'>
-                                                    <div className='bg-dark text-white px-2 pt-0.5 rounded-full'>
-                                                        {1 + i}
-                                                    </div>
-                                                    {e.name}
+                                                    <div className='bg-dark text-white px-2 pt-0.5 rounded-full'>{1 + index}</div>
+                                                    {item.name}
                                                 </div>
                                             </td>
                                             {sizeHeaders.map((size) => (
-                                                <td key={size} className="px-1 w-16 py-2 whitespace-nowrap text-sm text-start">
+                                                <td key={size} className="px-1 w-16 py-2 text-start text-sm">
                                                     <NumberInput
-                                                        value={e[size]}
-                                                        onChange={(e) => handleChange(i, size, e.target.value)} // Pass the index and size key to the handler
+                                                        value={item[size]}
+                                                        onChange={(e) => handleChange(index, size, e.target.value)}
                                                     />
                                                 </td>
                                             ))}
@@ -168,7 +158,7 @@ const Fit = () => {
                     </div>
 
                     <div className='lg:w-[45%] w-full h-full'>
-                        <Image alt='Shirt design' src={currentOrder.fitImg} className='w-full object-cover object-center h-full' />
+                        <Image alt='Fit design' src={currentOrder.fitImg} className='w-full object-cover object-center h-full' />
                     </div>
                 </div>
             </div>

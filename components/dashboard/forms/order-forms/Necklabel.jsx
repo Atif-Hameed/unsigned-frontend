@@ -22,7 +22,7 @@ const Necklabel = () => {
 
     // Handle changes to the file input
     const handleFilesChange = (newFiles) => {
-        setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
+        setSelectedFiles(newFiles);
     };
 
     // Toggle label visibility and clear related fields if "no_label" is selected
@@ -38,8 +38,6 @@ const Necklabel = () => {
             setIsLabelVisible(true);
         }
     };
-
-    console.log(selectedFiles)
 
     // Update formData in context when any neck label fields change
     useEffect(() => {
