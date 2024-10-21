@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from '@/assets/images/logoSmall.png'
 import CustomInput from '@/components/shared/CustomInput'
 import Link from 'next/link'
@@ -19,6 +19,18 @@ const Page = () => {
     const params = useSearchParams();
     const email = params.get('email')
     const type = params.get('type')
+    const router = useRouter();
+
+    useEffect(() => {
+        // Check if the type is 'pass' to set up the redirect
+        if (type === 'pass') {
+            const timer = setTimeout(() => {
+                router.push('/login');
+            }, 10000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [router, type]);
 
     return (
         <MaxContainer>
@@ -36,6 +48,7 @@ const Page = () => {
                     <div className='flex flex-col items-center gap-6'>
                         <h1 className='text-center sm:text-4xl text-2xl font-semibold '>{t('checkEmail')}</h1>
                         <p className='text-center text-lg'>{t('emailSend')} <br /><span className='font-bold'>{email}</span></p>
+                        <p className='text-center'>Please Check Your Spam Folder if email not found</p>
                     </div>
 
                     <div className='flex justify-center w-full'>

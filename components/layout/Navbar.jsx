@@ -71,9 +71,11 @@ const Navbar = () => {
                         <TrnaslateButton />
                     </div>
 
-                    <div className='sm:absolute sm:left-1/2 sm:-translate-x-1/2 top-1'>
-                        <Image alt='' src={logo} className='sm:w-40 w-28' unoptimized priority />
-                    </div>
+                    <d className='sm:absolute sm:left-1/2 sm:-translate-x-1/2 top-1'>
+                        <Link href={'/dashboard/drafts'} >
+                            <Image alt='' src={logo} className='sm:w-40 w-28' unoptimized priority />
+                        </Link>
+                    </d>
                 </div>
             </MaxContainer>
         </div>

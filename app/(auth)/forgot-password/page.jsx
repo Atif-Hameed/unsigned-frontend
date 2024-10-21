@@ -12,6 +12,8 @@ import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { auth } from '@/config/firebase-config'
 
 const Page = () => {
     const { t } = useTranslation();
@@ -33,7 +35,9 @@ const Page = () => {
         }
         const loadingToastId = toast.loading('loading...');
         try {
-            const response = await axios.post('/api/reset-pass', { email: trimmedEmail });
+
+            await sendPasswordResetEmail(auth, trimmedEmail);
+            // const response = await axios.post('/api/reset-pass', { email: trimmedEmail });
             router.push(`/send-email?email=${trimmedEmail}&type=pass`);
             setLoading(false);
         } catch (error) {

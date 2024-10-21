@@ -116,7 +116,7 @@ const Page = () => {
                             <Button label={t('login')} onClick={handleSubmit} />
                         </div>
                     </div>
-                    <div className="flex justify-center text-lg">
+                    <div className="flex justify-center gap-1 text-lg">
                         <p>{t('noAccount')}?</p>
                         <Link href="/signUp" className="text-lightBlueText">{t('signup')}</Link>
                     </div>

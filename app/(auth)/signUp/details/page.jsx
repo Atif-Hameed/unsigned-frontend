@@ -192,7 +192,7 @@ const Page = () => {
                                     name={'vat'}
                                     value={formData.vat}
                                     onChange={handleChange}
-                                    isRequired={true}
+                                    isRequired={false}
                                 />
                                 <CustomInput
                                     type={'text'}

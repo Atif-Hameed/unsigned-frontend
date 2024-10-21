@@ -79,7 +79,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, style, inputStyle
                     {inputType === 'password' ? <FiEye /> : <FiEyeOff />}
                 </button>
             )}
-            {error && <p className="mt-1 ml-4 text-sm text-red-500 lowercase">{error}</p>}
+            {error && <p className="mt-1 ml-4 capitalize text-sm text-red-500 lowercase">{error}</p>}
         </div>
     );
 };

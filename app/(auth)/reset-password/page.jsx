@@ -6,13 +6,13 @@ import CustomInput from '@/components/shared/CustomInput';
 import Link from 'next/link';
 import Button from '@/components/shared/Button';
 import MaxContainer from '@/components/layout/MaxContainer';
-import { CiCircleRemove } from "react-icons/ci";
-import { CiCircleCheck } from "react-icons/ci";
+import { CiCircleRemove, CiCircleCheck } from "react-icons/ci";
 import TrnaslateButton from '@/components/shared/TrnaslateButton';
 import { useTranslation } from 'next-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
-
+import { confirmPasswordReset } from 'firebase/auth'; // Import Firebase's password reset function
+import { auth } from '@/config/firebase-config'; // Your Firebase config
 
 const Page = () => {
     const [password, setPassword] = useState('');
@@ -25,7 +25,7 @@ const Page = () => {
     const { t } = useTranslation();
     const params = useSearchParams();
     const router = useRouter();
-    const email = params.get('email');
+    const oobCode = params.get('oobCode'); // Get the oobCode from the URL
 
     // Handle password change and validation
     const handlePasswordChange = (e) => {
@@ -39,35 +39,39 @@ const Page = () => {
         setIsMinLength(value.length >= 8);
     };
 
-    // API call to submit the password
+    // API call to submit the new password using Firebase
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
         if (!password) {
-            toast.error('Passwords Required');
+            toast.error(t('passwordRequired'));
             setLoading(false);
             return;
         }
+
         if (password !== confirmPassword) {
-            toast.error('Passwords do not match');
+            toast.error(t('passwordsDoNotMatch'));
             setLoading(false);
             return;
         }
-        const loadingToastId = toast.loading('loading...');
+
+        const loadingToastId = toast.loading(t('loading'));
         try {
-            // const response = await axios.post('/api/set-password', { email, password });
-            console.log(
-                { email, password }
-            )
-            router.push(`/login`);
-            setLoading(false);
+            if (oobCode) {
+                // Firebase's function to confirm the password reset using oobCode
+                await confirmPasswordReset(auth, oobCode, password);
+                toast.success(t('passwordUpdatedSuccessfully'));
+                router.push('/login'); // Redirect to login page after success
+            } else {
+                toast.error(t('invalidOrExpiredLink'));
+            }
         } catch (error) {
             console.error('Error setting password:', error);
-            toast.error('Failed to set password', {
+            toast.error(t('failedToSetPassword'), {
                 id: loadingToastId,
                 duration: 4000,
             });
-            setLoading(false);
         } finally {
             setLoading(false);
             toast.dismiss(loadingToastId);
@@ -76,18 +80,18 @@ const Page = () => {
 
     return (
         <MaxContainer>
-            <Toaster/>
+            <Toaster />
             <div className='relative min-h-screen w-full px-6 flex lg:flex-row flex-col justify-center items-center'>
                 {/* logo */}
                 <div className='lg:absolute flex justify-center top-0 left-[7%]'>
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 
-                <div className='absolute right-10 top-3' >
+                <div className='absolute right-10 top-3'>
                     <TrnaslateButton />
                 </div>
 
-                {/* login container */}
+                {/* reset password container */}
                 <div className='bg-white sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full sm:space-y-12 space-y-6 sm:p-8 p-4 sm:py-10'>
                     <h1 className='text-center sm:text-4xl text-2xl font-semibold'>{t('createnewpass')}</h1>
 
@@ -110,16 +114,16 @@ const Page = () => {
                         {/* Password requirements */}
                         <ul className="space-y-1 text-sm">
                             <li className={`flex items-center ${isMinLength ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('minChar')} </span>
+                                <span className='flex items-center gap-2'>{isMinLength ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('minChar')}</span>
                             </li>
                             <li className={`flex items-center ${isUpperCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('uppercase')} </span>
+                                <span className='flex items-center gap-2'>{isUpperCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('uppercase')}</span>
                             </li>
                             <li className={`flex items-center ${isLowerCase ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('lowercase')} </span>
+                                <span className='flex items-center gap-2'>{isLowerCase ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('lowercase')}</span>
                             </li>
                             <li className={`flex items-center ${isNumber ? 'text-green-500' : 'text-labelColor'}`}>
-                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('number')} </span>
+                                <span className='flex items-center gap-2'>{isNumber ? <CiCircleCheck className='text-xl' /> : <CiCircleRemove className='text-xl text-red-500' />}{t('number')}</span>
                             </li>
                         </ul>
 
