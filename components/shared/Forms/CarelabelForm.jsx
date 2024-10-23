@@ -16,7 +16,7 @@ const CarelabelForm = ({
   onSelect,
   file,
   onFileChange,
-  textareaValue,
+  textareaValue, 
   onTextareaChange,
   brandFile, // Accept the new file state for "My Brand Logo"
   onBrandFileChange, // Accept the new file change handler for "My Brand Logo"
@@ -41,7 +41,7 @@ const CarelabelForm = ({
         <div className='p-5 bg-lightBackground'>
           <div className='flex items-center gap-3 w-full'>
             <Heading>Select your care label option</Heading>
-            <CustomTooltip width='30rem' tooltipText={'Care labels come as standard with a printed polyester label.'}>
+            <CustomTooltip width='30rem' tooltipText={'Care labels are made from polyester and will be printed. If you want fully custom care labels, please specify this in the special request box.'}>
               <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
             </CustomTooltip>
           </div>

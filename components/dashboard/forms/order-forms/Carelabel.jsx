@@ -6,12 +6,12 @@ import { uploadFile } from '@/app/action/orders-action';
 
 const Carelabel = () => {
     const { formData, setFormData } = useContext(MyContext); // Use context for formData and setFormData
-
     const [selectedLabel, setSelectedLabel] = useState(formData?.care_label.carelabel_name || 'unsigned'); // For care label selection
     const [file, setFile] = useState(formData?.care_label.custom_data.file || null); // For file upload
     const [textareaValue, setTextareaValue] = useState(formData?.care_label.custom_data.comments || ''); // For comments textarea
     const [brandFile, setBrandFile] = useState(formData?.care_label.brand_file || null); // For "My Brand Logo" file upload
-    
+    const [isUploading, setIsUploading] = useState(false); // Loading state
+
     // Handler for label selection
     const handleSelect = (value) => {
         setSelectedLabel(value); // Update state on radio button selection
@@ -25,9 +25,16 @@ const Carelabel = () => {
     // Handler for brand logo file upload
     const handleBrandFileChange = async (file) => {
         if (file) {
-            const fileUrl = await uploadFile(file); // Upload file to Firebase and get the URL
-            if (fileUrl) {
-                setBrandFile({ name: file.name, url: fileUrl, type: file.type }); // Save file info (name, URL, type)
+            setIsUploading(true); // Set loading to true
+            try {
+                const fileUrl = await uploadFile(file); // Upload file to Firebase and get the URL
+                if (fileUrl) {
+                    setBrandFile({ name: file.name, url: fileUrl, type: file.type }); // Save file info (name, URL, type)
+                }
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            } finally {
+                setIsUploading(false); // Set loading to false
             }
         } else {
             setBrandFile(null); // Remove file
@@ -56,6 +63,12 @@ const Carelabel = () => {
 
     return (
         <div>
+            {/* Display loading overlay while uploading */}
+            {isUploading && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="text-white text-lg">Uploading...</div>
+                </div>
+            )}
             <CarelabelForm
                 selectedLabel={selectedLabel}
                 onSelect={handleSelect}

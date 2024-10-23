@@ -8,7 +8,7 @@ const Necklabel = () => {
 
     const [selectedColor, setSelectedColor] = useState(formData?.neck_label.label_color || null);
     const [selectedLabelOption, setSelectedLabelOption] = useState(formData?.neck_label.label_name || 'standard');
-    const [selectedMaterialOption, setSelectedMaterialOption] = useState(formData?.neck_label.label_material || 'cotton_canvas');
+    const [selectedMaterialOption, setSelectedMaterialOption] = useState(formData?.neck_label.label_material || 'printed_cotton_canvas_labels');
     const [selectedFile, setSelectedFile] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState(formData?.neck_label.files || []);
     const [customSelectedFile, setCustomSelectedFile] = useState(formData?.neck_label.custom_data.custom_file || null);

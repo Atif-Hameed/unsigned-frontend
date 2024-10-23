@@ -9,7 +9,6 @@ import { MyContext } from '../provider/context-provider';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-
 const Stepper = ({
     orderID,
     fitForm,
@@ -106,13 +105,11 @@ const Stepper = ({
 
     // Function to handle tab click
     const handleTabClick = (tabId) => {
-        // Allow navigation only to completed or current tab
-        if (completedTabs.includes(tabId) || tabId === activeTab) {
-            setActiveTab(tabId);
+        // Allow navigation to any tab (removed restriction)
+        setActiveTab(tabId);
 
-            // Save the active tab to localStorage
-            localStorage.setItem(`order_${orderID}_activeTab`, tabId);
-        }
+        // Save the active tab to localStorage
+        localStorage.setItem(`order_${orderID}_activeTab`, tabId);
     };
 
     return (
@@ -131,11 +128,9 @@ const Stepper = ({
                                 <button
                                     key={tab.id}
                                     onClick={() => handleTabClick(tab.id)}
-                                    className={`px-5 rounded-full text-base cursor-pointer whitespace-nowrap py-3 ${activeTab === tab.id ? 'bg-labelColor text-white' :
-                                        completedTabs.includes(tab.id) ? 'bg-[#f9f9f9] border text-dark' :
-                                            'bg-[#e0e0e0] text-gray-500 cursor-auto'
+                                    className={`px-5 rounded-full text-base cursor-pointer whitespace-nowrap py-3 bg-[#f9f9f9] border text-dark ${activeTab === tab.id ? 'bg-labelColor text-white' :
+                                        'bg-[#f9f9f9] border text-dark'
                                         }`}
-                                    disabled={!completedTabs.includes(tab.id) && tab.id !== activeTab}
                                 >
                                     {tab.name}
                                 </button>
@@ -152,8 +147,13 @@ const Stepper = ({
                 {/* Navigation buttons */}
                 <div className="flex justify-end items-center space-x-4 mb-4 w-full">
                     <Button
-                        label={<span className='flex items-center gap-2'>Save and next <FaArrowRight className='text-lg flex-shrink-0' /></span>}
-                        className="!bg-lightBlue !w-48"
+                        label={
+                            <span className='flex items-center gap-2'>
+                                {activeTab === tabs.length.toString() ? 'Submit' : 'Save and next'}
+                                {activeTab !== tabs.length.toString() && <FaArrowRight className='text-lg flex-shrink-0' />}
+                            </span>
+                        }
+                        className={`!bg-lightBlue  ${activeTab === tabs.length.toString() ? '!w-auto' : '!w-48'} `}
                         onClick={handleNext}
                     />
                 </div>

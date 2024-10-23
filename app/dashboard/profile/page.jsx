@@ -69,7 +69,7 @@ const Page = () => {
                 firstName: user.firstName || '',
                 lastName: user.lastName || '',
                 phone: user.phone || '',
-                email: user.email || '',
+                email: user.reloadUserInfo.email || '',
                 brandName: user.brandName || '',
                 vat: user.vat || '',
                 companyWebsite: user.companyWebsite || '',
@@ -144,13 +144,13 @@ const Page = () => {
                                         value={formData.phone}
                                         onChange={handleChange}
                                     />
-                                    <CustomInput
+                                    {/* <CustomInput
                                         type={'email'}
                                         label={t('email')}
                                         name={'email'}
                                         value={formData.email}
                                         onChange={handleChange}
-                                    />
+                                    /> */}
                                 </div>
 
                                 <div className='w-full'>

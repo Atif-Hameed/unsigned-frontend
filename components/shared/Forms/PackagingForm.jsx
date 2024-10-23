@@ -10,6 +10,7 @@ import CustomRadioButton from '../CustomRadioButton';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import { MyContext } from '@/components/provider/context-provider';
+import { uploadFile } from '@/app/action/orders-action';
 
 const PackagingForm = () => {
     const { formData, setFormData } = useContext(MyContext); // Access context
@@ -18,6 +19,7 @@ const PackagingForm = () => {
     const [ownLogo, setOwnLogo] = useState(formData?.packing.logo || null);
     const [customSelectedFile, setCustomSelectedFile] = useState(formData?.packing.custom_data.custom_file || null);
     const [textareaValue, setTextareaValue] = useState(formData?.packing.custom_data.comments || '');
+    const [isUploading, setIsUploading] = useState(false);
 
 
     const handleTextareaChange = (value) => {
@@ -50,10 +52,20 @@ const PackagingForm = () => {
         setSelectedOption(value);
     };
 
-    const handleOwnLogoFileChange = (e) => {
+    const handleOwnLogoFileChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            setOwnLogo(file);
+            setIsUploading(true); // Set loading to true
+            try {
+                const fileUrl = await uploadFile(file); // Upload file to Firebase and get the URL
+                if (fileUrl) {
+                    setOwnLogo({ name: file.name, url: fileUrl, type: file.type }); // Save logo info
+                }
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            } finally {
+                setIsUploading(false); // Set loading to false
+            }
         }
     };
 
@@ -63,6 +75,11 @@ const PackagingForm = () => {
 
     return (
         <>
+            {isUploading && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="text-white text-lg">Uploading...</div>
+                </div>
+            )}
             <div className="md:max-w-6xl">
                 <div className="grid grid-cols-1 md:gap-10 md:grid-cols-12">
                     <div className="md:col-span-5">
@@ -97,7 +114,7 @@ const PackagingForm = () => {
                                 </div>
                                 <div>
                                     <CustomRadioButton
-                                        label={'Own logo'}
+                                        label={'Polybag with own logo'}
                                         name={'radio'}
                                         value={'ownlogo'}
                                         onChange={handleOptionChange}

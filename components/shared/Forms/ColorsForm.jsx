@@ -24,7 +24,7 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
                 {/* Heading */}
                 <div className='flex items-center gap-3  w-full'>
                     <p className='lg:text-3xl sm:text-2xl text-lg font-medium text-dark'>Choose your fabric color</p>
-                    <CustomTooltip width='30rem' tooltipText={'Basic colorways are BLACK and WHITE. Any other color is done with garment dye. Either select a pre-engineered color way or fill in your own color from the Pantone TCX range.'}>
+                    <CustomTooltip width='20rem' tooltipText={'You can select one of our colors or enter your own by providing the Pantone code in the box.'}>
                         <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                     </CustomTooltip>
                 </div>

@@ -35,14 +35,14 @@ const FabricForm = ({ data, selectedFabric, setSelectedFabric, file, setFile, te
                                 />
                                 <p className='sm:text-xl text-lg font-semibold text-dark'>{e.label}</p>
                             </div>
-                            {
+                            {/* {
                                 i === 0 ?
                                     <CustomTooltip width='20rem' tooltipText="Jersey MOQ 300pcs, Fleece/French Terry MOQ 150pcs">
                                         <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                                     </CustomTooltip>
                                     :
                                     <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
-                            }
+                            } */}
                         </div>
                     </div>
                 ))}

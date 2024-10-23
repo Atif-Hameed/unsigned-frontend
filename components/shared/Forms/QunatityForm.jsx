@@ -4,6 +4,7 @@ import NumberInput from '../NumberInput';
 import { HiQuestionMarkCircle } from 'react-icons/hi';
 import Heading from '../Heading';
 import { MyContext } from '@/components/provider/context-provider';
+import CustomTooltip from '../CustomTooltip';
 
 const QuantityForm = ({ error }) => {
     const sizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -64,7 +65,12 @@ const QuantityForm = ({ error }) => {
             <div className="bg-lightBackground p-6 shadow-md">
                 <h2 className="text-2xl flex font-semibold mb-4">
                     <Heading>How many items would you like to produce</Heading>
-                    <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
+                    <CustomTooltip
+                    width='18rem'
+                    tooltipText={"Please enter a minimum of 50 in total across the sizes."}
+                >
+                    <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
+                </CustomTooltip>
                 </h2>
 
                 <div className="grid grid-cols-7 md:w-[30vw] gap-2 md:gap-4 mb-4">

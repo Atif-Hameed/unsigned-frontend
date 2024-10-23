@@ -11,14 +11,10 @@ import { MyContext } from '@/components/provider/context-provider';
 import { OrdersData } from '@/data/order-form-data';
 
 const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) => {
-    const { formData, setFormData } = useContext(MyContext); // Use context for form data management
-
+    const { formData } = useContext(MyContext); // Use context for form data management
     const path = usePathname();
     const currentOrder = OrdersData.find(order => formData?.category?.toLowerCase() === order.category);
 
-    // console.log(currentOrder)
-
-    // If no matching data is found for the category, return a message
     if (!currentOrder) {
         return <div>No matching print data found for this category.</div>;
     }
@@ -49,7 +45,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                 <Heading>Add your customization</Heading>
                 <CustomTooltip
                     width='30rem'
-                    tooltipText={'This is where it gets really fun! Download the template and drop your designs in there. Make sure to read our PRODUCT GUIDE for an overview of customization options.'}
+                    tooltipText={"Download our template, add your design to it, and then upload the completed file. If you can't do this yourself, just upload your design and specify the measurements for placement in the special request box."}
                 >
                     <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                 </CustomTooltip>
@@ -76,11 +72,11 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
 
                     <div className='flex items-center justify-center gap-3'>
                         <div>
-                            {selectedFile &&
+                            {selectedFile && (
                                 <div className='w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
                                     <span className='text-blue-500 font-bold'>{selectedFile.type.split('/')[1].toUpperCase()}</span>
                                 </div>
-                            }
+                            )}
                         </div>
                         {!selectedFile && (
                             <div className='text-white relative flex items-center gap-2 px-4 py-2 bg-lightBlueText rounded-full'>
@@ -89,7 +85,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                                     type='file'
                                     className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
                                     onChange={handleImageFileChange}
-                                    accept='.svg,.pdf,.ai,.eps'
+                                    accept='.svg,.pdf,.ai,.eps,.png'
                                 />
                                 Upload File
                             </div>

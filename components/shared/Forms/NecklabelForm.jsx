@@ -100,7 +100,7 @@ const NecklabelForm = ({
                 <div className='p-5 bg-lightBackground '>
                     <div className='flex items-center gap-3  w-full'>
                         <Heading>Select a label option</Heading>
-                        <CustomTooltip width='30rem' tooltipText={'Select the label attachment here. Labels get attached with tone-in-tone threads as standard.'}>
+                        <CustomTooltip width='20rem' tooltipText={'Select whether you want a neck label or not'}>
                             <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                         </CustomTooltip>
                     </div>
@@ -127,24 +127,24 @@ const NecklabelForm = ({
                     <div className='p-5 bg-lightBackground '>
                         <div className='flex items-center gap-3 w-full'>
                             <Heading>Choose the material</Heading>
-                            <CustomTooltip width='30rem' tooltipText={"Labels come in different materials. As standard, labels are done in a printed polyester."}>
+                            <CustomTooltip width='20rem' tooltipText={"We can produce your labels as either printed or woven."}>
                                 <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                             </CustomTooltip>
                         </div>
                         <div className='flex flex-col gap-2 mt-3'>
                             <CustomRadioButton
-                                value='cotton_canvas'
+                                value='printed_cotton_canvas_labels'
                                 onChange={onMaterialOptionSelect}
-                                isChecked={selectedMaterialOption === 'cotton_canvas'}
+                                isChecked={selectedMaterialOption === 'printed_cotton_canvas_labels'}
                                 name='materialOption'
-                                label={'MOQ 200 to Cotton Canvas'}
+                                label={'Printed Cotton Canvas Labels (MOQ 200)'}
                             />
                             <CustomRadioButton
-                                value='woven_label'
+                                value='woven_cotton_canvas_labels'
                                 onChange={onMaterialOptionSelect}
-                                isChecked={selectedMaterialOption === 'woven_label'}
+                                isChecked={selectedMaterialOption === 'woven_cotton_canvas_labels'}
                                 name='materialOption'
-                                label={'MOQ 500 to Woven Label'}
+                                label={'Woven Cotton Canvas Labels (MOQ 500)'}
                             />
                         </div>
                     </div>
@@ -155,7 +155,7 @@ const NecklabelForm = ({
                     <div className='p-5 bg-lightBackground '>
                         <div className='flex items-center gap-3  w-full'>
                             <Heading>Choose the label color</Heading>
-                            <CustomTooltip width='30rem' tooltipText={"Labels are in a limited range of colors available."}>
+                            <CustomTooltip width='15rem' tooltipText={"Choose between black or white."}>
                                 <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                             </CustomTooltip>
                         </div>
@@ -211,7 +211,9 @@ const NecklabelForm = ({
                                     </div>
                                 </div>
 
-                                <span className='text-center text-xs mt-2 '>Max 5 files</span>
+                                <div className='md:w-full w-[200px] text-gray-700 lg:text-xs text-[10px] absolute xl:-bottom-[25%] lg:-bottom-[40%] sm:-bottom-[90%] -bottom-[100%] text-center sm:-left-[60%] -left-[80%]'>
+                                    <p>Please provide us with every Size Label for every Size. For example, if you have 5 Sizes you need to upload 5 files, one with S one with M one with L and so on.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
