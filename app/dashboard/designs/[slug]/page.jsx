@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import Carelabel from '@/components/dashboard/forms/order-forms/Carelabel';
