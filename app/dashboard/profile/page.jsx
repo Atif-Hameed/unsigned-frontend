@@ -27,7 +27,7 @@ const Page = () => {
     const { user } = useAuth()
     const router = useRouter();
 
-    console.log(user)
+    // console.log(user)
 
     const handleDeleteClick = () => {
         setShowDeleteDialog(true);
@@ -91,7 +91,7 @@ const Page = () => {
     // Handle input changes for the entire form
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(e.target.name, e.target.value)
+        // console.log(e.target.name, e.target.value)
         setFormData((prev) => ({
             ...prev,
             [name]: value
@@ -342,10 +342,10 @@ const Page = () => {
                                         value={formData.deliveryCountry}
                                         onChange={handleChange}
                                     />
-                                    <div className='flex items-center gap-2 w-full justify-start mt-2'>
+                                    {/* <div className='flex items-center gap-2 w-full justify-start mt-2'>
                                         <input type="checkbox" className='h-5 w-5' name="" id="" />
                                         <p className='text-sm text-labelColor'>{t('samedelivery')}</p>
-                                    </div>
+                                    </div> */}
                                 </div>
 
 

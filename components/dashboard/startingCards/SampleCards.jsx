@@ -89,7 +89,6 @@ const SampleCards = ({ orders }) => {
                             <div
                                 key={order.id}
                                 className="bg-cardColor h-72 flex flex-col justify-between shadow-xl p-6"
-                                style={{ borderRadius: '25px' }}
                             >
                                 <div>
                                     <div className="flex justify-between items-center">

@@ -11,7 +11,7 @@ export const getOrder = async (orderID) => {
 
         if (orderSnapshot.exists()) {
             const orderData = { id: orderSnapshot.id, ...orderSnapshot.data() };
-            console.log("Order fetched successfully:", orderData);
+            // console.log("Order fetched successfully:", orderData);
             return orderData; // Return the order data
         } else {
             console.log("No such order found with the given ID");
@@ -87,7 +87,7 @@ export const getAllPendingOrders = async (user_id) => {
             orders.push({ id: doc.id, ...doc.data() });
         });
 
-        console.log("Pending orders fetched successfully:", orders);
+        console.log("Pending orders fetched successfully",);
         return orders; // Return the array of orders
     } catch (error) {
         console.error("Error fetching pending orders from Firestore:", error.message);
@@ -117,7 +117,7 @@ export const getAllCompleteOrders = async (user_id) => {
             orders.push({ id: doc.id, ...doc.data() });
         });
 
-        console.log("Complete orders fetched successfully:", orders);
+        console.log("Complete orders fetched successfully");
         return orders; // Return the array of orders
     } catch (error) {
         console.error("Error fetching complete orders from Firestore:", error.message);
@@ -148,7 +148,7 @@ export const getAllSampleOrders = async (user_id) => {
             orders.push({ id: doc.id, ...doc.data() });
         });
 
-        console.log("Sample orders fetched successfully:", orders);
+        console.log("Sample orders fetched successfully");
         return orders; // Return the array of orders
     } catch (error) {
         console.error("Error fetching sample orders from Firestore:", error.message);
@@ -177,7 +177,7 @@ export const getAllBulksOrders = async (user_id) => {
             orders.push({ id: doc.id, ...doc.data() });
         });
 
-        console.log("Sample orders fetched successfully:", orders);
+        console.log("Sample orders fetched successfully");
         return orders; // Return the array of orders
     } catch (error) {
         console.error("Error fetching sample orders from Firestore:", error.message);

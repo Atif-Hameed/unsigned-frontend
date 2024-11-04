@@ -11,7 +11,7 @@ const CustomDataUpload = ({ onFileChange = () => { }, onTextareaChange = () => {
     const [textarea, setTextarea] = useState(textareaValue);
     const [isLoading, setIsLoading] = useState(false); // Track the loading state
 
-    console.log(selectedFile)
+    // console.log(selectedFile)
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];

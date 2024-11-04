@@ -106,7 +106,7 @@ export const ContextProvider = ({ children }) => {
         errors: {},  // An errors object 
     });
 
-    console.log('formData', formData)
+    // console.log('formData', formData)
 
     const initialState = {
         category: "",
