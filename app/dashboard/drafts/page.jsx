@@ -22,7 +22,7 @@ const Page = () => {
     if (error) {
         return <div className='min-h-screen flex justify-center items-center'>Error: {error.message}</div>;
     }
-    console.log("order", myData)
+    // console.log("order", myData)
     return (
         <div>
             <DraftCards orders={myData} refetch={refetch} /> {/* Pass the fetched data to DraftCards */}

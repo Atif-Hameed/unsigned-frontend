@@ -4,10 +4,12 @@ import nodemailer from 'nodemailer';
 export async function POST(req) {
     const { email, } = await req.json();
 
+    const link = `https://user.unsigned-global.com/signUp/create-password?email=${encodeURIComponent(email)}`
+
 
     // Create mail options with dynamic values
     const mailOptions = {
-        from: 'atifhameed2002@gmail.com',
+        from: 'info@unsigned-global.com',
         to: `${email}`,
         subject: 'Verify Your Email Address',
         html: `
@@ -17,10 +19,10 @@ export async function POST(req) {
             <p>Thank you for signing up! Please verify your email address to complete your registration.</p>
             <p>Click the button below to verify your email address:</p>
             <div style="text-align: center; margin: 20px 0;">
-                <a href="https://unsigned-nu.vercel.app/signUp/create-password?email=${encodeURIComponent(email)}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Verify Email</a>
-            </div>
-            <p>If the button doesn't work, you can also click the link below:</p>
-            <p><a href="https://unsigned-nu.vercel.app/create-password?email=${encodeURIComponent(email)}">Verify Email</a></p>
+                    <a href="${link}" target="_blank" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Verify Email</a>
+                </div>
+                <p>If the button doesn't work, you can copy and paste the following URL into your browser:</p>
+                <p style="color: blue;">${link}</p>
             <p>If you didn't create an account, you can safely ignore this email.</p>
             <p>Best regards,</p>
             <p>Unsigned</p>
@@ -29,14 +31,24 @@ export async function POST(req) {
     };
 
     try {
+        // const transporter = nodemailer.createTransport({
+        //     service: "Gmail",
+        //     host: "smtp.gmail.com",
+        //     port: 465,
+        //     secure: true,
+        //     auth: {
+        //         user: 'atifhameed11312@gmail.com',
+        //         pass: 'vsmn udhp fblt mmdr',
+        //     },
+        // });
+
         const transporter = nodemailer.createTransport({
-            service: "Gmail",
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
+            host: 'smtp.strato.com',   // Strato SMTP server
+            port: 465,                 // or 587
+            secure: true,              // use SSL
             auth: {
-                user: 'atifhameed11312@gmail.com',
-                pass: 'vsmn udhp fblt mmdr',
+                user: 'info@unsigned-global.com', // Your Strato email address
+                pass: 'jakdfjksdjkfsbfds121!!!11((',         // Your Strato email password
             },
         });
 

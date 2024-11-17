@@ -110,6 +110,9 @@ const Stepper = ({
             localStorage.setItem(`order_${orderID}_activeTab`, nextTabId);
         } else {
             toast.success('Order created Successfully');
+            localStorage.removeItem(`order_${orderID}_activeTab`);
+            localStorage.removeItem(`order_${orderID}_completedTabs`);
+
             router.push('/dashboard'); // Redirect to dashboard
         }
     };

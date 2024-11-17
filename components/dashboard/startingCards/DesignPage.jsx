@@ -26,7 +26,7 @@ const DesignPage = ({ onClose }) => {
     const router = useRouter();
     const { user } = useAuth()
     const { t } = useTranslation()
-    console.log("user", user)
+    // console.log("user", user)
     const items = [
         { name: t('tshirt'), key: 'T-Shirt', icon: shirt },
         { name: t('hoodie'), key: "Hoodie", icon: hoodie },
@@ -54,7 +54,7 @@ const DesignPage = ({ onClose }) => {
                 user_id: user.uid,
                 category: key,
             }));
-            console.log(formData);
+            // console.log(formData);
 
 
             // Reference to the "orders" collection
