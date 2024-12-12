@@ -105,10 +105,10 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
                     <div className='bg-lightBackground p-5 '>
                         <h1 className='lg:text-2xl md:text-xl text-lg text-dark font-medium'>There are only 3 rules of thumb:</h1>
                         <div className='text-sm mt-2'>
-                            <p>1. Your designs must be vectorized or high quality PNG</p>
-                            <p>2. Indicate your logo with a Pantone Code</p>
-                            <p>3. Describe with arrows the positioning and the size of your design </p>
-                            <p>4. Write under the design what type of customization it should be, you have the following options: DTG, Screen Printing and Embroidery, Puff print, if you want something else, please write it also under the design </p>
+                            <p>1. Your designs must be vectorized or high-quality PNG files.</p>
+                            <p>2. Indicate your logo with a Pantone code.</p>
+                            <p>3. Use arrows to describe the positioning and size of your design.</p>
+                            <p>4. Write below the design what type of customization it should be. You can choose from the following options: DTG, Screen Printing, Embroidery, or Puff Print. If you want something else, please specify it below the design as well.</p>
                         </div>
                     </div>
                     <div className='bg-transparent  mt-3 w-full h-full border border-dark p-5'>

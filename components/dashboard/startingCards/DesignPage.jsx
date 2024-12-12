@@ -90,7 +90,7 @@ const DesignPage = ({ onClose }) => {
                                 <IoCloseOutline size={24} />
                             </button>
                         </div>
-                        <h3 className='text-center sm:text-2xl text-lg py-3 font-medium text-dark'>{t('basic')}</h3>
+                        {/* <h3 className='text-center sm:text-2xl text-lg py-3 font-medium text-dark'>{t('basic')}</h3> */}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pb-20">
                         {items.map((item, index) => (

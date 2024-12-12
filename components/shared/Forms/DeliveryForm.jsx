@@ -6,9 +6,11 @@ import { CiLock } from 'react-icons/ci';
 import { MyContext } from '@/components/provider/context-provider';
 import { useAuth } from '@/components/provider/auth_context';
 
-const DeliveryForm = () => {
+const DeliveryForm = ({ errors }) => {
     const { formData, setFormData } = useContext(MyContext);
     const { user } = useAuth();
+
+    console.log(formData)
     // console.log("User Data:", user);
     // console.log("Initial Form Data:", formData);
 
@@ -45,7 +47,7 @@ const DeliveryForm = () => {
                 }
             }));
         }
-    }, [user]);
+    }, [user, setFormData]);
 
     // Handle input changes
     const handleInputChange = (section, field, value) => {
@@ -75,11 +77,14 @@ const DeliveryForm = () => {
         }));
     };
 
+    console.log(errors)
+
     return (
         <div className=''>
             <div className="">
                 <Heading>Confirm shipping address</Heading>
             </div>
+
             <div className="grid md:grid-cols-3 gap-4 grid-cols-1">
                 {/* Billing Address Section */}
                 <div className="bg-lightBackground p-5 rounded-3xl">
@@ -92,6 +97,7 @@ const DeliveryForm = () => {
                         style='!bg-lightBackground'
                         value={formData.delivery.billingAddress.companyName}
                         onChange={(e) => handleInputChange('billingAddress', 'companyName', e.target.value)}
+                        formError={errors?.billingCompanyName}
                     />
                     <CustomInput
                         type='text'
@@ -101,6 +107,7 @@ const DeliveryForm = () => {
                         style='!bg-lightBackground'
                         value={formData.delivery.billingAddress.addressLine1}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine1', e.target.value)}
+                        formError={errors?.billingAddressLine1}
                     />
                     <CustomInput
                         type='text'
@@ -109,6 +116,7 @@ const DeliveryForm = () => {
                         style='!bg-lightBackground'
                         value={formData.delivery.billingAddress.addressLine2}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine2', e.target.value)}
+                        formError={errors?.deliveryCompanyName}
                     />
                     <div className="flex gap-2 w-full">
                         <CustomInput

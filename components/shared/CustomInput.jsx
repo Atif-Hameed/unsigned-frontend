@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import React, { useState, useRef, useEffect } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-const CustomInput = ({ type, label, id, name, onChange, value, style, inputStyle, isRequired = false }) => {
+const CustomInput = ({ type, label, id, name, onChange, value, style, inputStyle, formError, isRequired = false }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [inputType, setInputType] = useState(type);
     const [error, setError] = useState(""); // State to handle error messages
@@ -80,6 +80,7 @@ const CustomInput = ({ type, label, id, name, onChange, value, style, inputStyle
                 </button>
             )}
             {error && <p className="mt-1 ml-4 capitalize text-sm text-red-500 lowercase">{error}</p>}
+            {formError && <p className="text-sm text-red-500 " >{formError}</p>}
         </div>
     );
 };

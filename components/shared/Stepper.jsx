@@ -112,8 +112,9 @@ const Stepper = ({
             toast.success('Order created Successfully');
             localStorage.removeItem(`order_${orderID}_activeTab`);
             localStorage.removeItem(`order_${orderID}_completedTabs`);
+            localStorage.removeItem(`formData`);
 
-            router.push('/dashboard'); // Redirect to dashboard
+            // router.push('/dashboard'); // Redirect to dashboard
         }
     };
 

@@ -1,10 +1,17 @@
+import { MyContext } from '@/components/provider/context-provider';
 import DeliveryForm from '@/components/shared/Forms/DeliveryForm'
-import React from 'react'
+import React, { useContext } from 'react'
 
 const Delivery = () => {
+
+    const { formData, setFormData } = useContext(MyContext);
+    
+
     return (
         <div>
-            <DeliveryForm />
+            <DeliveryForm
+                errors={formData?.errors?.delivery}
+            />
         </div>
     )
 }

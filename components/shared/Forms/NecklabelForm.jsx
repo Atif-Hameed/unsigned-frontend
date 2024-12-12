@@ -27,7 +27,8 @@ const NecklabelForm = ({
     customFile,
     onCustomFileChange,
     onCustomFileRemove,
-    error
+    error,
+    error2
 }) => {
     const [isUploading, setIsUploading] = useState(false); // State to manage upload status
 
@@ -100,10 +101,13 @@ const NecklabelForm = ({
                 <div className='p-5 bg-lightBackground '>
                     <div className='flex items-center gap-3  w-full'>
                         <Heading>Select a label option</Heading>
-                        <CustomTooltip width='20rem' tooltipText={'Select whether you want a neck label or not'}>
+                        <CustomTooltip width='20rem' tooltipText={'Select whether you want a neck label or not.'}>
                             <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                         </CustomTooltip>
                     </div>
+                    {error2 && (
+                        <p className="text-red-500">{error2}</p>
+                    )}
                     <div className='flex flex-col gap-2 mt-3'>
                         <CustomRadioButton
                             value='no_label'

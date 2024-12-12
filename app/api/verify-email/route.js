@@ -9,7 +9,7 @@ export async function POST(req) {
 
     // Create mail options with dynamic values
     const mailOptions = {
-        from: 'info@unsigned-global.com',
+        from: 'no-reply@unsigned-global.com',
         to: `${email}`,
         subject: 'Verify Your Email Address',
         html: `
@@ -47,7 +47,7 @@ export async function POST(req) {
             port: 465,                 // or 587
             secure: true,              // use SSL
             auth: {
-                user: 'info@unsigned-global.com', // Your Strato email address
+                user: 'no-reply@unsigned-global.com', // Your Strato email address
                 pass: 'jakdfjksdjkfsbfds121!!!11((',         // Your Strato email password
             },
         });
