@@ -1,7 +1,8 @@
 import shirt from '/public/orders/t-shirt.png';
 import hoodie from '/public/orders/hoodie new.png';
 import crew from '/public/orders/crew new.png';
-import zip from '/public/orders/zip new.png';
+// import zip from '/public/orders/zip new.png';
+import zip from '/public/orders/zipperUpdate.png';
 import long from '/public/orders/longsleeve new.png';
 import tank from '/public/orders/Tank Top Sizing Picture.png';
 import jogger_open_leg from '/public/orders/Jogger Cuffed Sizing Picture.png';

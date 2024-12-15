@@ -68,7 +68,7 @@ const Navbar = () => {
                             )}
                         </div>
 
-                        <TrnaslateButton />
+                        {/* <TrnaslateButton /> */}
                     </div>
 
                     <d className='sm:absolute sm:left-1/2 sm:-translate-x-1/2 top-1'>
