@@ -28,7 +28,6 @@ const NecklabelForm = ({
     onCustomFileChange,
     onCustomFileRemove,
     error,
-    error2
 }) => {
     const [isUploading, setIsUploading] = useState(false); // State to manage upload status
 
@@ -105,9 +104,7 @@ const NecklabelForm = ({
                             <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                         </CustomTooltip>
                     </div>
-                    {error2 && (
-                        <p className="text-red-500">{error2}</p>
-                    )}
+
                     <div className='flex flex-col gap-2 mt-3'>
                         <CustomRadioButton
                             value='no_label'

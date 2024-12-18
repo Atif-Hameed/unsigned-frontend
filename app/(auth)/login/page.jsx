@@ -90,9 +90,9 @@ const Page = () => {
                 <div className="lg:absolute flex justify-center top-1 left-[7%]">
                     <Image alt="logo" src={logo} className="sm:w-48 w-28" unoptimized />
                 </div>
-                <div className="absolute right-10 top-3">
+                {/* <div className="absolute right-10 top-3">
                     <TrnaslateButton />
-                </div>
+                </div> */}
                 <div className="bg-white sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] w-full space-y-6 p-8">
                     <h1 className="text-center text-4xl font-semibold">{t('login')}</h1>
                     <CustomInput

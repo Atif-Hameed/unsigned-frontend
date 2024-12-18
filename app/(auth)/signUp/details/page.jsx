@@ -359,9 +359,9 @@ const Page = () => {
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 
-                <div className='absolute right-10 top-3' >
+                {/* <div className='absolute right-10 top-3' >
                     <TrnaslateButton />
-                </div>
+                </div> */}
 
                 {/* main container */}
                 <div className='flex flex-col items-center lg:mt-12 mt-0 p-12 lg:w-1/2 sm:w-[75%] w-full  px-6'>

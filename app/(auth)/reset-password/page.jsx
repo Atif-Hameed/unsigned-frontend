@@ -87,9 +87,9 @@ const Page = () => {
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 
-                <div className='absolute right-10 top-3'>
+                {/* <div className='absolute right-10 top-3'>
                     <TrnaslateButton />
-                </div>
+                </div> */}
 
                 {/* reset password container */}
                 <div className='bg-white sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full sm:space-y-12 space-y-6 sm:p-8 p-4 sm:py-10'>

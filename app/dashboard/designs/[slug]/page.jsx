@@ -12,7 +12,7 @@ import Print from '@/components/dashboard/forms/order-forms/Print';
 import Qunatity from '@/components/dashboard/forms/order-forms/Qunatity';
 import { MyContext } from '@/components/provider/context-provider';
 import Stepper from '@/components/shared/Stepper';
-import { validateColoursForm, validateFabricForm, validateNeckLabelForm, validateQuantityForm } from '@/utils/validations';
+import { validateColoursForm, validateFabricForm, validateNeckLabelForm, validateQuantityForm, validateDeliveryForm } from '@/utils/validations';
 import { usePathname } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore'; // Import Firebase Firestore methods
@@ -81,8 +81,10 @@ const Page = () => {
         deliveryForm={<Delivery />}
         validateFabricForm={() => validateFabricForm(formData, setFormData)}
         validateColorsForm={() => validateColoursForm(formData, setFormData)}
-        validateNecklabelForm={() => validateNeckLabelForm(formData, setFormData)}
+        // validateNecklabelForm={() => validateNeckLabelForm(formData, setFormData)}
         validateQuantityForm={() => validateQuantityForm(formData, setFormData)}
+        validateDeliveryForm={() => validateDeliveryForm(formData, setFormData)}
+
       />
     </div>
   );

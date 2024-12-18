@@ -40,9 +40,9 @@ const Page = () => {
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 
-                <div className='absolute right-10 top-3' >
+                {/* <div className='absolute right-10 top-3' >
                     <TrnaslateButton />
-                </div>
+                </div> */}
 
                 <div className='bg-white sm:mt-0 mt-16  w-full space-y-6 sm:p-8 p-4 sm:py-10 ' >
                     <div className='flex flex-col items-center gap-6'>

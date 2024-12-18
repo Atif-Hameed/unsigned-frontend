@@ -37,29 +37,29 @@ export const validateColoursForm = (formData, setFormData) => {
 };
 
 
-export const validateNeckLabelForm = (formData, setFormData) => {
-    const errors = {};
+// export const validateNeckLabelForm = (formData, setFormData) => {
+//     const errors = {};
 
-    // Validate color selection
-    if (!formData?.neck_label.label_color && formData?.neck_label.label_name !== 'no_label') {
-        errors.neck_label = "Select a color";
-    }
+//     // Validate color selection
+//     if (!formData?.neck_label.label_color && formData?.neck_label.label_name !== 'no_label') {
+//         errors.neck_label = "Select a color";
+//     }
 
-    // Validate that "no_label" is not allowed
-    if (formData?.neck_label.label_name === 'no_label') {
-        errors.neck_label = "No label is not allowed";
-    }
+//     // Validate that "no_label" is not allowed
+//     if (formData?.neck_label.label_name === 'no_label') {
+//         errors.neck_label = "No label is not allowed";
+//     }
 
-    setFormData((prevData) => ({
-        ...prevData,
-        errors: {
-            ...prevData.errors,
-            ...errors,
-        },
-    }));
+//     setFormData((prevData) => ({
+//         ...prevData,
+//         errors: {
+//             ...prevData.errors,
+//             ...errors,
+//         },
+//     }));
 
-    return Object.keys(errors).length === 0;
-};
+//     return Object.keys(errors).length === 0;
+// };
 
 
 
@@ -90,6 +90,7 @@ export const validateQuantityForm = (formData, setFormData) => {
             ...errors,
         },
     }));
+    
 
     return Object.keys(errors).length === 0;
 };
@@ -155,6 +156,7 @@ export const validateDeliveryForm = (formData, setFormData) => {
             ...errors,
         },
     }));
+    
 
     // Return true if there are no errors
     return Object.keys(errors).length === 0;

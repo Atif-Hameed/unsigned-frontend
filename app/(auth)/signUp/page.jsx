@@ -110,9 +110,9 @@ const Page = () => {
                     <Image alt='' src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 
-                <div className='absolute right-10 top-3' >
+                {/* <div className='absolute right-10 top-3' >
                     <TrnaslateButton />
-                </div>
+                </div> */}
 
 
                 {/* main continer */}

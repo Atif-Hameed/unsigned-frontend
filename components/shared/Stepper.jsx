@@ -24,6 +24,7 @@ const Stepper = ({
     validateColorsForm,
     validateNecklabelForm,
     validateQuantityForm,
+    validateDeliveryForm
 }) => {
     const [activeTab, setActiveTab] = useState('1');
     const [completedTabs, setCompletedTabs] = useState(['1']); // Track completed tabs
@@ -40,8 +41,8 @@ const Stepper = ({
         { name: 'Print', id: '6', component: printForm, validate: '' },
         { name: 'Quantity', id: '7', component: qunatityForm, validate: validateQuantityForm },
         { name: 'Packaging', id: '8', component: packagingForm, validate: '' },
-        { name: 'Delivery', id: '9', component: deliveryForm, validate: '' },
-    ], [fitForm, fabricForm, colourwayForm, necklabelForm, carelabelForm, printForm, qunatityForm, packagingForm, deliveryForm, validateFabricForm, validateColorsForm, validateNecklabelForm, validateQuantityForm]);
+        { name: 'Delivery', id: '9', component: deliveryForm, validate: validateDeliveryForm },
+    ], [fitForm, fabricForm, colourwayForm, necklabelForm, carelabelForm, printForm, qunatityForm, packagingForm, deliveryForm, validateFabricForm, validateColorsForm, validateNecklabelForm, validateQuantityForm, validateDeliveryForm]);
 
     // Use effect to check if there's a saved tab when component loads
     useEffect(() => {
@@ -114,7 +115,7 @@ const Stepper = ({
             localStorage.removeItem(`order_${orderID}_completedTabs`);
             localStorage.removeItem(`formData`);
 
-            // router.push('/dashboard'); // Redirect to dashboard
+            router.push('/dashboard'); // Redirect to dashboard
         }
     };
 

@@ -24,8 +24,16 @@ const Fit = () => {
     }
 
     // Extract the initial selected fit and fit data
-    const [selectedFit, setSelectedFit] = useState(currentOrder.fitOptions[0].value);
-    const [fitData, setFitData] = useState(currentOrder[selectedFit] || []);
+    const [selectedFit, setSelectedFit] = useState(
+        formData?.fit?.fit_type || currentOrder.fitOptions?.[0]?.value || ''
+    );
+    const [fitData, setFitData] = useState(
+        Array.isArray(formData?.fit?.fit_values)
+            ? formData.fit.fit_values
+            : Array.isArray(currentOrder[selectedFit])
+                ? currentOrder[selectedFit]
+                : []
+    );
 
     // Local state for custom data (comments and file)
     const [customData, setCustomData] = useState({
@@ -40,7 +48,7 @@ const Fit = () => {
             fit: {
                 fit_type: selectedFit,
                 fit_values: fitData,
-                custom_data: customData, 
+                custom_data: customData,
             },
         }));
     }, [fitData, selectedFit, customData, setFormData, path]);
@@ -76,6 +84,8 @@ const Fit = () => {
             comments: value,
         }));
     };
+
+    console.log(fitData)
 
     // Extract size headers dynamically based on fitData
     const sizeHeaders = Object.keys(currentOrder.fitData[0]).filter(key => key !== 'name');
@@ -134,7 +144,7 @@ const Fit = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {fitData.map((item, index) => (
+                                    {fitData?.map((item, index) => (
                                         <tr key={index}>
                                             <td className="px-1 lg:w-48 py-2 text-start text-sm">
                                                 <div className='flex items-center gap-2'>

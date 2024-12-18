@@ -77,13 +77,16 @@ const DeliveryForm = ({ errors }) => {
         }));
     };
 
-    console.log(errors)
+    const containsValues = Object.values(errors || {}).some(value => !!value);
+
+    console.log(containsValues); 
 
     return (
-        <div className=''>
+        <div className='w-full'>
             <div className="">
                 <Heading>Confirm shipping address</Heading>
             </div>
+
 
             <div className="grid md:grid-cols-3 gap-4 grid-cols-1">
                 {/* Billing Address Section */}
@@ -97,7 +100,7 @@ const DeliveryForm = ({ errors }) => {
                         style='!bg-lightBackground'
                         value={formData.delivery.billingAddress.companyName}
                         onChange={(e) => handleInputChange('billingAddress', 'companyName', e.target.value)}
-                        formError={errors?.billingCompanyName}
+
                     />
                     <CustomInput
                         type='text'
@@ -107,7 +110,6 @@ const DeliveryForm = ({ errors }) => {
                         style='!bg-lightBackground'
                         value={formData.delivery.billingAddress.addressLine1}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine1', e.target.value)}
-                        formError={errors?.billingAddressLine1}
                     />
                     <CustomInput
                         type='text'
@@ -116,7 +118,6 @@ const DeliveryForm = ({ errors }) => {
                         style='!bg-lightBackground'
                         value={formData.delivery.billingAddress.addressLine2}
                         onChange={(e) => handleInputChange('billingAddress', 'addressLine2', e.target.value)}
-                        formError={errors?.deliveryCompanyName}
                     />
                     <div className="flex gap-2 w-full">
                         <CustomInput
@@ -265,6 +266,10 @@ const DeliveryForm = ({ errors }) => {
                     />
                 </div>
             </div>
+
+            {!containsValues &&
+                <p className='text-red-500 text-xl py-2 text-end w-full '>Please fill out all the fields</p>
+            }
         </div>
     );
 };

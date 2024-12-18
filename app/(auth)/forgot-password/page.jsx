@@ -63,9 +63,9 @@ const Page = () => {
                     <Image alt={t('logoAlt')} src={logo} className='sm:w-48 w-28' unoptimized />
                 </div>
 
-                <div className='absolute right-10 top-3' >
+                {/* <div className='absolute right-10 top-3' >
                     <TrnaslateButton />
-                </div>
+                </div> */}
 
                 {/* main container */}
                 <div className='bg-white relative sm:mt-0 mt-16 rounded-3xl shadow-xl xl:w-[35%] lg:w-[45%] md:w-[60%] sm:w-[75%] w-full flex flex-col sm:gap-8 gap-6  sm:p-8 p-4 sm:py-10 '>

@@ -29,12 +29,13 @@ import tankDesign from '@/assets/prints/tank-print/tank2.png'
 
 
 export const OrdersData = [
-    //    done
+    //  t-shirt
     {
         category: "t-shirt",
         fitImg: shirt,
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
         ],
         fitData: [
             { name: 'Total Length', xs: '65', s: '67', m: '69', l: '71', xl: '73', xxl: '75' },
@@ -62,15 +63,31 @@ export const OrdersData = [
             { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10', xxl: '10' },
             { name: 'Shoulder to Shoulder', xs: '58', s: '59', m: '60', l: '61', xl: '62', xxl: '63' }
         ],
+        own_fit: [
+            { name: 'Total Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Chest Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Bottom Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Armhole', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Neck', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Rib Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Drop Front', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Shoulder', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
+        ],
+
         printSimpleImg: shirtSimple,
         printDesignImg: shirtDesign,
     },
-    // done
+
+    // hoodie
     {
         category: "hoodie",
         fitImg: hoodie,
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
             // { label: 'Balloon Fit', value: 'balloon_fit' },
         ],
         fitData: [
@@ -117,15 +134,39 @@ export const OrdersData = [
             { name: 'Neck Rib Length', xs: '2', s: '2', m: '2', l: '2', xl: '2', xxl: '2' },
             { name: 'Neck Drop Front', xs: '10', s: '10', m: '10', l: '10', xl: '10', xxl: '10' }
         ],
+        own_fit: [
+            { name: 'Total Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Chest Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Bottom Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Shoulder', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Neck', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Cuff Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Cuff Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Hem Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pockets Bottom to Zipper', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pockets Bottom Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Biceps', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Bottom Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Hood Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Hood Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Armhole', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Rib Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Drop Front', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
+        ],
         printSimpleImg: hoodieSimple,
         printDesignImg: hoodieDesign,
     },
-    // done
+
+    // crewneck
     {
         category: "crewneck",
         fitImg: crew, // Assuming 'shirt' is the image source
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
             // { label: 'Balloon Fit', value: 'balloon_fit' },
         ],
         fitData: [
@@ -156,15 +197,31 @@ export const OrdersData = [
             { name: 'Shoulder to Shoulder', xs: '63', s: '64', m: '65', l: '66', xl: '67', xxl: '68' },
             { name: 'Armhole', xs: '30', s: '30.5', m: '31', l: '31.5', xl: '32', xxl: '32.5' }
         ],
+        own_fit: [
+            { name: 'Chest Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Total Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Bottom Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Rib Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Neck', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Rib Length Sleeves', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Rib Length Neck', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Shoulder', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Armhole', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
+        ],
         printSimpleImg: crewneckSimple,
         printDesignImg: crewneckDesign,
     },
-    // done
+
+    // zip-hoodie
     {
         category: "zip-hoodie",
         fitImg: zip, // Assuming 'hoodie' is the image source
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
             // { label: 'Balloon Fit', value: 'balloon_fit' },
         ],
         fitData: [
@@ -203,16 +260,35 @@ export const OrdersData = [
             { name: 'Pockets Top to Zipper', xs: '13.5', s: '13.5', m: '14', l: '14', xl: '14', xxl: '14' },
             { name: 'Hood Length', xs: '38', s: '39', m: '40', l: '41', xl: '42', xxl: '43' }
         ],
+        own_fit: [
+            { name: 'Total Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Chest Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Bottom Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Shoulder', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Neck', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Cuff Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Cuff Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Hem Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pockets Bottom to Zipper', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pockets Bottom Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Biceps', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Bottom Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Hood Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pockets Top to Zipper', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Hood Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
+        ],
         printSimpleImg: zipHoodieSimple,
         printDesignImg: zipHoodieDesign,
     },
 
-    // done
+    // long-sleeve
     {
         category: "long-sleeve",
         fitImg: long, // Assuming 'tShirt' is the image source
         fitOptions: [
             { label: 'Boxy fit', value: 'boxy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
 
         ],
         fitData: [
@@ -243,17 +319,32 @@ export const OrdersData = [
             { name: 'Neck Opening', xs: '20', s: '20', m: '20', l: '20', xl: '20', xxl: '20' },
             { name: 'Shoulder to Shoulder', xs: '58', s: '59', m: '60', l: '61', xl: '62', xxl: '63' }
         ],
+        own_fit: [
+            { name: 'Chest Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Total Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Bottom Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Bottom Rib', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Neck', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Sleeve Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Armhole', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Rib Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Drop Front', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Neck Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Shoulder to Shoulder', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
+        ],
         printSimpleImg: longSleevSimple,
         printDesignImg: longSleevDesign,
     },
 
-    // done
+    // tank-top
     {
         category: "tank-top",
         fitImg: tank, // Assuming 'tankTop' is the image source
         fitOptions: [
             { label: 'Regular Fit', value: 'regular_fit' },
-            { label: 'Tight Fit', value: 'tight_fit' }
+            { label: 'Tight Fit', value: 'tight_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
         ],
         fitData: [
             { name: 'Chest Width', xs: '42', s: '44', m: '46', l: '48', xl: '50' },
@@ -285,17 +376,29 @@ export const OrdersData = [
             { name: 'Armhole', xs: '18', s: '19', m: '20', l: '21', xl: '22' },
             { name: 'Neck Opening', xs: '18', s: '18', m: '18', l: '18', xl: '18' }
         ],
+        own_fit: [
+            { name: 'Chest Width', xs: '0', s: '0', m: '0', l: '0', xl: '0' },
+            { name: 'Total Length', xs: '0', s: '0', m: '0', l: '0', xl: '0' },
+            { name: 'Bottom Width', xs: '0', s: '0', m: '0', l: '0', xl: '0' },
+            { name: 'Side Length', xs: '0', s: '0', m: '0', l: '0', xl: '0' },
+            { name: 'Neck Drop Front', xs: '0', s: '0', m: '0', l: '0', xl: '0' },
+            { name: 'Strap', xs: '0', s: '0', m: '0', l: '0', xl: '0' },
+            { name: 'Armhole', xs: '0', s: '0', m: '0', l: '0', xl: '0' },
+            { name: 'Neck Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0' }
+        ],
         printSimpleImg: tankSimple,
         printDesignImg: tankDesign,
 
     },
 
-    // done
+    // jogger-open-leg
     {
         category: "jogger-open-leg",
         fitImg: jogger_cuffed, // Assuming 'tShirt' is the image source
         fitOptions: [
-            { label: 'Baggy fit', value: 'baggy_fit' },],
+            { label: 'Baggy fit', value: 'baggy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
+        ],
         fitData: [
             { name: 'Waistband', xs: '30', s: '33', m: '36', l: '39', xl: '41', xxl: '44' },
             { name: 'Leg Length', xs: '94', s: '97', m: '100', l: '103', xl: '106', xxl: '109' },
@@ -321,17 +424,32 @@ export const OrdersData = [
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' },
             { name: 'Waist Rib', xs: '4', s: '4', m: '4', l: '4', xl: '4', xxl: '4' },
             { name: 'Pocket Front Length', xs: '14', s: '14', m: '14', l: '14', xl: '14', xxl: '14' }
+        ],
+        own_fit: [
+            { name: 'Waistband', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Leg Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch Front', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch to Bottom', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Leg Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch Back', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Thigh Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Back Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Back Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Waist Rib', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Front Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
         ],
         printSimpleImg: openlegSimple,
         printDesignImg: openlegDesign,
     },
 
-    //    done
+    //  jogger-cuffed
     {
         category: "jogger-cuffed",
         fitImg: jogger_open_leg, // Assuming 'tShirt' is the image source
         fitOptions: [
-            { label: 'Baggy fit', value: 'baggy_fit' },],
+            { label: 'Baggy fit', value: 'baggy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
+        ],
         fitData: [
             { name: 'Waistband', xs: '30', s: '33', m: '36', l: '39', xl: '41', xxl: '44' },
             { name: 'Leg Length', xs: '94', s: '97', m: '100', l: '103', xl: '106', xxl: '109' },
@@ -357,16 +475,32 @@ export const OrdersData = [
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' },
             { name: 'Waist Rib', xs: '4', s: '4', m: '4', l: '4', xl: '4', xxl: '4' },
             { name: 'Pocket Front Length', xs: '14', s: '14', m: '14', l: '14', xl: '14', xxl: '14' }
+        ],
+        own_fit: [
+            { name: 'Waistband', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Leg Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch Front', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch to Bottom', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Leg Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch Back', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Thigh Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Back Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Back Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Waist Rib', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Front Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
         ],
         printSimpleImg: closelegSimple,
         printDesignImg: closelegDesign,
     },
-    // done
+
+    // shorts
     {
         category: "shorts",
         fitImg: short, // Assuming 'tShirt' is the image source
         fitOptions: [
-            { label: 'Baggy fit', value: 'baggy_fit' },],
+            { label: 'Baggy fit', value: 'baggy_fit' },
+            { label: 'Own Fit', value: 'own_fit' },
+        ],
         fitData: [
             { name: 'Leg Length', xs: '44', s: '44', m: '47', l: '50', xl: '53', xxl: '56' },
             { name: 'Crotch Front', xs: '33', s: '33', m: '33', l: '33', xl: '33', xxl: '33' },
@@ -390,6 +524,18 @@ export const OrdersData = [
             { name: 'Crotch Back', xs: '37', s: '37', m: '37', l: '37', xl: '37', xxl: '37' },
             { name: 'Pocket Back Width', xs: '10', s: '10', m: '10', l: '10', xl: '10', xxl: '10' },
             { name: 'Pocket Back Length', xs: '13', s: '13', m: '13', l: '13', xl: '13', xxl: '13' }
+        ],
+        own_fit: [
+            { name: 'Leg Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch Front', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch to Bottom', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Leg Opening', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Waistband', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Front Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Waist Rib', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Crotch Back', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Back Width', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' },
+            { name: 'Pocket Back Length', xs: '0', s: '0', m: '0', l: '0', xl: '0', xxl: '0' }
         ],
         printSimpleImg: shortsSimple,
         printDesignImg: shortsDesign,
