@@ -11,9 +11,7 @@ const DeliveryForm = ({ errors }) => {
     const { user } = useAuth();
 
     console.log(formData)
-    // console.log("User Data:", user);
-    // console.log("Initial Form Data:", formData);
-
+   
     // Set initial values from user if formData is empty
     useEffect(() => {
         if (user) {

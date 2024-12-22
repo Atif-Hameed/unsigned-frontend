@@ -4,7 +4,8 @@ import nodemailer from 'nodemailer';
 export async function POST(req) {
     const { email, } = await req.json();
 
-    const link = `https://user.unsigned-global.com/signUp/create-password?email=${encodeURIComponent(email)}`
+    // const link = `https://user.unsigned-global.com/signUp/create-password?email=${encodeURIComponent(email)}`
+    const link = `https://unsigned-nu.vercel.app/signUp/create-password?email=${encodeURIComponent(email)}`
 
 
     // Create mail options with dynamic values

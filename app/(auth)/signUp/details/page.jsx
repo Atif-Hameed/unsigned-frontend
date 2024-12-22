@@ -184,7 +184,6 @@ const Page = () => {
                                     name={'brandName'}
                                     value={formData.brandName}
                                     onChange={handleChange}
-                                    isRequired={true}
                                 />
                                 <CustomInput
                                     type={'text'}
@@ -192,7 +191,6 @@ const Page = () => {
                                     name={'vat'}
                                     value={formData.vat}
                                     onChange={handleChange}
-                                    isRequired={false}
                                 />
                                 <CustomInput
                                     type={'text'}
@@ -209,7 +207,10 @@ const Page = () => {
                                     onChange={handleChange}
                                 />
                                 <p className='text-xs w-full text-labelColor text-start'>{t('requiredField')}</p>
-                                <div className='w-full mt-6'>
+                                <div className='w-full mt-6 gap-4 flex justify-between items-center'>
+                                    <button onClick={handleNextStep} className='rounded-full text-lightBlueText hover:bg-sky-300 bg-sky-100 py-3 px-5'>
+                                        {t('skip')}
+                                    </button>
                                     <Button label={t('continue')} onClick={handleNextStep} />
                                 </div>
                             </div>
