@@ -52,7 +52,7 @@ const Navbar = () => {
     return (
         <div className='w-full flex justify-center'>
             <MaxContainer>
-                <div className='flex justify-between mb-8 gap-3 relative w-full py-2 items-center'>
+                <div className='flex lg:justify-between mb-8 gap-3 relative w-full py-2 items-center'>
 
                     <div className='flex items-center sm:gap-6 gap-4'>
 
@@ -71,11 +71,12 @@ const Navbar = () => {
                         {/* <TrnaslateButton /> */}
                     </div>
 
-                    <d className='sm:absolute sm:left-1/2 sm:-translate-x-1/2 top-1'>
-                        <Link href={'/dashboard/drafts'} >
-                            <Image alt='' src={logo} className='sm:w-40 w-28' unoptimized priority />
+                    <div className="flex justify-center md:justify-end  w-56">
+                        <Link href="/dashboard/drafts">
+                            <Image alt="" src={logo} className="sm:w-40 w-28" unoptimized priority />
                         </Link>
-                    </d>
+                    </div>
+
                 </div>
             </MaxContainer>
         </div>

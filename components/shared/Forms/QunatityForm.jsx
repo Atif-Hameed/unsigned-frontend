@@ -66,7 +66,7 @@ const QuantityForm = ({ error }) => {
                 <h2 className="text-2xl flex font-semibold mb-4">
                     <Heading>How many items would you like to produce</Heading>
                     <CustomTooltip
-                    width='18rem'
+                    width='lg:w-[25rem] w-[8rem]'
                     tooltipText={"Please enter a minimum of 50 in total across the sizes."}
                 >
                     <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />

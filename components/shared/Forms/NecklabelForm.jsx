@@ -100,7 +100,7 @@ const NecklabelForm = ({
                 <div className='p-5 bg-lightBackground '>
                     <div className='flex items-center gap-3  w-full'>
                         <Heading>Select a label option</Heading>
-                        <CustomTooltip width='20rem' tooltipText={'Select whether you want a neck label or not.'}>
+                        <CustomTooltip width='lg:w-[20rem] w-[17rem]' tooltipText={'Select whether you want a neck label or not.'}>
                             <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                         </CustomTooltip>
                     </div>
@@ -128,7 +128,7 @@ const NecklabelForm = ({
                     <div className='p-5 bg-lightBackground '>
                         <div className='flex items-center gap-3 w-full'>
                             <Heading>Choose the material</Heading>
-                            <CustomTooltip width='20rem' tooltipText={"We can produce your labels as either printed or woven."}>
+                            <CustomTooltip width='lg:w-[20rem] w-[17rem]' tooltipText={"We can produce your labels as either printed or woven."}>
                                 <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                             </CustomTooltip>
                         </div>
@@ -156,7 +156,7 @@ const NecklabelForm = ({
                     <div className='p-5 bg-lightBackground '>
                         <div className='flex items-center gap-3  w-full'>
                             <Heading>Choose the label color</Heading>
-                            <CustomTooltip width='15rem' tooltipText={"Choose between black or white."}>
+                            <CustomTooltip width='lg:w-[20rem] w-[14rem]' tooltipText={"Choose between black or white."}>
                                 <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                             </CustomTooltip>
                         </div>
@@ -184,15 +184,15 @@ const NecklabelForm = ({
             <div className='lg:w-[68%] sm:w-[58%] w-full'>
                 {/* Conditionally Render Image Upload Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className=' bg-lightBackground justify-between mb-3 p-5 flex items-center  sm:pb-0 pb-20 sm:pt-0 pt-8 sm:py-20'>
+                    <div className=' bg-lightBackground justify-between relative mb-3 p-5 flex items-center  sm:pb-0 pb-20 sm:pt-0 pt-8 md:py-0 py-28'>
                         <div className='md:w-[45%] sm:w-[55%] w-1/2 '>
                             <Image alt='' src={necklabel} className='w-full h-full' />
                         </div>
                         <div className='sm:w-[45%]  w-1/2 relative flex justify-center'>
-                            <div className='w-full relative flex flex-col items-center'>
+                            <div className='w-full relative space-y-2 flex flex-col items-center'>
 
                                 {/* Display uploaded files */}
-                                <div className='flex gap-2 mb-4'>
+                                <div className='flex'>
                                     {renderUploadedFiles()}
                                 </div>
 
@@ -200,7 +200,7 @@ const NecklabelForm = ({
                                 <div className='flex items-center w-full relative'>
                                     <Image alt='' src={neckLabelUplaod} className='z-30 w-full ' />
 
-                                    <div className='bg-lightBlueText cursor-pointer absolute right-[40%] top-[30%] p-2 z-40 rounded-full hover:bg-lightBlue'>
+                                    <div className='bg-lightBlueText cursor-pointer absolute right-[40%] top-[20%] p-2 z-40 rounded-full hover:bg-lightBlue'>
                                         <IoCloudUploadOutline className='w-6 h-6 text-white' />
                                         <input
                                             type="file"
@@ -212,7 +212,7 @@ const NecklabelForm = ({
                                     </div>
                                 </div>
 
-                                <div className='md:w-full w-[200px] text-gray-700 lg:text-xs text-[10px] absolute xl:-bottom-[25%] lg:-bottom-[40%] sm:-bottom-[90%] -bottom-[100%] text-center sm:-left-[60%] -left-[80%]'>
+                                <div className='md:w-full w-[220px] text-gray-700 lg:text-xs text-[10px] absolute xl:-bottom-[25%] lg:-bottom-[40%] sm:bottom-[80%] -bottom-[75%] text-center sm:-left-[60%] -left-[80%]'>
                                     <p>Please provide us with every Size Label for every Size. For example, if you have 5 Sizes you need to upload 5 files, one with S one with M one with L and so on.</p>
                                 </div>
                             </div>

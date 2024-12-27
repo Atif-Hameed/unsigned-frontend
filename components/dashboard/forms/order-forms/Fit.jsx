@@ -98,7 +98,7 @@ const Fit = () => {
                         <h1 className='w-fit lg:text-2xl text-xl font-bold text-dark'>
                             Choose your fit
                         </h1>
-                        <CustomTooltip width='18rem' tooltipText={'You can select our fit or create your own by typing in your measurements.'}>
+                        <CustomTooltip width='w-[20rem]' tooltipText={'You can select our fit or create your own by typing in your measurements.'}>
                             <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
                         </CustomTooltip>
                     </div>
@@ -126,7 +126,7 @@ const Fit = () => {
             <div className='w-full flex-1 bg-lightBackground lg:p-10 p-5'>
                 <div className='flex items-center gap-1'>
                     <h1 className='lg:text-3xl text-xl font-bold text-dark'>Fill in the size chart</h1>
-                    <CustomTooltip width='25rem' tooltipText={"Please enter all the measurements you have. If you don't have a specific measurement, enter '0' and we will assist you. If you need to add more dimensions, type your extra measurements in the special request box. You don't need to fill in all the sizes—one is enough."}>
+                    <CustomTooltip width='lg:w-[32rem] w-[20rem]' tooltipText={"Please enter all the measurements you have. If you don't have a specific measurement, enter '0' and we will assist you. If you need to add more dimensions, type your extra measurements in the special request box. You don't need to fill in all the sizes—one is enough."}>
                         <HiQuestionMarkCircle className='text-lightBlue text-2xl w-10' />
                     </CustomTooltip>
                 </div>

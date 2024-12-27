@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 
-const CustomTooltip = ({ children, tooltipText, width = 'auto' }) => {
+const CustomTooltip = ({ children, tooltipText, width}) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -11,10 +11,9 @@ const CustomTooltip = ({ children, tooltipText, width = 'auto' }) => {
         >
             {children}
             {isHovered && (
-                <div className="absolute bottom-full mb-1 flex  flex-col items-center">
+                <div className={`absolute bottom-full z-20 mb-1 flex  flex-col items-center ${width}`}>
                     {/* Tooltip Box */}
-                    <div className="bg-[#4a6980]  text-white font-normal text-sm px-4 py-2 rounded-lg shadow-lg "
-                        style={{ width }}
+                    <div className={`bg-[#4a6980] text-white font-normal text-sm px-4 py-2 rounded-lg shadow-lg`}
                     >
                         {tooltipText}
                     </div>

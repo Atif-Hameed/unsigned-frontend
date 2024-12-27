@@ -24,15 +24,16 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
                 {/* Heading */}
                 <div className='flex items-center gap-3  w-full'>
                     <p className='lg:text-3xl sm:text-2xl text-lg font-medium text-dark'>Choose your fabric color</p>
-                    <CustomTooltip width='20rem' tooltipText={'You can select one of our colors or enter your own by providing the Pantone code in the box.'}>
+                    <CustomTooltip width='lg:w-[32rem] w-[20rem]' tooltipText={'You can select one of our colors or enter your own by providing the Pantone code in the box.'}>
                         <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                     </CustomTooltip>
                 </div>
 
                 {/* Color options */}
-                <div className='flex flex-wrap gap-4 mt-4'>
+                <div className='flex flex-wrap gap-3 mt-4 md:px-0 px-6'>
                     {Colors.map((color, index) => (
                         <CustomTooltip
+                            width='w-[10rem]'
                             key={index}
                             tooltipText={<span className='whitespace-nowrap'>{color.label}<br />{color.title}</span>}
                         >

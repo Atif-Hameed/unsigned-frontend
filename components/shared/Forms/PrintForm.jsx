@@ -44,7 +44,7 @@ const PrintForm = ({ selectedFile, onFileChange, textarea, onTextareaChange }) =
             <div className='flex items-center gap-3 w-full'>
                 <Heading>Add your customization</Heading>
                 <CustomTooltip
-                    width='30rem'
+                    width='lg:w-[32rem] w-[16rem]'
                     tooltipText={"Download our template, add your design to it, and then upload the completed file. If you can't do this yourself, just upload your design and specify the measurements for placement in the special request box."}
                 >
                     <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
