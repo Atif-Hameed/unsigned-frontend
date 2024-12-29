@@ -61,19 +61,19 @@ const QuantityForm = ({ error }) => {
     }, [formData.quantity.quantities]);
 
     return (
-        <div className="md:max-w-6xl">
-            <div className="bg-lightBackground p-6 shadow-md">
+        <div className="">
+            <div className="bg-lightBackground sm:p-6 p-3 shadow-md">
                 <h2 className="text-2xl flex font-semibold mb-4">
                     <Heading>How many items would you like to produce</Heading>
                     <CustomTooltip
-                    width='lg:w-[25rem] w-[8rem]'
+                    width='lg:w-[25rem] sm:w-[16rem] w-[8rem] sm:mr-0 mr-10'
                     tooltipText={"Please enter a minimum of 50 in total across the sizes."}
                 >
-                    <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
+                    <HiQuestionMarkCircle className='text-lightBlue sm:mr-0 mr-7 sm:text-2xl text-xl w-8' />
                 </CustomTooltip>
                 </h2>
 
-                <div className="grid grid-cols-7 md:w-[30vw] gap-2 md:gap-4 mb-4">
+                <div className="flex overflow-auto md:w-[30vw] gap-2 md:gap-4 mb-4">
                     {sizes.map((size) => (
                         <div key={size} className="text-center">
                             <label htmlFor={size} className="block text-sm font-medium text-gray-700">

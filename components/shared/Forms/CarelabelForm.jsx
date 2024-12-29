@@ -38,11 +38,11 @@ const CarelabelForm = ({
     <div className='w-full flex sm:flex-row flex-col'>
       <div className='lg:w-[32%] sm:w-[42%] w-full flex flex-col gap-3'>
         {/* Label Option Section */}
-        <div className='p-5 bg-lightBackground'>
-          <div className='flex items-center gap-3 w-full'>
+        <div className='sm:p-5 p-3 bg-lightBackground'>
+          <div className='flex items-center sm:gap-3 gap-2 w-full'>
             <Heading>Select your care label option</Heading>
-            <CustomTooltip width='lg:w-[30rem] w-[7rem] ' tooltipText={'Care labels are made from polyester and will be printed. If you want fully custom care labels, please specify this in the special request box.'}>
-              <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
+            <CustomTooltip width='lg:w-[30rem] sm:mr-0 mr-10 sm:w-[20rem] w-[10rem] ' tooltipText={'Care labels are made from polyester and will be printed. If you want fully custom care labels, please specify this in the special request box.'}>
+              <HiQuestionMarkCircle className='text-lightBlue  sm:mr-0 mr-10 sm:text-2xl text-xl w-8' />
             </CustomTooltip>
           </div>
           <div className='flex flex-col gap-2 mt-3'>

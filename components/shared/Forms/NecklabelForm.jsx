@@ -62,9 +62,9 @@ const NecklabelForm = ({
     // Display uploaded files with delete option
     const renderUploadedFiles = () => {
         return (selectedFiles || []).map((file, index) => (
-            <div key={index} className='relative w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
+            <div key={index} className='relative sm:w-12 w-9 sm:h-12 h-9 bg-lightBlueText flex items-center justify-center rounded-lg'>
                 <span className='text-blue-500 font-bold'>{file.type?.split('/')[1]?.toUpperCase()}</span>
-                <div className='w-12 h-12 bg-lightBlueText flex items-center justify-center rounded-lg'>
+                <div className='sm:w-12 w-9 sm:h-12 h-9 bg-lightBlueText flex items-center justify-center rounded-lg'>
                     <span className='text-blue-500 font-bold'>{getFileNameFromUrl(file).split('.').pop()}</span>
                 </div>
                 <button
@@ -97,10 +97,10 @@ const NecklabelForm = ({
 
             <div className='lg:w-[32%] sm:w-[42%] w-full flex flex-col  gap-3'>
                 {/* Label Option Section */}
-                <div className='p-5 bg-lightBackground '>
+                <div className='sm:p-5 p-3 bg-lightBackground '>
                     <div className='flex items-center gap-3  w-full'>
                         <Heading>Select a label option</Heading>
-                        <CustomTooltip width='lg:w-[20rem] w-[17rem]' tooltipText={'Select whether you want a neck label or not.'}>
+                        <CustomTooltip width='lg:w-[20rem] sm:w-[17rem] w-[8rem]' tooltipText={'Select whether you want a neck label or not.'}>
                             <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                         </CustomTooltip>
                     </div>
@@ -125,10 +125,10 @@ const NecklabelForm = ({
 
                 {/* Material Option Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className='p-5 bg-lightBackground '>
+                    <div className='sm:p-5 p-3 bg-lightBackground '>
                         <div className='flex items-center gap-3 w-full'>
                             <Heading>Choose the material</Heading>
-                            <CustomTooltip width='lg:w-[20rem] w-[17rem]' tooltipText={"We can produce your labels as either printed or woven."}>
+                            <CustomTooltip width='lg:w-[20rem] sm:w-[17rem] w-[9rem]' tooltipText={"We can produce your labels as either printed or woven."}>
                                 <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                             </CustomTooltip>
                         </div>
@@ -153,10 +153,10 @@ const NecklabelForm = ({
 
                 {/* Color Selection Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className='p-5 bg-lightBackground '>
+                    <div className='sm:p-5 p-3 bg-lightBackground '>
                         <div className='flex items-center gap-3  w-full'>
                             <Heading>Choose the label color</Heading>
-                            <CustomTooltip width='lg:w-[20rem] w-[14rem]' tooltipText={"Choose between black or white."}>
+                            <CustomTooltip width='lg:w-[20rem] sm:w-[14rem] w-[7rem]' tooltipText={"Choose between black or white."}>
                                 <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                             </CustomTooltip>
                         </div>
@@ -184,7 +184,7 @@ const NecklabelForm = ({
             <div className='lg:w-[68%] sm:w-[58%] w-full'>
                 {/* Conditionally Render Image Upload Section */}
                 {selectedLabelOption === 'standard' && (
-                    <div className=' bg-lightBackground justify-between relative mb-3 p-5 flex items-center  sm:pb-0 pb-20 sm:pt-0 pt-8 md:py-0 py-28'>
+                    <div className=' bg-lightBackground justify-between relative mb-3 sm:p-5 p-3 flex items-center  sm:pb-0 pb-20 sm:pt-0 pt-8 md:py-0 py-28'>
                         <div className='md:w-[45%] sm:w-[55%] w-1/2 '>
                             <Image alt='' src={necklabel} className='w-full h-full' />
                         </div>
@@ -200,8 +200,8 @@ const NecklabelForm = ({
                                 <div className='flex items-center w-full relative'>
                                     <Image alt='' src={neckLabelUplaod} className='z-30 w-full ' />
 
-                                    <div className='bg-lightBlueText cursor-pointer absolute right-[40%] top-[20%] p-2 z-40 rounded-full hover:bg-lightBlue'>
-                                        <IoCloudUploadOutline className='w-6 h-6 text-white' />
+                                    <div className='bg-lightBlueText cursor-pointer absolute right-[40%] top-[20%] sm:p-2 p-1 z-40 rounded-full hover:bg-lightBlue'>
+                                        <IoCloudUploadOutline className='sm:w-6 w-4 sm:h-6 h-4 text-white' />
                                         <input
                                             type="file"
                                             className="absolute inset-0 opacity-0 cursor-pointer"
@@ -212,7 +212,7 @@ const NecklabelForm = ({
                                     </div>
                                 </div>
 
-                                <div className='md:w-full w-[220px] text-gray-700 lg:text-xs text-[10px] absolute xl:-bottom-[25%] lg:-bottom-[40%] sm:bottom-[80%] -bottom-[75%] text-center sm:-left-[60%] -left-[80%]'>
+                                <div className='md:w-full w-[220px] text-gray-700 lg:text-xs text-[10px] absolute xl:-bottom-[25%] lg:-bottom-[40%] sm:bottom-[80%] -bottom-[80%] text-center sm:-left-[60%] -left-[80%]'>
                                     <p>Please provide us with every Size Label for every Size. For example, if you have 5 Sizes you need to upload 5 files, one with S one with M one with L and so on.</p>
                                 </div>
                             </div>

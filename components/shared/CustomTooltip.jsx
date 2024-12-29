@@ -13,7 +13,7 @@ const CustomTooltip = ({ children, tooltipText, width}) => {
             {isHovered && (
                 <div className={`absolute bottom-full z-20 mb-1 flex  flex-col items-center ${width}`}>
                     {/* Tooltip Box */}
-                    <div className={`bg-[#4a6980] text-white font-normal text-sm px-4 py-2 rounded-lg shadow-lg`}
+                    <div className={`bg-[#4a6980] text-white font-normal sm:text-sm text-xs sm:px-4 px-2 py-2 rounded-lg shadow-lg`}
                     >
                         {tooltipText}
                     </div>

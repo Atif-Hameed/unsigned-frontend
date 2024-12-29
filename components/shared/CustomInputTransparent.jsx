@@ -48,7 +48,7 @@ const CustomInputTransparent = ({ type, label, id, name, bgColor = 'transparent'
     };
 
     return (
-        <div className="relative mt-4 w-full">
+        <div className="relative mt-4 w-full h-full">
             <input
                 ref={inputRef}
                 id={id}
@@ -58,7 +58,7 @@ const CustomInputTransparent = ({ type, label, id, name, bgColor = 'transparent'
                 value={value}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                className={`peer w-full border text-dark rounded-full px-7 py-2 focus:outline-none transition-all duration-200
+                className={`peer w-full h-full border text-dark rounded-full px-7 py-2 focus:outline-none transition-all duration-200
                 ${error ? 'border-red-500' : 'border-labelColor focus:border-lightBlue'} 
                 ${isFocused ? 'sm:py-4 py-3.5' : 'sm:py-4 py-3.5'}`}
                 required={isRequired}

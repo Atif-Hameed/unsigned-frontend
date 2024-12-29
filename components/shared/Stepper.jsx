@@ -78,7 +78,7 @@ const Stepper = ({
         if (currentTabIndex === tabs.length - 1) {
             updatedFormData = {
                 ...updatedFormData,
-                status: 'complete', // Update the status to 'complete'
+                status: 'completed', // Update the status to 'complete'
             };
         } else {
             updatedFormData = {

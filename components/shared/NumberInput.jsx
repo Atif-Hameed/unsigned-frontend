@@ -25,7 +25,7 @@ const NumberInput = ({ name, value, onChange }) => {
     };
 
     return (
-        <div className='bg-[#f7f7f7] rounded-2xl border border-transparent py-3 w-full hover:border-lightBlue'>
+        <div className='bg-[#f7f7f7] rounded-2xl border  border-transparent py-3 w-full hover:border-lightBlue'>
             <input
                 type="number"
                 name={name}
@@ -33,7 +33,7 @@ const NumberInput = ({ name, value, onChange }) => {
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                className='bg-transparent text-dark text-center w-full outline-none'
+                className='bg-transparent text-dark text-center flex justify-center  min-w-12 w-full outline-none'
                 min="0"
                 max={1000}
             />

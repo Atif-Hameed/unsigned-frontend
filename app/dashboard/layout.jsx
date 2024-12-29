@@ -34,7 +34,7 @@ function InnerLayout({ children }) {
     return (
         <div className="flex w-full justify-center">
             <MaxContainer>
-                <div className="lg:w-[94%] w-full px-6">
+                <div className="lg:w-[94%] w-full sm:px-6 px-3">
                     <Navbar />
                     {children}
                 </div>

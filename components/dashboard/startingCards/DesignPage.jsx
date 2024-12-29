@@ -83,7 +83,7 @@ const DesignPage = ({ onClose }) => {
                 <div className="rounded-lg w-full">
                     <div>
                         <div>
-                            <h2 className="text-center md:text-4xl sm:text-3xl text-2xl py-7 text-dark font-medium">
+                            <h2 className="text-center md:text-4xl sm:text-3xl text-2xl py-7 sm:pt-7 pt-10 text-dark font-medium">
                                 {t('whatWouldYouLikeToDesign?')}
                             </h2>
                             <button onClick={onClose} className='md:h-12 h-8 w-8 md:w-12 bg-white shadow rounded-full justify-center flex items-center absolute md:right-10 md:top-7 right-2 top-1 text-lightBlue'>

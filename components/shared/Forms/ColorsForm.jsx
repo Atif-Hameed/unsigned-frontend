@@ -20,22 +20,22 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
 
     return (
         <div className='flex items-start flex-wrap gap-3'>
-            <div className='lg:w-[74%] w-full bg-lightBackground p-4 '>
+            <div className='lg:w-[74%] w-full bg-lightBackground sm:p-4 p-3 '>
                 {/* Heading */}
-                <div className='flex items-center gap-3  w-full'>
+                <div className='flex items-center sm:gap-3 gap-2  w-full'>
                     <p className='lg:text-3xl sm:text-2xl text-lg font-medium text-dark'>Choose your fabric color</p>
-                    <CustomTooltip width='lg:w-[32rem] w-[20rem]' tooltipText={'You can select one of our colors or enter your own by providing the Pantone code in the box.'}>
+                    <CustomTooltip width='lg:w-[32rem] sm:w-[20rem] w-[9rem]' tooltipText={'You can select one of our colors or enter your own by providing the Pantone code in the box.'}>
                         <HiQuestionMarkCircle className='text-lightBlue sm:text-2xl text-xl w-8' />
                     </CustomTooltip>
                 </div>
 
                 {/* Color options */}
-                <div className='flex flex-wrap gap-3 mt-4 md:px-0 px-6'>
+                <div className='flex flex-wrap gap-3 mt-4 md:px-0 sm:px-6 px-4'>
                     {Colors.map((color, index) => (
                         <CustomTooltip
-                            width='w-[10rem]'
+                            width='sm:w-[10rem] w-[7rem]'
                             key={index}
-                            tooltipText={<span className='whitespace-nowrap'>{color.label}<br />{color.title}</span>}
+                            tooltipText={<span className='sm:whitespace-nowrap'>{color.label}<br />{color.title}</span>}
                         >
                             <div
                                 className={`w-12 h-12 rounded-full border-2 cursor-pointer flex items-center justify-center ${selectedColor === color.colorCode ? 'border-lightBlueText' : 'border-gray-300'
@@ -51,7 +51,7 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
 
                 <div className='mt-16'>
                     <p className=' sm:text-2xl text-lg font-medium text-dark'>Custom Color</p>
-                    <div className='w-full mt-4'>
+                    <div className='w-full sm:mt-4'>
                         <CustomInputTransparent
                             type={'text'}
                             label={'Please provide us with a Pantone Code of your choice '}

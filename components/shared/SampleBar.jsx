@@ -36,7 +36,7 @@ const SampleBar = () => {
             </div>
 
             <div className="md:flex justify-between w-full md:space-y-0 space-y-4 py-4">
-                <div className="bg-gray-50 rounded-full">
+                <div className="bg-gray-50 sm:rounded-full rounded-lg sm:p-0 p-1">
                     <Link href="/dashboard/drafts">
                         <button
                             className={`px-4 py-3 rounded-full ${pathname === '/dashboard/drafts' ? 'bg-labelColor text-white' : ''}`}

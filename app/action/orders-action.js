@@ -105,7 +105,7 @@ export const getAllCompleteOrders = async (user_id) => {
     const ordersQuery = query(
         orderCollectionRef, // Use the collection reference here
         where("user_id", "==", user_id),
-        where("status", "==", "complete")
+        where("status", "==", "completed")
     );
 
     try {

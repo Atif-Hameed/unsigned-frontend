@@ -119,12 +119,6 @@ const InquiriesCards = ({ orders }) => {
                                     </div>
                                 </div>
 
-                                {/* <div className="flex justify-between items-center">
-                                    <p className="text-labelColor">{order.date}</p>
-                                    <button onClick={() => router.push(`/dashboard/designs/${order.id}`)} className="bg-white hover:bg-black hover:text-white text-black px-6 py-3 rounded-full">
-                                        Continue
-                                    </button>
-                                </div> */}
                             </div>
                         ))}
                     </div>
@@ -143,41 +137,6 @@ const InquiriesCards = ({ orders }) => {
                 </>
             )}
 
-            {/* Delete Confirmation Dialog */}
-            {/* {showDeleteDialog && (
-                <div className="">
-                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                        <div className="relative">
-                            <button
-                                onClick={handleCancelDelete}
-                                className="h-8 w-8 bg-white shadow rounded-full justify-center flex items-center absolute bottom-16 left-96 text-lightBlue"
-                            >
-                                <IoCloseOutline size={24} />
-                            </button>
-                        </div>
-                        <div className="bg-cardColor p-6 rounded-2xl shadow-lg max-w-sm w-full relative">
-                            <h2 className="text-2xl font-medium text-labelColor text-center mb-4">
-                                {t('deleteConfirmation')}
-                            </h2>
-                            <div className="flex justify-center gap-4 mt-4">
-                                <button
-                                    onClick={handleCancelDelete}
-                                    className="bg-bgColor text-white py-2 px-6 rounded-full"
-                                >
-                                    {t('cancel')}
-                                </button>
-                                <button
-                                    onClick={handleConfirmDelete}
-                                    className="bg-lightBlueText text-white py-2 px-6 rounded-full"
-                                    disabled={loading} 
-                                >
-                                    {loading ? 'Deleting...' : t('confirmDelete')} 
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )} */}
         </div>
     );
 };
