@@ -51,10 +51,20 @@ const ColorsForm = ({ selectedColor, onColorSelect, customColor, onCustomColorCh
 
                 <div className='mt-16'>
                     <p className=' sm:text-2xl text-lg font-medium text-dark'>Custom Color</p>
-                    <div className='w-full sm:mt-4'>
+                    <div className='w-full sm:mt-4 sm:block hidden'>
                         <CustomInputTransparent
                             type={'text'}
                             label={'Please provide us with a Pantone Code of your choice '}
+                            bgColorLabel='#eeeeee'
+                            onChange={onCustomColorChange} // Trigger on change
+                            value={customColor} // Bind value from parent component
+                            name={'customColor'}
+                        />
+                    </div>
+                    <div className='w-full sm:mt-4 sm:hidden block'>
+                        <CustomInputTransparent
+                            type={'text'}
+                            label={'Please provide us with a Pantone Code'}
                             bgColorLabel='#eeeeee'
                             onChange={onCustomColorChange} // Trigger on change
                             value={customColor} // Bind value from parent component

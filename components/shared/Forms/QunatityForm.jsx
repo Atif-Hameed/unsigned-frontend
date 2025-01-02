@@ -62,7 +62,7 @@ const QuantityForm = ({ error }) => {
 
     return (
         <div className="">
-            <div className="bg-lightBackground sm:p-6 p-3 shadow-md">
+            <div className="bg-lightBackground  sm:p-6 p-3 shadow-md">
                 <h2 className="text-2xl flex font-semibold mb-4">
                     <Heading>How many items would you like to produce</Heading>
                     <CustomTooltip
@@ -73,7 +73,7 @@ const QuantityForm = ({ error }) => {
                 </CustomTooltip>
                 </h2>
 
-                <div className="flex overflow-auto md:w-[30vw] gap-2 md:gap-4 mb-4">
+                <div className="flex overflow-auto sm:w-fit w-full gap-2 md:gap-4 mb-4">
                     {sizes.map((size) => (
                         <div key={size} className="text-center">
                             <label htmlFor={size} className="block text-sm font-medium text-gray-700">

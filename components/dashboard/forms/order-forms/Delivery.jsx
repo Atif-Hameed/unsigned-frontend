@@ -6,11 +6,12 @@ const Delivery = () => {
 
     const { formData, setFormData } = useContext(MyContext);
     
+    // console.log(formData?.errors)
 
     return (
         <div>
             <DeliveryForm
-                errors={formData?.errors?.delivery}
+                errors={formData?.errors}
             />
         </div>
     )

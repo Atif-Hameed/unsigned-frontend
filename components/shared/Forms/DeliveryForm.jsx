@@ -10,7 +10,7 @@ const DeliveryForm = ({ errors }) => {
     const { formData, setFormData } = useContext(MyContext);
     const { user } = useAuth();
 
-    console.log(formData)
+    // console.log(errors)
    
     // Set initial values from user if formData is empty
     useEffect(() => {
@@ -77,7 +77,7 @@ const DeliveryForm = ({ errors }) => {
 
     const containsValues = Object.values(errors || {}).some(value => !!value);
 
-    console.log(containsValues); 
+    // console.log(containsValues); 
 
     return (
         <div className='w-full'>
@@ -265,7 +265,7 @@ const DeliveryForm = ({ errors }) => {
                 </div>
             </div>
 
-            {!containsValues &&
+            {containsValues &&
                 <p className='text-red-500 text-xl py-2 text-end w-full '>Please fill out all the fields</p>
             }
         </div>
